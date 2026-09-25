@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Александр Мизин</title>
+<meta name="description" content="Ландшафтный архитектор и руководитель проектов благоустройства. Проекты под ключ: от анализа участка до авторского надзора.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500&family=Golos+Text:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F4F4F1; --ink:#1A1C1A; --muted:#6A6E68; --soft:#E9E9E4; --red:#D0254A; --photo:#DDDDD6;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Golos Text","Segoe UI",system-ui,-apple-system,sans-serif;
+  --wrap:1120px; --gut:clamp(16px,5vw,56px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--bg:#141614;--ink:#ECEBE6;--muted:#9EA29A;--soft:#1E211E;--red:#E4474E;--photo:#262926}
+}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#141614;--ink:#ECEBE6;--muted:#9EA29A;--soft:#1E211E;--red:#E4474E;--photo:#262926}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto;background:var(--photo)}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:500;line-height:1.15;text-wrap:balance}
+h2{font-size:clamp(28px,3.6vw,40px);letter-spacing:-.01em}
+h3{font-size:clamp(20px,2vw,24px)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+.muted{color:var(--muted)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+section{padding-block:clamp(72px,10vw,136px)}
+.sec-title{display:grid;gap:14px;margin-bottom:clamp(40px,5vw,64px);max-width:720px}
+.sec-title p{color:var(--muted);font-size:18px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top .wrap{display:flex;align-items:center;gap:28px;min-height:64px}
+.brand{font-weight:600;text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:26px;margin-left:auto;font-size:15px}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font:500 16px/1 var(--body);padding:16px 22px;border-radius:40px;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.link{font-weight:500;text-decoration:none;color:var(--ink)}
+.link:hover{color:var(--red)}
+@media (max-width:860px){.nav a:not(.cta){display:none}}
+.nav .cta{color:var(--red);font-weight:500}
+
+/* about / hero */
+.hero{padding-block:clamp(48px,8vw,104px) clamp(72px,10vw,120px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(28px,6vw,80px);align-items:start}
+.hero-grid > img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:4px;filter:grayscale(1)}
+.hero h1{font:500 clamp(40px,6.4vw,84px)/1 var(--display);letter-spacing:-.03em}
+.hero .role{font-size:clamp(20px,2.2vw,26px);line-height:1.35;margin-top:24px;max-width:30ch}
+.hero .intro{display:grid;gap:14px;margin-top:28px;max-width:60ch;color:var(--muted)}
+.hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:36px}
+.nums{display:flex;flex-wrap:wrap;gap:20px 40px;margin-top:clamp(40px,5vw,56px)}
+.nums b{display:block;font:500 clamp(28px,3vw,36px)/1.1 var(--display);font-variant-numeric:tabular-nums}
+.nums span{display:block;color:var(--muted);font-size:15px;margin-top:6px;max-width:24ch;line-height:1.4}
+@media (max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-grid > img{max-width:240px}}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px clamp(32px,6vw,80px)}
+.svc div{display:grid;gap:10px;align-content:start}
+.svc p{color:var(--muted)}
+@media (max-width:720px){.svc{grid-template-columns:1fr;gap:32px}}
+
+/* cases */
+.cases{background:var(--soft)}
+.carousel{position:relative;--h:clamp(470px,calc(100vh - 130px),580px)}
+.track{--pad:max(var(--gut),calc((100% - var(--wrap))/2 + var(--gut)));display:flex;gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);padding-inline:var(--pad);scrollbar-width:none;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.track:focus-visible{outline:none}
+.track:focus-visible .slide{box-shadow:0 0 0 2px var(--red)}
+.slide{flex:0 0 min(1060px,calc(100vw - 2*var(--gut) - 72px));scroll-snap-align:start;height:var(--h);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--bg);border-radius:6px;overflow:hidden}
+.pics{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:4px;height:100%;min-height:0}
+.pics img{width:100%;height:100%;object-fit:cover;min-height:0}
+.pics img:first-child{grid-row:span 2}
+.info{padding:clamp(20px,2vw,28px) clamp(20px,2.2vw,30px);overflow-y:auto;display:grid;align-content:start;gap:6px}
+.info h3{font-size:clamp(22px,2.2vw,28px)}
+.info .meta{color:var(--muted);font-size:14px;line-height:1.5;margin-bottom:10px}
+.rows{display:grid;gap:8px;margin:0;font-size:15px;line-height:1.48}
+.rows > div{display:block}
+.rows dt{display:inline;font-weight:600}
+.rows dt:not(.l)::after{content:". "}
+.rows dd{display:inline}
+.rows dd .links{display:grid;margin-top:2px}
+.rows dd .links.two{grid-template-columns:1fr 1fr;column-gap:16px}
+.rows dd:has(.links){display:block}
+.rows dd{margin:0}
+.rows dt.l{display:block;color:var(--muted);font-weight:400;font-size:14px}
+.links{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.links a{color:var(--red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.links a:hover{text-decoration-thickness:2px}
+.arrow{position:absolute;top:calc(var(--h)/2 - 32px);width:64px;height:64px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);font:400 26px/1 var(--body);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.18);z-index:2}
+.arrow.next{right:max(12px,calc((100% - var(--wrap))/2 - 8px))}
+.arrow.prev{left:max(12px,calc((100% - var(--wrap))/2 - 8px))}
+.arrow:hover:not(:disabled){background:var(--red);color:#fff}
+.arrow:disabled{opacity:0;pointer-events:none}
+.count{margin-top:18px;color:var(--muted);font-size:15px;font-variant-numeric:tabular-nums}
+@media (max-width:860px){
+  .carousel{--h:auto}
+  .slide{height:auto;grid-template-columns:1fr;grid-template-rows:260px auto;align-self:stretch}
+  .info{overflow:visible}
+  .arrow{top:98px;width:52px;height:52px;font-size:22px}
+}
+@media (max-width:600px){.slide{flex-basis:calc(100vw - var(--gut) - 64px)}}
+.others-h{margin-top:clamp(64px,7vw,96px);margin-bottom:32px}
+.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.others img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+.others h3{font-size:17px;margin-top:14px}
+.others p{font-size:15px;color:var(--muted);margin-top:6px;line-height:1.5}
+.others .links{margin-top:10px;font-size:15px}
+@media (max-width:860px){.others{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.others{grid-template-columns:1fr}}
+
+/* process */
+.flow{position:relative;padding-top:6px}
+.flow::before{content:"";position:absolute;left:0;right:14px;top:12px;height:2px;background:var(--ink)}
+.flow::after{content:"";position:absolute;right:2px;top:6px;border-left:14px solid var(--ink);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.steps{list-style:none;margin-block:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px clamp(24px,3vw,40px);counter-reset:st}
+.steps li{display:grid;gap:10px;align-content:start;counter-increment:st;position:relative}
+.steps li::before{content:counter(st);width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font:500 13px/26px var(--body);text-align:center;justify-self:start;margin-top:-6px;margin-bottom:14px;box-shadow:0 0 0 6px var(--bg)}
+.steps p{color:var(--muted);font-size:16px}
+@media (max-width:760px){
+  .flow::before{left:calc(var(--gut) + 12px);right:auto;top:0;bottom:14px;width:2px;height:auto}
+  .flow::after{left:calc(var(--gut) + 6px);right:auto;top:auto;bottom:0;border-top:14px solid var(--ink);border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:0}
+  .steps{grid-template-columns:1fr;gap:28px;padding-bottom:28px}
+  .steps li{padding-left:44px}
+  .steps li::before{position:absolute;left:0;top:0;margin:0}
+}
+.teamblock{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px clamp(32px,5vw,72px);margin-top:clamp(80px,9vw,112px)}
+.team-intro{display:grid;gap:14px;align-content:start}
+.team-intro p{color:var(--muted)}
+.roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.roles > div{background:var(--soft);border-radius:4px;padding:22px 24px}
+.roles .stage{font-weight:600;margin-bottom:12px}
+.roles .note{font-size:14px;color:var(--muted);margin-top:10px}
+.roles ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.roles li{font-size:16px;color:var(--muted)}
+@media (max-width:960px){.teamblock{grid-template-columns:1fr}}
+@media (max-width:520px){.roles{grid-template-columns:1fr}}
+.how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px clamp(32px,6vw,80px);margin-top:clamp(64px,8vw,96px);align-items:start}
+.how > div{display:grid;gap:14px;align-content:start}
+.how p{color:var(--muted)}
+.example{background:var(--soft);border-radius:4px;padding:clamp(22px,3vw,32px);display:grid;gap:12px}
+.example p{color:var(--muted)}
+.example .t{display:flex;justify-content:space-between;gap:16px;font-size:16px}
+.example .t b{font-weight:600;white-space:nowrap}
+@media (max-width:820px){.how{grid-template-columns:1fr}}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px clamp(28px,4vw,56px)}
+.why div{display:grid;gap:10px;align-content:start}
+.why p{color:var(--muted)}
+@media (max-width:900px){.why{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.why{grid-template-columns:1fr}}
+
+/* contact */
+.contact{--cbg:#FFFFFF;background:radial-gradient(120% 90% at 100% 0%,rgba(255,236,240,.55),transparent 55%),linear-gradient(165deg,#161445 0%,#4a1c55 30%,#a3234f 62%,#e0284a 85%,#b01b2e 100%);color:#fff}
+.contact h2{font-size:clamp(32px,4.6vw,56px);max-width:18ch}
+.contact .lead{margin-top:20px;font-size:clamp(18px,1.8vw,21px);color:rgba(255,255,255,.82);max-width:48ch}
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:clamp(40px,5vw,64px)}
+.ways small{display:block;font-size:14px;color:rgba(255,255,255,.68);margin-bottom:6px}
+.ways .v{font-size:clamp(18px,1.8vw,22px);font-weight:500;text-decoration:none;user-select:all;overflow-wrap:anywhere}
+.ways a.v:hover{text-decoration:underline;text-underline-offset:4px}
+.copy{display:block;margin-top:8px;background:none;border:0;padding:0;color:rgba(255,255,255,.68);font:400 14px/1.4 var(--body);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.copy:hover{color:#fff}
+.contact .btn{margin-top:40px;background:#fff;color:#161445}
+@media (max-width:720px){.ways{grid-template-columns:1fr;gap:24px}}
+footer{background:var(--bg);color:var(--muted);font-size:14px;padding-block:28px 36px}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#about">Александр Мизин</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#services">Услуги</a>
+      <a href="#projects">Проекты</a>
+      <a href="#process">Как я работаю</a>
+      <a href="#why">Почему я</a>
+      <a class="cta" href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="about" class="hero">
+    <div class="wrap hero-grid">
+      <img src="img/mizin.jpg" alt="Александр Мизин" width="900" height="664" fetchpriority="high">
+      <div>
+        <h1>Александр<br>Мизин</h1>
+        <p class="role">Ландшафтный архитектор, промышленный дизайнер и руководитель проектов. Беру проекты благоустройства под ключ: от анализа участка до стройки.</p>
+        <div class="intro">
+          <p>Проектирую дворы, скверы, парки и детские площадки. За 8 лет в бюро UrUrban, «Чехарда» и RTDA я прошёл все стадии проекта: концепцию, рабочую документацию, задания для производства, работу с производителями и авторский надзор на стройке. Игровое оборудование и малые архитектурные формы проектирую сам.</p>
+          <p>Опыт организатора у меня тоже есть. Как сооснователь коворкинга и кафе в Ереване я искал партнёров и подрядчиков, спроектировал помещение и двор и координировал стройку. Теперь я веду проекты для заказчиков сам: собираю под задачу команду нужных специалистов и отвечаю за результат.</p>
+          <p>Живу и работаю в Ереване. Реализованные объекты есть в Ереване, Москве и Казани. Учился на факультете архитектуры и градостроительства МИИГАиК.</p>
+        </div>
+        <div class="actions">
+          <a class="btn" href="#contact">Обсудить проект</a>
+          <a class="link" href="#projects">Смотреть проекты ›</a>
+        </div>
+        <div class="nums">
+          <div><b>8 лет</b><span>практики в архитектуре и ландшафте</span></div>
+          <div><b>12</b><span>реализованных объектов</span></div>
+          <div><b>2</b><span>награды у проектов: MUSE Design Awards и «Парки России»</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>Что я делаю</h2>
+      </div>
+      <div class="svc">
+        <div><h3>Благоустройство под ключ</h3><p>Планировка территории, зонирование, покрытия, озеленение, освещение и места отдыха. Для частных и загородных участков, гостевых комплексов, дворов жилых комплексов и скверов.</p></div>
+        <div><h3>Детские и игровые пространства</h3><p>Площадки с собственной идеей, связанной с местом. С учётом стандартов безопасности детских площадок и детской психологии.</p></div>
+        <div><h3>Авторское оборудование и МАФ</h3><p>Игровые комплексы, качели, скамьи, навесы, стенды не из каталога. Эскиз, 3D-модель, чертежи и задание для производства, контроль изготовления и монтажа.</p></div>
+        <div><h3>Интерьеры общественных пространств</h3><p>Кафе, коворкинги, детские комнаты: перепланировка под задачу бизнеса, материалы и мебель, в том числе при небольшом бюджете.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="cases">
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>Проекты</h2>
+        <p>Проекты выполнены в составе бюро UrUrban и «Чехарда». В каждом проекте указано, за что отвечал я.</p>
+      </div>
+    </div>
+    <div class="carousel">
+      <div class="track" id="track" tabindex="0" aria-label="Проекты, листайте вбок">
+      <article class="slide">
+        <div class="pics"><img src="img/inv-tower.jpg" alt="Красная игровая башня с горкой" loading="lazy" style="object-position:50% 40%"><img src="img/inv-swings.jpg" alt="Качели с подсветкой" loading="lazy"><img src="img/inv-hammock.jpg" alt="Вандалоустойчивый гамак" loading="lazy"></div>
+        <div class="info">
+          <h3>Армянские изобретатели</h3>
+          <p class="meta">Детская площадка в парке им. Мисака Манушяна, Ереван<br>675 м² · 2026 · бюро UrUrban</p>
+          <dl class="rows"><div><dt>Задача</dt><dd>Игровое пространство на небольшом участке с деревьями в оживлённом парке в центре города.</dd></div><div><dt>Решение</dt><dd>Площадка растёт вверх, в виде игровой башни. Тема роста связана с наукой: площадка посвящена армянским учёным Армении и диаспоры.</dd></div><div><dt>Моя роль</dt><dd>Эскизы башни и задание на производство, авторское оборудование (качели с подсветкой, «Телевизор», теневой интерактив, гамак), МАФ, документация, авторский надзор.</dd></div><div><dt>Результат</dt><dd>Реализовано в 2026 году.</dd></div><div><dt class="l">Публикации</dt><dd><ul class="links"><li><a href="https://landezine-award.com/science-inside-out/" target="_blank" rel="noopener">Landezine</a></li><li><a href="https://armenpress.am/en/article/1249407" target="_blank" rel="noopener">Визит премьер-министра Никола Пашиняна</a></li></ul></dd></div></dl>
+        </div>
+      </article>
+      <article class="slide">
+        <div class="pics"><img src="img/karm-1.jpg" alt="Игровой комплекс в виде рыбы" loading="lazy" style="object-position:40% 50%"><img src="img/karm-bench.jpg" alt="Радиусная деревянная скамья" loading="lazy"><img src="img/karm-2.jpg" alt="Комплекс среди деревьев" loading="lazy"></div>
+        <div class="info">
+          <h3>Кармрахайт</h3>
+          <p class="meta">Детская площадка в Кольцевом парке, Ереван<br>1 995 м² · 2025 · бюро UrUrban</p>
+          <dl class="rows"><div><dt>Задача</dt><dd>Разнообразное игровое пространство с выразительным центральным элементом среди взрослых деревьев.</dd></div><div><dt>Решение</dt><dd>Под парком в коллекторе течёт река Гетар. Концепция возвращает её на поверхность: галечное дно, водоросли и армянская форель кармрахайт в виде игрового комплекса.</dd></div><div><dt>Моя роль</dt><dd>Планировка, игровой комплекс от эскизов до окраски, МАФ индивидуального изготовления, подбор оборудования, документация, авторский надзор.</dd></div><div><dt>Результат</dt><dd>Реализовано в 2025 году.</dd></div><div><dt class="l">Награды</dt><dd><ul class="links"><li><a href="https://design.museaward.com/winners-info.php?id=31562" target="_blank" rel="noopener">MUSE Design Awards — Gold Winner</a></li></ul></dd></div><div><dt class="l">Публикации</dt><dd><ul class="links"><li><a href="https://landezine-award.com/karmrakhayt-playground-the-enchanted-world-of-the-hidden-river/" target="_blank" rel="noopener">Landezine</a></li><li><a href="https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/" target="_blank" rel="noopener">Armenian Weekly</a></li></ul></dd></div></dl>
+        </div>
+      </article>
+      <article class="slide">
+        <div class="pics"><img src="img/vish-carpet.jpg" alt="Покрытие с армянским орнаментом" loading="lazy"><img src="img/vish-dragons.jpg" alt="Оборудование в виде драконов" loading="lazy"><img src="img/vish-aerial.jpg" alt="Вид сверху на покрытие-ковёр" loading="lazy"></div>
+        <div class="info">
+          <h3>Вишапагорг</h3>
+          <p class="meta">Детская площадка у Вернисажа, Ереван<br>800 м² · 2025 · бюро UrUrban</p>
+          <dl class="rows"><div><dt>Задача</dt><dd>Детская площадка на узком участке вдоль дороги, напротив мемориального сквера хачкаров.</dd></div><div><dt>Решение</dt><dd>Рядом Вернисаж, где продают ковры, поэтому покрытие стало армянским ковром. Невысокое оборудование стоит в ряд и стилизовано под драконов-вишапов.</dd></div><div><dt>Моя роль</dt><dd>Детализация покрытия, разметка с геодезистами и контроль укладки, оборудование и МАФ, озеленение, документация, авторский надзор.</dd></div><div><dt>Результат</dt><dd>Реализовано в 2025 году.</dd></div><div><dt class="l">Публикации</dt><dd><ul class="links"><li><a href="https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/" target="_blank" rel="noopener">Armenian Weekly</a></li><li><a href="https://roqcapital.am/en/media/roq-capital-vishapagorg-playground-khachkar-park" target="_blank" rel="noopener">ROQ Capital</a></li><li><a href="https://en.armradio.am/2025/12/15/dragon-carpet-for-children-new-playground-opens-in-yerevan/" target="_blank" rel="noopener">Public Radio of Armenia</a></li></ul></dd></div></dl>
+        </div>
+      </article>
+      <article class="slide">
+        <div class="pics"><img src="img/elmay-main.jpg" alt="Главная площадка парка «Елмай»" loading="lazy"><img src="img/elmay-kids.jpg" alt="Дети с научным оборудованием" loading="lazy"><img src="img/elmay-river.jpg" alt="Парк на набережной Казанки" loading="lazy"></div>
+        <div class="info">
+          <h3>Детский парк «Елмай»</h3>
+          <p class="meta">Набережная Казанки, Казань<br>3,4 га · 2024 · бюро «Чехарда»</p>
+          <dl class="rows"><div><dt>Задача</dt><dd>Самый большой детский парк Татарстана с тематическими маршрутами о реке Казанке.</dd></div><div><dt>Моя роль</dt><dd>Промышленный дизайнер научного игрового оборудования: «Судоходство» с движущимися картинками кораблей, «Полезный мусор» о переработке, «Что скрывает вода?» с копиями находок из Казанки.</dd></div><div><dt>Результат</dt><dd>Реализовано в 2024 году.</dd></div><div><dt class="l">Награды</dt><dd><ul class="links"><li><a href="https://premia.urbanparks.ru/winners/2025/detskij-park-elmaj-kazan" target="_blank" rel="noopener">Победитель II Всероссийской премии «Парки России» в номинации «Детский парк»</a></li></ul></dd></div><div><dt class="l">Публикации</dt><dd><ul class="links two"><li><a href="https://inde.io/article/90545-rechnye-motivy-samaya-bolshaya-v-kazani-igrovaya-ploschadka-i-pervyy-knizhnyy-dlya-detey-kak-ustroen-novyy-detskiy-park-elmay/" target="_blank" rel="noopener">Inde.io</a></li><li><a href="https://tass.ru/obschestvo/21725687" target="_blank" rel="noopener">ТАСС</a></li><li><a href="https://realnoevremya.ru/articles/317242-detskiy-park-elmay-sozdan-v-gosudarstvenno-chastnom-partnerstve" target="_blank" rel="noopener">Реальное время</a></li><li><a href="https://institute.tatar/spaces/tpost/lttm7vriv1-v-kazani-v-den-respubliki-otkrilsya-dets" target="_blank" rel="noopener">Institute.tatar: открытие парка</a></li><li><a href="https://institute.tatar/spaces/tpost/h2zj89khe1-park-elmai-stal-premeroi-goda-i-luchshim" target="_blank" rel="noopener">Institute.tatar: премия «Парки России»</a></li><li><a href="https://www.visit-tatarstan.com/places/parki-i-mesta-dlya-progulok/detskiy-park-elmay/" target="_blank" rel="noopener">Visit Tatarstan</a></li></ul></dd></div></dl>
+        </div>
+      </article>
+      <article class="slide">
+        <div class="pics"><img src="img/citybay-trunks.jpg" alt="Гамак на опорах из отсканированных брёвен" loading="lazy"><img src="img/citybay-kit.jpg" alt="Уличный деревянный конструктор" loading="lazy"><img src="img/citybay-sand.jpg" alt="Песочная зона площадки" loading="lazy"></div>
+        <div class="info">
+          <h3>ЖК «Сити Бэй»</h3>
+          <p class="meta">Детские площадки у Москвы-реки, Москва<br>4 500 м² · бюро «Чехарда»</p>
+          <dl class="rows"><div><dt>Задача</dt><dd>Площадка для жителей на стилобате и общедоступная площадка внизу.</dd></div><div><dt>Моя роль</dt><dd>Игровое оборудование от эскиза до модели для производства: лазательный «Бурелом», уличный конструктор по вальдорфскому принципу, тактильные столбы, гамаки из отсканированных брёвен, горка для малышей.</dd></div><div><dt>Результат</dt><dd>Детская площадка сдана заказчику в 2025 году. Жилой комплекс в процессе строительства.</dd></div></dl>
+        </div>
+      </article>
+      </div>
+      <button class="arrow prev" type="button" id="prev" aria-label="Предыдущий проект">←</button>
+      <button class="arrow next" type="button" id="next" aria-label="Следующий проект">→</button>
+    </div>
+    <div class="wrap">
+      <p class="count" id="count">1 / 5</p>
+      <h3 class="others-h">Другие работы</h3>
+      <div class="others">
+        <div><img src="img/khachkar-square.jpg" alt="Сквер у парка Хачкаров" loading="lazy"><h3>Сквер у парка Хачкаров</h3><p>Ереван, 350 м², бюро UrUrban. Тактический урбанизм как продолжение площадки «Вишапагорг».</p></div>
+        <div><img src="img/lan-1.jpg" alt="Интерьер коворкинга LAN" loading="lazy"><h3>Коворкинг и кафе LAN</h3><p>Ереван, 110 м², 2022. Квартира перестроена под шумный и тихий коворкинг и бар при очень скромном бюджете.</p><ul class="links"><li><a href="https://www.interior.ru/place/15388-kovorking-letters-and-numbers-v-erevane.html" target="_blank" rel="noopener">Interior + Design</a></li><li><a href="https://buro314.ru/interiors/kovorking-letters-and-numbers-v-erevane/" target="_blank" rel="noopener">Buro 314</a></li></ul></div>
+        <div><img src="img/yandex-1.jpg" alt="Опенспейс офиса Яндекса" loading="lazy"><h3>Офис Яндекса в башне «ОКО»</h3><p>Москва, 2021. Чертежи основных помещений крупного офиса, мои решения по санузлам одобрены и реализованы.</p><ul class="links"><li><a href="https://www.officenext.ru/projects/project-63546-ofis-yandeksa/" target="_blank" rel="noopener">Officenext</a></li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>Как я работаю</h2>
+        <p>Проект идёт по этапам, от анализа участка до построенного объекта.</p>
+      </div>
+    </div>
+    <div class="flow">
+      <ol class="wrap steps">
+        <li><h3>Анализ участка</h3><p>Оценка потенциала территории, топосъёмка, ограничения и разрешения, фотофиксация.</p></li>
+        <li><h3>Концепция</h3><p>Концептуальный альбом, схема планировочной организации участка, образ и эскизные планы.</p></li>
+        <li><h3>Рабочая документация</h3><p>Рабочий проект, чертежи и спецификации, подбор оборудования и материалов.</p></li>
+        <li><h3>Реализация и надзор</h3><p>Подрядчики и производители, контроль изготовления, авторский надзор на объекте.</p></li>
+      </ol>
+    </div>
+    <div class="wrap">
+      <div class="teamblock">
+        <div class="team-intro">
+          <h3>Команда под задачу</h3>
+          <p>Состав команды зависит от объекта. Для детской площадки достаточно ландшафтного архитектора и дизайнера оборудования. Если на участке есть постройки, подключаются архитекторы и дизайнеры интерьеров, и территория с домами проектируется как одно целое.</p>
+          <p>Вы платите только за тех специалистов, которые нужны вашему проекту, а общаетесь с одним человеком.</p>
+        </div>
+        <div class="roles">
+          <div><p class="stage">Территория и ландшафт</p><ul><li>Ландшафтные архитекторы</li><li>Дендролог</li><li>Геодезист</li><li>ГИС-инженер</li></ul></div>
+          <div><p class="stage">Здания и интерьеры</p><ul><li>Архитекторы</li><li>Дизайнеры интерьеров</li></ul><p class="note">Гостевые дома, павильоны, кафе, детские комнаты</p></div>
+          <div><p class="stage">Инженерия и расчёты</p><ul><li>Инженер-конструктор</li><li>Инженеры сетей</li><li>Светодизайнер</li><li>Сметчик</li></ul></div>
+          <div><p class="stage">Производство и стройка</p><ul><li>Производители оборудования и МАФ</li><li>Строительные подрядчики</li><li>Озеленители</li></ul></div>
+        </div>
+      </div>
+
+      <div class="how">
+        <div>
+          <h3>Отчётность</h3>
+          <p>Каждый этап заканчивается согласованием с вами, только после этого начинается следующий. Вы регулярно получаете отчёты о ходе работ, а число итераций правок на каждом этапе прописано в предложении заранее.</p>
+        </div>
+        <div class="example">
+          <p style="color:var(--ink);font-weight:600">Пример планирования: загородный участок у реки, 7 200 м²</p>
+          <p>Гостевые дома, сауна с бассейном, детская и спортивная зоны, сводный план инженерных сетей.</p>
+          <div class="t"><span>Оценка потенциала территории, анализ, концепция и эскизный проект</span><b>4 мес</b></div>
+          <div class="t"><span>Рабочий проект благоустройства</span><b>2 мес</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="cases">
+    <div class="wrap">
+      <div class="sec-title" style="margin-bottom:clamp(56px,7vw,96px)">
+        <h2>Почему я</h2>
+      </div>
+      <div class="why">
+        <div><h3>Один ответственный</h3><p>Вы общаетесь со мной на всех этапах, от первой встречи до сдачи объекта.</p></div>
+        <div><h3>Соблюдаю сроки</h3><p>Реалистичный график и контроль на каждом этапе.</p></div>
+        <div><h3>Предсказуемый бюджет</h3><p>Все расходы согласуются заранее, без скрытых платежей. Помогаю оценить стоимость материалов и оборудования уже на стадии концепции.</p></div>
+        <div><h3>Документация для стройки</h3><p>Сам готовлю задания и чертежи для производителей и езжу на объект, поэтому проект можно построить так, как он задуман.</p></div>
+        <div><h3>Учёт контекста</h3><p>Климат, рельеф, местные материалы и нормы, история места. Из них вырастает идея проекта.</p></div>
+        <div><h3>Внимание к деталям</h3><p>Прорабатываю мелочи вплоть до крепления канатов гамака, чтобы трубы удобно ложились под колени.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Готов обсудить ваш проект</h2>
+      <p class="lead">Первая консультация бесплатно, 30 минут. Расскажите об участке и задаче: где он, какая площадь, что должно на нём появиться и в какие сроки.</p>
+      <div class="ways">
+        <div><small>Telegram</small><a class="v" href="https://t.me/SashoQue" target="_blank" rel="noopener">@SashoQue</a><button class="copy" type="button" data-copy="@SashoQue">Скопировать</button></div>
+        <div><small>Телефон</small><span class="v">+374 98 007-541</span><button class="copy" type="button" data-copy="+37498007541">Скопировать</button></div>
+        <div><small>Email</small><span class="v">ak97mizin@gmail.com</span><button class="copy" type="button" data-copy="ak97mizin@gmail.com">Скопировать</button></div>
+      </div>
+      <a class="btn" href="https://t.me/SashoQue" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">© 2026 Александр Мизин, Ереван</div></footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy'),o=b.textContent;
+    function done(m){b.textContent=m;setTimeout(function(){b.textContent=o},1600)}
+    function fallback(){var v=b.parentNode.querySelector('.v');var r=document.createRange();r.selectNodeContents(v);var s=getSelection();s.removeAllRanges();s.addRange(r);done('Выделено')}
+    try{navigator.clipboard.writeText(t).then(function(){done('Скопировано')},fallback)}catch(e){fallback()}
+  });
+});
+(function(){
+  var t=document.getElementById('track'),pv=document.getElementById('prev'),nx=document.getElementById('next'),c=document.getElementById('count');
+  if(!t)return;var sl=t.querySelectorAll('.slide'),n=sl.length;
+  function idx(){var x=t.scrollLeft,best=0,d=1e9;sl.forEach(function(s,i){var dd=Math.abs(s.offsetLeft-sl[0].offsetLeft-x);if(dd<d){d=dd;best=i}});return best}
+  function upd(){var i=idx();if(t.scrollLeft+t.clientWidth>=t.scrollWidth-4)i=n-1;c.textContent=(i+1)+' / '+n;pv.disabled=t.scrollLeft<4;nx.disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-4}
+  function go(k){var i=Math.max(0,Math.min(n-1,idx()+k));t.scrollTo({left:Math.min(sl[i].offsetLeft-sl[0].offsetLeft,t.scrollWidth-t.clientWidth),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+  pv.addEventListener('click',function(){go(-1)});nx.addEventListener('click',function(){go(1)});
+  t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1)}if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}});
+  t.addEventListener('scroll',function(){requestAnimationFrame(upd)},{passive:true});addEventListener('resize',upd);upd();
+})();
+</script>
+
+</body>
+</html>
