@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Александр Мизин</title>
-<meta name="description" content="Ландшафтный архитектор, промышленный дизайнер, руководитель проектов. Благоустройство под ключ: парки, детские и спортивные пространства.">
+<meta name="description" content="Ландшафтный архитектор и промышленный дизайнер. Благоустройство под ключ: парки, детские и спортивные пространства.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Golos+Text:wght@400;500;600&display=swap">
@@ -15,7 +15,7 @@
   --red:#D6254B; --red2:#F42849; --wine:#8C2150;
   --display:"Unbounded","Arial Black",system-ui,sans-serif;
   --body:"Golos Text","Segoe UI",system-ui,-apple-system,sans-serif;
-  --wrap:1280px; --gut:clamp(16px,4.5vw,56px);
+  --wrap:100%; --gut:clamp(16px,2.2vw,32px);
   --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --grad:radial-gradient(55% 75% at 100% 0%,rgba(255,240,244,.32),rgba(255,240,244,0) 70%),linear-gradient(168deg,#161445 0%,#2c1a52 22%,#6a1e4b 42%,#b3234d 62%,#e0284a 80%,#f42849 90%,#b01b2e 100%);
 }
@@ -29,7 +29,7 @@ p{margin:0}
 h1,h2,h3{margin:0;font-weight:500;line-height:1.1;text-wrap:balance}
 h2{font:500 clamp(30px,4.4vw,56px)/1.05 var(--display);letter-spacing:-.03em}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
-section{padding-block:clamp(72px,10vw,140px)}
+section{padding-block:clamp(52px,6.5vw,96px)}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px}
 body::before,body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none}
 body::before{background:var(--grad)}
@@ -49,18 +49,17 @@ main{position:relative}
 @media (max-width:880px){.nav{display:none}.lang{margin-left:auto}}
 
 /* hero */
-.hero{padding-block:calc(76px + clamp(40px,7vw,96px)) clamp(56px,7vw,96px)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:start}
-.hero h1{font:500 clamp(44px,6vw,88px)/.95 var(--display);letter-spacing:-.045em}
+.hero{padding-block:calc(76px + clamp(32px,6vw,80px)) clamp(40px,5vw,72px)}
+.hero-grid{display:block}
+.hero h1{font:500 clamp(46px,9vw,150px)/.92 var(--display);letter-spacing:-.045em}
 .photo{margin-top:calc(clamp(44px,6vw,88px)*.1)}
 .comp{display:flex;flex-wrap:wrap;gap:4px 0;margin-top:clamp(22px,2.6vw,36px)}
 .comp span{font-size:clamp(17px,1.7vw,22px);white-space:nowrap;color:rgba(255,255,255,.92)}
-.comp span::after{content:"."}
 .comp{column-gap:.45em}
 @media (max-width:560px){.comp{flex-direction:column}}
 .photo{position:relative}
 .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:8px;filter:grayscale(1) contrast(1.05)}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(40px,5vw,72px)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4.5vw,64px);max-width:900px}
 .stat{background:rgba(255,255,255,.1);border-radius:8px;padding:clamp(16px,2vw,24px);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .stat b{display:block;font:500 clamp(38px,5vw,64px)/1 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .stat span{display:block;margin-top:10px;font-size:15px;line-height:1.35;color:rgba(255,255,255,.85)}
@@ -75,21 +74,19 @@ main{position:relative}
 
 /* services */
 .svc-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(36px,4vw,56px)}
-.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.card-s{position:relative;display:grid;gap:20px;align-content:space-between;min-height:clamp(240px,24vw,320px);padding:clamp(22px,2.4vw,32px);border-radius:10px;background:rgba(255,255,255,.09);color:#fff;cursor:default;overflow:hidden;transition:background .35s,color .35s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px clamp(20px,3vw,48px)}
+.card-s{position:relative;display:grid;gap:18px;align-content:start;padding:0;color:#fff;cursor:default}
 .card-s svg{width:clamp(84px,8vw,112px);height:auto;color:#fff;transition:color .35s}
 .card-s svg *{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
-.card-s .word{font:500 clamp(30px,3.4vw,46px)/1 var(--display);letter-spacing:-.03em;display:flex;flex-wrap:wrap}
+.card-s .word{font:500 clamp(30px,3.4vw,46px)/1.05 var(--display);letter-spacing:-.03em}
+.wd{display:inline-block;white-space:nowrap}
 .ch{display:inline-block;white-space:pre}
 .card-s p{font-size:15px;color:rgba(255,255,255,.75);transition:color .35s;max-width:30ch}
-.card-s:hover,.card-s:focus-visible,.card-s.play{background:#fff;color:var(--navy)}
-.card-s:hover p,.card-s:focus-visible p,.card-s.play p{color:var(--muted)}
-.card-s:hover svg,.card-s:focus-visible svg,.card-s.play svg{color:var(--red)}
 .card-s:hover .ch,.card-s:focus-visible .ch,.card-s.play .ch{animation:hop .55s cubic-bezier(.3,.7,.4,1.4) both;animation-delay:calc(var(--i)*45ms)}
 .card-s:hover svg *,.card-s:focus-visible svg *,.card-s.play svg *{animation:draw 1s ease both;animation-delay:calc(var(--d,0)*120ms)}
 @keyframes hop{0%{transform:translateY(0) rotate(0)}35%{transform:translateY(-.32em) rotate(-8deg)}70%{transform:translateY(.04em) rotate(3deg)}100%{transform:none}}
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-@media (max-width:760px){.svc{grid-template-columns:1fr}.card-s{min-height:0;grid-template-columns:auto 1fr;align-items:center;gap:18px 24px}.card-s svg{width:84px;grid-row:span 2}}
+@media (max-width:760px){.svc{grid-template-columns:1fr;gap:32px}.card-s{grid-template-columns:auto 1fr;align-items:center;gap:8px 20px}.card-s svg{width:84px;grid-row:span 2}}
 
 /* projects */
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(36px,4vw,56px) clamp(16px,2vw,28px)}
@@ -102,8 +99,8 @@ main{position:relative}
 .pcard .t{font:500 clamp(18px,1.6vw,21px)/1.2 var(--display);letter-spacing:-.02em}
 .pcard .s{display:block;font-size:15px;color:rgba(255,255,255,.72);margin-top:2px}
 .pcard.soon{cursor:default}
-.pcard.soon img{filter:grayscale(.6) brightness(.75)}
-.soon-b{position:absolute;left:14px;top:14px;font:500 13px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;background:#fff;color:var(--navy);padding:9px 12px;border-radius:30px}
+.pcard.soon img{filter:blur(7px);transform:scale(1.12)}
+.soon-b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:500 13px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;background:#fff;color:var(--navy);padding:9px 12px;border-radius:30px}
 @media (hover:none){.pcard .plus{opacity:1;transform:none}}
 @media (max-width:980px){.grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
@@ -151,7 +148,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .steps > li::before{content:counter(st,decimal-leading-zero);font:500 26px/1 var(--display);letter-spacing:-.02em;color:#fff;height:28px;margin-bottom:46px}
 .steps h3{font:500 clamp(18px,1.7vw,22px)/1.2 var(--display);letter-spacing:-.02em;margin-bottom:12px}
 .steps ul{margin:0;padding-left:18px;color:rgba(255,255,255,.8);font-size:16px;line-height:1.5;display:grid;gap:4px;align-content:start}
-.steps ul li::marker{color:var(--red2)}
+.steps ul{list-style:circle}
+.steps ul li::marker{color:#fff}
 @media (max-width:760px){
   .flow::before{left:calc(var(--gut) + 15px);right:auto;top:40px;bottom:14px;width:2px;height:auto}
   .flow::after{left:calc(var(--gut) + 9px);right:auto;top:auto;bottom:0;border-top:14px solid rgba(255,255,255,.85);border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:0}
@@ -161,12 +159,13 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 }
 
 /* advantages */
-.advg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(36px,4vw,56px)}
-.advg div{background:rgba(255,255,255,.09);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border-radius:10px;padding:clamp(22px,2.4vw,32px);display:grid;gap:12px;align-content:start}
-.advg h3{font:500 clamp(18px,1.7vw,22px)/1.2 var(--display);letter-spacing:-.02em}
-.advg p{color:rgba(255,255,255,.78);font-size:16px}
+.advg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px clamp(20px,3vw,48px);margin-top:clamp(32px,4vw,52px)}
+.advg .card-s .word{font-size:clamp(19px,1.8vw,24px);line-height:1.2}
+.advg .card-s svg{width:clamp(72px,6vw,92px)}
+.advg .card-s p{font-size:16px;max-width:38ch}
 @media (max-width:900px){.advg{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.advg{grid-template-columns:1fr}}
+@media (max-width:560px){.advg{grid-template-columns:1fr;gap:32px}.advg .card-s svg{width:72px}}
+@media (max-width:760px){.advg .card-s{align-items:start}}
 
 /* contact */
 .contact h2{font-size:clamp(36px,6vw,84px);max-width:14ch;text-transform:none}
@@ -208,7 +207,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
       <div class="hero-grid">
         <div>
           <h1 data-t="name_h1"></h1>
-          <div class="comp"><span data-t="c1"></span><span data-t="c2"></span><span data-t="c3"></span></div>
+          <div class="comp"><span data-t="c1"></span></div>
           <div class="stats">
             <div class="stat"><b>8</b><span data-t="s1"></span></div>
             <div class="stat"><b>12</b><span data-t="s2"></span></div>
@@ -216,11 +215,16 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
           </div>
           <div class="hero-cta">
             <a class="btn w" href="#contact" data-t="cta1"></a>
-            <a class="btn o" href="#projects" data-t="cta2"></a>
           </div>
         </div>
-        <div class="photo"><img src="img/mizin.jpg" alt="" data-ta="name1" width="900" height="664" fetchpriority="high"></div>
       </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2 data-t="proj_h" style="margin-bottom:clamp(36px,4vw,56px)"></h2>
+      <div class="grid" id="grid"></div>
     </div>
   </section>
 
@@ -264,13 +268,6 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
     </div>
   </section>
 
-  <section id="projects">
-    <div class="wrap">
-      <h2 data-t="proj_h" style="margin-bottom:clamp(36px,4vw,56px)"></h2>
-      <div class="grid" id="grid"></div>
-    </div>
-  </section>
-
   <section id="process">
     <div class="wrap"><h2 data-t="proc_h"></h2></div>
     <div class="flow">
@@ -287,12 +284,36 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
     <div class="wrap">
       <h2 data-t="adv_h"></h2>
       <div class="advg">
-        <div><h3 data-t="a1"></h3><p data-t="a1d"></p></div>
-        <div><h3 data-t="a2"></h3><p data-t="a2d"></p></div>
-        <div><h3 data-t="a3"></h3><p data-t="a3d"></p></div>
-        <div><h3 data-t="a4"></h3><p data-t="a4d"></p></div>
-        <div><h3 data-t="a5"></h3><p data-t="a5d"></p></div>
-        <div><h3 data-t="a6"></h3><p data-t="a6d"></p></div>
+        <div class="card-s" tabindex="0">
+          <svg viewBox="0 0 120 100" aria-hidden="true"><circle pathLength="1" style="--d:0" cx="60" cy="28" r="11"/><path pathLength="1" style="--d:1" d="M38 86c0-16 9-30 22-30s22 14 22 30"/><circle pathLength="1" style="--d:2" cx="88" cy="42" r="10"/><path pathLength="1" style="--d:3" d="M83 42l4 4 7-8"/><path pathLength="1" style="--d:1" d="M10 88c30-2 70-3 102-1"/></svg>
+          <h3 class="word" data-w="a1"></h3>
+          <p data-t="a1d"></p>
+        </div>
+        <div class="card-s" tabindex="0">
+          <svg viewBox="0 0 120 100" aria-hidden="true"><circle pathLength="1" style="--d:0" cx="60" cy="50" r="32"/><path pathLength="1" style="--d:1" d="M60 30v21l14 9"/><path pathLength="1" style="--d:2" d="M60 20v3M90 50h-3M60 80v-3M30 50h3"/><path pathLength="1" style="--d:3" d="M88 22l8-8M32 22l-8-8"/></svg>
+          <h3 class="word" data-w="a2"></h3>
+          <p data-t="a2d"></p>
+        </div>
+        <div class="card-s" tabindex="0">
+          <svg viewBox="0 0 120 100" aria-hidden="true"><path pathLength="1" style="--d:0" d="M24 40h66c4 0 6 3 6 6v30c0 4-2 6-6 6H24c-4 0-6-2-6-6V46c0-3 2-6 6-6z"/><path pathLength="1" style="--d:1" d="M96 54H80c-4 0-6 3-6 6s2 6 6 6h16"/><path pathLength="1" style="--d:2" d="M28 40l40-20 8 20"/><circle pathLength="1" style="--d:3" cx="82" cy="60" r="2"/></svg>
+          <h3 class="word" data-w="a3"></h3>
+          <p data-t="a3d"></p>
+        </div>
+        <div class="card-s" tabindex="0">
+          <svg viewBox="0 0 120 100" aria-hidden="true"><path pathLength="1" style="--d:0" d="M20 18h56l12 12v58H20z"/><path pathLength="1" style="--d:1" d="M32 70V40h22v18h18v12z"/><path pathLength="1" style="--d:2" d="M32 34h10M60 34h16"/><path pathLength="1" style="--d:3" d="M100 20l-22 50-4 10 8-7 22-50z"/></svg>
+          <h3 class="word" data-w="a4"></h3>
+          <p data-t="a4d"></p>
+        </div>
+        <div class="card-s" tabindex="0">
+          <svg viewBox="0 0 120 100" aria-hidden="true"><path pathLength="1" style="--d:0" d="M8 84l28-36 16 18 20-30 40 48z"/><circle pathLength="1" style="--d:1" cx="88" cy="24" r="9"/><path pathLength="1" style="--d:2" d="M30 56l6 6M62 50l6-10"/><path pathLength="1" style="--d:3" d="M8 90c34-2 70-3 104-1"/></svg>
+          <h3 class="word" data-w="a5"></h3>
+          <p data-t="a5d"></p>
+        </div>
+        <div class="card-s" tabindex="0">
+          <svg viewBox="0 0 120 100" aria-hidden="true"><circle pathLength="1" style="--d:0" cx="50" cy="44" r="24"/><path pathLength="1" style="--d:1" d="M68 62l26 26"/><path pathLength="1" style="--d:2" d="M40 36c3-5 8-8 14-8"/><path pathLength="1" style="--d:3" d="M44 50l5 5 9-12"/></svg>
+          <h3 class="word" data-w="a6"></h3>
+          <p data-t="a6d"></p>
+        </div>
       </div>
     </div>
   </section>
@@ -330,10 +351,10 @@ var T={
 ru:{
  name1:"Александр Мизин", name_h1:"Александр<br>Мизин",
  nav_projects:"Проекты", nav_process:"Ход работы", nav_adv:"Что вы получаете", nav_contact:"Контакты",
- c1:"Ландшафтный архитектор", c2:"Промышленный дизайнер", c3:"Руководитель проектов",
+ c1:"Бюро ландшафтной архитектуры", c2:"Промышленный дизайнер", c3:"Руководитель проектов",
  s1:"лет опыта работы", s2:"реализованных проектов", s3:"награды у проектов",
  cta1:"Обсудить проект", cta2:"Смотреть проекты",
- svc_h:"Благоустройство под ключ:", w1:"Рекреация", w2:"Детское", w3:"Спорт",
+ svc_h:"Благоустройство под ключ:", w1:"Среда", w2:"Детям", w3:"Спорт",
  w1d:"Парки, скверы, дворы, набережные, сады и винодельни", w2d:"Детские площадки и игровое оборудование", w3d:"Спортивные площадки и зоны активного отдыха",
  proj_h:"Проекты",
  proc_h:"Ход работы",
@@ -342,25 +363,25 @@ ru:{
  st3:"Рабочая документация", st3d:["Рабочий проект","Чертежи и спецификации","Подбор оборудования и материалов"],
  st4:"Реализация и надзор", st4d:["Подрядчики и производители","Контроль изготовления","Авторский надзор на объекте"],
  adv_h:"Что вы получаете",
- a1:"Один ответственный", a1d:"Вы общаетесь со мной на всех этапах, от первой встречи до сдачи объекта.",
- a2:"Соблюдаю сроки", a2d:"Реалистичный график и контроль на каждом этапе.",
- a3:"Предсказуемый бюджет", a3d:"Все расходы согласуются заранее, без скрытых платежей. Помогаю оценить стоимость материалов и оборудования уже на стадии концепции.",
- a4:"Документация для стройки", a4d:"Сам готовлю задания и чертежи для производителей и езжу на объект, поэтому проект можно построить так, как он задуман.",
+ a1:"Один ответственный", a1d:"У вас один контактный человек на всех этапах, от первой встречи до сдачи объекта.",
+ a2:"Соблюдаем сроки", a2d:"Реалистичный график и контроль на каждом этапе.",
+ a3:"Предсказуемый бюджет", a3d:"Все расходы согласуются заранее, без скрытых платежей. Помогаем оценить стоимость материалов и оборудования уже на стадии концепции.",
+ a4:"Документация для стройки", a4d:"Сами готовим задания и чертежи для производителей и выезжаем на объект, поэтому проект можно построить так, как он задуман.",
  a5:"Учёт контекста", a5d:"Климат, рельеф, местные материалы и нормы, история места. Из них вырастает идея проекта.",
- a6:"Внимание к деталям", a6d:"Прорабатываю мелочи вплоть до крепления канатов гамака, чтобы трубы удобно ложились под колени.",
- ct_h:"Готов обсудить ваш проект", ct_lead:"Расскажите об участке и задаче: где он, какая площадь, что должно на нём появиться и в какие сроки.",
+ a6:"Внимание к деталям", a6d:"Прорабатываем мелочи вплоть до крепления канатов гамака, чтобы трубы удобно ложились под колени.",
+ ct_h:"Готовы обсудить ваш проект", ct_lead:"Расскажите об участке и задаче: где он, какая площадь, что должно на нём появиться и в какие сроки.",
  phone:"Телефон", copy:"Скопировать", copied:"Скопировано", selected:"Выделено", tg:"Написать в Telegram",
  foot:"© 2026 Александр Мизин", foot2:"Ереван, Армения",
  close:"Закрыть", prev_img:"Предыдущее фото", next_img:"Следующее фото", next_p:"Следующий проект →", soon:"Скоро",
- L:{task:"Задача",sol:"Решение",role:"Моя роль",res:"Результат",about:"О проекте",awards:"Награды",pubs:"Публикации",links:"Ссылки"}
+ L:{task:"Задача",sol:"Решение",role:"Наша роль",res:"Результат",about:"О проекте",awards:"Награды",pubs:"Публикации",links:"Ссылки"}
 },
 en:{
  name1:"Alexander Mizin", name_h1:"Alexander<br>Mizin",
  nav_projects:"Projects", nav_process:"Workflow", nav_adv:"What you get", nav_contact:"Contact",
- c1:"Landscape architect", c2:"Industrial designer", c3:"Project manager",
+ c1:"Landscape architecture studio", c2:"Industrial designer", c3:"Project manager",
  s1:"years of experience", s2:"completed projects", s3:"awards for projects",
  cta1:"Discuss a project", cta2:"See projects",
- svc_h:"Turnkey landscaping:", w1:"Recreation", w2:"Kids", w3:"Sport",
+ svc_h:"Turnkey landscaping:", w1:"Places", w2:"Kids", w3:"Sport",
  w1d:"Parks, squares, courtyards, embankments, gardens and wineries", w2d:"Playgrounds and custom play equipment", w3d:"Sports grounds and active recreation areas",
  proj_h:"Projects",
  proc_h:"Workflow",
@@ -369,30 +390,35 @@ en:{
  st3:"Working documentation", st3d:["Detailed design","Drawings and specifications","Selection of equipment and materials"],
  st4:"Construction and supervision", st4d:["Contractors and manufacturers","Production control","Designer's supervision on site"],
  adv_h:"What you get",
- a1:"One person in charge", a1d:"You deal with me at every stage, from the first meeting to the handover.",
+ a1:"One person in charge", a1d:"You have one contact person at every stage, from the first meeting to the handover.",
  a2:"Deadlines kept", a2d:"A realistic schedule and control at every stage.",
- a3:"Predictable budget", a3d:"All costs are agreed in advance, with no hidden fees. I help estimate materials and equipment costs as early as the concept stage.",
- a4:"Documentation ready to build", a4d:"I prepare briefs and drawings for manufacturers myself and visit the site, so the project gets built as designed.",
+ a3:"Predictable budget", a3d:"All costs are agreed in advance, with no hidden fees. We help estimate materials and equipment costs as early as the concept stage.",
+ a4:"Documentation ready to build", a4d:"We prepare briefs and drawings for manufacturers ourselves and visit the site, so the project gets built as designed.",
  a5:"Context first", a5d:"Climate, terrain, local materials and codes, the history of the place. The idea of the project grows out of them.",
- a6:"Attention to detail", a6d:"I work out the smallest things, down to how hammock ropes are fixed so the tubes rest comfortably under the knees.",
- ct_h:"Let's discuss your project", ct_lead:"Tell me about the site and the task: where it is, how big it is, what should appear there and by when.",
+ a6:"Attention to detail", a6d:"We work out the smallest things, down to how hammock ropes are fixed so the tubes rest comfortably under the knees.",
+ ct_h:"Let's discuss your project", ct_lead:"Tell us about the site and the task: where it is, how big it is, what should appear there and by when.",
  phone:"Phone", copy:"Copy", copied:"Copied", selected:"Selected", tg:"Message on Telegram",
  foot:"© 2026 Alexander Mizin", foot2:"Yerevan, Armenia",
  close:"Close", prev_img:"Previous photo", next_img:"Next photo", next_p:"Next project →", soon:"Coming soon",
- L:{task:"Task",sol:"Solution",role:"My role",res:"Result",about:"About",awards:"Awards",pubs:"Press",links:"Links"}
+ L:{task:"Task",sol:"Solution",role:"Our role",res:"Result",about:"About",awards:"Awards",pubs:"Press",links:"Links"}
 }};
 
 var P=[
+{soon:true,img:["khachkar-square"],
+ ru:{t:"Сквер у парка Хачкаров",s:"Благоустройство · Ереван",facts:["Ереван","350 м²","Бюро UrUrban"],
+  about:"Тактический урбанизм как продолжение детской площадки «Вишапагорг»."},
+ en:{t:"Khachkar Park square",s:"Public space · Yerevan",facts:["Yerevan","350 m²","UrUrban bureau"],
+  about:"Tactical urbanism as an extension of the Vishapagorg playground."}},
 {img:["inv-tower","inv-swings","inv-hammock","inv-wide"],
  ru:{t:"Армянские изобретатели",s:"Детская площадка · Ереван · 2026",facts:["Парк им. Мисака Манушяна, Ереван","675 м²","2026","Бюро UrUrban"],
   task:"Игровое пространство на небольшом участке с деревьями в оживлённом парке в центре города.",
   sol:"Площадка растёт вверх, в виде игровой башни. Тема роста связана с наукой: площадка посвящена армянским учёным Армении и диаспоры.",
-  role:"Промышленный дизайнер и ландшафтный архитектор. Эскизы башни и задание на её производство; авторское оборудование: качели с подсветкой, «Телевизор», теневой интерактив, вандалоустойчивый гамак; скамьи и стенды; проектная документация и авторский надзор. Когда перед установкой башни возникли сложности с грунтом, в сжатые сроки доработали фундамент и окружение.",
+  role:"Промышленный дизайн и ландшафтная архитектура. Эскизы башни и задание на её производство; авторское оборудование: качели с подсветкой, «Телевизор», теневой интерактив, вандалоустойчивый гамак; скамьи и стенды; проектная документация и авторский надзор. Когда перед установкой башни возникли сложности с грунтом, в сжатые сроки доработали фундамент и окружение.",
   res:"Реализовано в 2026 году."},
  en:{t:"Armenian Inventors",s:"Playground · Yerevan · 2026",facts:["Misak Manouchian Park, Yerevan","675 m²","2026","UrUrban bureau"],
   task:"A play space on a small plot with trees in a busy park in the city centre.",
   sol:"The playground grows upwards as a play tower. Growth is linked to science: the playground is dedicated to Armenian scientists from Armenia and the diaspora.",
-  role:"Industrial designer and landscape architect. Tower sketches and the production brief; custom equipment: lit swings, the “TV”, a shadow play piece, a vandal-proof hammock; benches and info stands; design documentation and designer's supervision. When soil problems came up before the tower was installed, we reworked the foundation and surroundings on a tight schedule.",
+  role:"Industrial design and landscape architecture. Tower sketches and the production brief; custom equipment: lit swings, the “TV”, a shadow play piece, a vandal-proof hammock; benches and info stands; design documentation and designer's supervision. When soil problems came up before the tower was installed, we reworked the foundation and surroundings on a tight schedule.",
   res:"Completed in 2026."},
  pubs:[["Landezine","https://landezine-award.com/science-inside-out/"],["Armenpress: Nikol Pashinyan's visit|Armenpress: визит премьер-министра Никола Пашиняна","https://armenpress.am/en/article/1249407"]]},
 {img:["karm-1","karm-2","karm-bench"],
@@ -420,17 +446,6 @@ var P=[
   role:"Surfacing details, setting out with surveyors and laying control; colours chosen to allow for fading and dust. Play equipment and street furniture, planting zones, documentation, designer's supervision.",
   res:"Completed in 2025."},
  pubs:[["Armenian Weekly","https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/"],["ROQ Capital","https://roqcapital.am/en/media/roq-capital-vishapagorg-playground-khachkar-park"],["Public Radio of Armenia","https://en.armradio.am/2025/12/15/dragon-carpet-for-children-new-playground-opens-in-yerevan/"]]},
-{img:["elmay-main","elmay-kids","elmay-river"],
- ru:{t:"Детский парк «Елмай»",s:"Детский парк · Казань · 2024",facts:["Набережная Казанки, Казань","3,4 га","2024","Бюро «Чехарда»"],
-  task:"Самый большой детский парк Татарстана с тематическими маршрутами «Экология», «Жизнь реки» и «Река рассказывает истории».",
-  role:"Промышленный дизайнер научного игрового оборудования: «Судоходство» с движущимися картинками кораблей по принципу барьерной анимации, «Полезный мусор» о переработке, «Что скрывает вода?» с копиями находок из Казанки.",
-  res:"Реализовано в 2024 году."},
- en:{t:"Elmay Children's Park",s:"Children's park · Kazan · 2024",facts:["Kazanka embankment, Kazan","3.4 ha","2024","Chekharda bureau"],
-  task:"The largest children's park in Tatarstan, with themed trails: “Ecology”, “Life of the River” and “The River Tells Stories”.",
-  role:"Industrial designer of the science play equipment: “Shipping” with moving pictures of ships based on barrier-grid animation, “Useful Waste” about recycling, “What Does the Water Hide?” with replicas of finds from the Kazanka river.",
-  res:"Completed in 2024."},
- awards:[["Winner of the 2nd All-Russian “Parks of Russia” award, Children's Park category|Победитель II Всероссийской премии «Парки России» в номинации «Детский парк»","https://premia.urbanparks.ru/winners/2025/detskij-park-elmaj-kazan"]],
- pubs:[["Inde.io","https://inde.io/article/90545-rechnye-motivy-samaya-bolshaya-v-kazani-igrovaya-ploschadka-i-pervyy-knizhnyy-dlya-detey-kak-ustroen-novyy-detskiy-park-elmay/"],["TASS|ТАСС","https://tass.ru/obschestvo/21725687"],["Realnoe Vremya|Реальное время","https://realnoevremya.ru/articles/317242-detskiy-park-elmay-sozdan-v-gosudarstvenno-chastnom-partnerstve"],["Institute.tatar: park opening|Institute.tatar: открытие парка","https://institute.tatar/spaces/tpost/lttm7vriv1-v-kazani-v-den-respubliki-otkrilsya-dets"],["Institute.tatar: “Parks of Russia” award|Institute.tatar: премия «Парки России»","https://institute.tatar/spaces/tpost/h2zj89khe1-park-elmai-stal-premeroi-goda-i-luchshim"],["Visit Tatarstan","https://www.visit-tatarstan.com/places/parki-i-mesta-dlya-progulok/detskiy-park-elmay/"]]},
 {img:["citybay-trunks","citybay-kit","citybay-sand"],
  ru:{t:"ЖК «Сити Бэй»",s:"Детские площадки · Москва · 2025",facts:["У Москвы-реки, Москва","4 500 м²","Бюро «Чехарда»"],
   task:"Площадка для жителей на стилобате и общедоступная площадка внизу.",
@@ -440,11 +455,17 @@ var P=[
   task:"A residents' playground on the podium and a public playground below.",
   role:"Play equipment from sketch to production model: the “Windfall” climbing frame, an outdoor Waldorf-style construction set, tactile posts, hammocks made from 3D-scanned logs, a toddler slide.",
   res:"The playground was handed over to the client in 2025. The residential complex is under construction."}},
-{soon:true,img:["khachkar-square"],
- ru:{t:"Сквер у парка Хачкаров",s:"Благоустройство · Ереван",facts:["Ереван","350 м²","Бюро UrUrban"],
-  about:"Тактический урбанизм как продолжение детской площадки «Вишапагорг»."},
- en:{t:"Khachkar Park square",s:"Public space · Yerevan",facts:["Yerevan","350 m²","UrUrban bureau"],
-  about:"Tactical urbanism as an extension of the Vishapagorg playground."}},
+{img:["elmay-main","elmay-kids","elmay-river"],
+ ru:{t:"Детский парк «Елмай»",s:"Детский парк · Казань · 2024",facts:["Набережная Казанки, Казань","3,4 га","2024","Бюро «Чехарда»"],
+  task:"Самый большой детский парк Татарстана с тематическими маршрутами «Экология», «Жизнь реки» и «Река рассказывает истории».",
+  role:"Промышленный дизайн научного игрового оборудования: «Судоходство» с движущимися картинками кораблей по принципу барьерной анимации, «Полезный мусор» о переработке, «Что скрывает вода?» с копиями находок из Казанки.",
+  res:"Реализовано в 2024 году."},
+ en:{t:"Elmay Children's Park",s:"Children's park · Kazan · 2024",facts:["Kazanka embankment, Kazan","3.4 ha","2024","Chekharda bureau"],
+  task:"The largest children's park in Tatarstan, with themed trails: “Ecology”, “Life of the River” and “The River Tells Stories”.",
+  role:"Industrial design of the science play equipment: “Shipping” with moving pictures of ships based on barrier-grid animation, “Useful Waste” about recycling, “What Does the Water Hide?” with replicas of finds from the Kazanka river.",
+  res:"Completed in 2024."},
+ awards:[["Winner of the 2nd All-Russian “Parks of Russia” award, Children's Park category|Победитель II Всероссийской премии «Парки России» в номинации «Детский парк»","https://premia.urbanparks.ru/winners/2025/detskij-park-elmaj-kazan"]],
+ pubs:[["Inde.io","https://inde.io/article/90545-rechnye-motivy-samaya-bolshaya-v-kazani-igrovaya-ploschadka-i-pervyy-knizhnyy-dlya-detey-kak-ustroen-novyy-detskiy-park-elmay/"],["TASS|ТАСС","https://tass.ru/obschestvo/21725687"],["Realnoe Vremya|Реальное время","https://realnoevremya.ru/articles/317242-detskiy-park-elmay-sozdan-v-gosudarstvenno-chastnom-partnerstve"],["Institute.tatar: park opening|Institute.tatar: открытие парка","https://institute.tatar/spaces/tpost/lttm7vriv1-v-kazani-v-den-respubliki-otkrilsya-dets"],["Institute.tatar: “Parks of Russia” award|Institute.tatar: премия «Парки России»","https://institute.tatar/spaces/tpost/h2zj89khe1-park-elmai-stal-premeroi-goda-i-luchshim"],["Visit Tatarstan","https://www.visit-tatarstan.com/places/parki-i-mesta-dlya-progulok/detskiy-park-elmay/"]]},
 {img:["lan-1","lan-2"],
  ru:{t:"Коворкинг и кафе LAN",s:"Интерьер · Ереван · 2022",facts:["Ереван","110 м²","2022"],
   about:"Квартира перепрофилирована под коворкинг и кафе: демонтаж части перегородок и новые проёмы разделили помещение на шумную и тихую зоны коворкинга и бар. Очень скромный бюджет, простые и доступные материалы, возможность дооснащать пространство самостоятельно."},
@@ -453,9 +474,9 @@ var P=[
  pubs:[["Interior + Design","https://www.interior.ru/place/15388-kovorking-letters-and-numbers-v-erevane.html"],["Buro 314","https://buro314.ru/interiors/kovorking-letters-and-numbers-v-erevane/"]]},
 {img:["yandex-1","yandex-2"],
  ru:{t:"Офис Яндекса в башне «ОКО»",s:"Интерьер · Москва · 2021",facts:["Москва","2021"],
-  about:"Работа над крупным офисным интерьером: чертежи основных помещений. Мои решения по санузлам были одобрены."},
+  about:"Работа над крупным офисным интерьером: чертежи основных помещений."},
  en:{t:"Yandex office, OKO tower",s:"Interior · Moscow · 2021",facts:["Moscow","2021"],
-  about:"Work on a large office interior: drawings of the main spaces. My solutions for the restrooms were approved."},
+  about:"Work on a large office interior: drawings of the main spaces."},
  links:[["Officenext","https://www.officenext.ru/projects/project-63546-ofis-yandeksa/"]]}
 ];
 
@@ -483,7 +504,7 @@ function render(){
   document.querySelectorAll("[data-ta]").forEach(function(el){var v=d[el.getAttribute("data-ta")];if(el.tagName==="IMG")el.alt=v;else el.setAttribute("aria-label",v)});
   document.querySelectorAll("[data-w]").forEach(function(el){
     var w=d[el.getAttribute("data-w")];el.setAttribute("aria-label",w);
-    el.innerHTML=Array.from(w).map(function(c,i){return '<span class="ch" aria-hidden="true" style="--i:'+i+'">'+esc(c)+'</span>'}).join("");
+    var k=0;el.innerHTML=typo(w).split(" ").map(function(word){return '<span class="wd" aria-hidden="true">'+Array.from(word).map(function(c){return '<span class="ch" style="--i:'+(k++)+'">'+esc(c)+'</span>'}).join("")+'</span>'}).join(" ");
   });
   document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===lang))});
   var g=document.getElementById("grid");
