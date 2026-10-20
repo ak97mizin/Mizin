@@ -37,7 +37,12 @@ body::after{background:var(--grain);opacity:.32;mix-blend-mode:overlay}
 main{position:relative}
 
 /* header */
-.top{position:absolute;inset-inline:0;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px)}
+.top{position:fixed;inset-inline:0;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:transparent}
+.top::before{content:"";position:absolute;left:0;right:0;top:0;bottom:-44px;z-index:-1;pointer-events:none;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 50%,rgba(0,0,0,.6) 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 50%,rgba(0,0,0,.6) 72%,transparent 100%)}
+.totop{position:fixed;right:max(16px,var(--gut));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:21;width:52px;height:52px;border-radius:50%;border:0;background:#fff;color:var(--navy);font:400 22px/1 var(--body);cursor:pointer;box-shadow:0 8px 24px rgba(22,20,69,.3);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--navy);color:#fff}
+section[id]{scroll-margin-top:72px}
 .top .wrap{display:flex;align-items:center;gap:28px;min-height:76px}
 .brand{font:500 15px/1 var(--display);text-decoration:none;color:#fff;letter-spacing:-.01em;white-space:nowrap}
 .nav{display:flex;gap:28px;margin-left:auto;font-size:15px}
@@ -60,7 +65,7 @@ main{position:relative}
 .photo{position:relative}
 .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:8px;filter:grayscale(1) contrast(1.05)}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4.5vw,64px);max-width:900px}
-.stat{background:rgba(255,255,255,.1);border-radius:8px;padding:clamp(16px,2vw,24px);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.stat{padding:0}
 .stat b{display:block;font:500 clamp(38px,5vw,64px)/1 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .stat span{display:block;margin-top:10px;font-size:15px;line-height:1.35;color:rgba(255,255,255,.85)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,3vw,40px)}
@@ -333,6 +338,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
   </section>
 </main>
 
+<button class="totop" type="button" id="totop" data-ta="totop">↑</button>
+
 <dialog id="pm" aria-labelledby="pm-title">
   <button class="x" type="button" id="pm-x" data-ta="close">×</button>
   <div class="m">
@@ -354,7 +361,7 @@ ru:{
  c1:"Бюро ландшафтной архитектуры", c2:"Промышленный дизайнер", c3:"Руководитель проектов",
  s1:"лет опыта работы", s2:"реализованных проектов", s3:"награды у проектов",
  cta1:"Обсудить проект", cta2:"Смотреть проекты",
- svc_h:"Благоустройство под ключ:", w1:"Среда", w2:"Детям", w3:"Спорт",
+ svc_h:"Благоустройство под ключ", w1:"Среда", w2:"Детям", w3:"Спорт",
  w1d:"Парки, скверы, дворы, набережные, сады и винодельни", w2d:"Детские площадки и игровое оборудование", w3d:"Спортивные площадки и зоны активного отдыха",
  proj_h:"Проекты",
  proc_h:"Ход работы",
@@ -372,7 +379,7 @@ ru:{
  ct_h:"Готовы обсудить ваш проект", ct_lead:"Расскажите об участке и задаче: где он, какая площадь, что должно на нём появиться и в какие сроки.",
  phone:"Телефон", copy:"Скопировать", copied:"Скопировано", selected:"Выделено", tg:"Написать в Telegram",
  foot:"© 2026 Александр Мизин", foot2:"Ереван, Армения",
- close:"Закрыть", prev_img:"Предыдущее фото", next_img:"Следующее фото", next_p:"Следующий проект →", soon:"Скоро",
+ close:"Закрыть", totop:"Наверх", prev_img:"Предыдущее фото", next_img:"Следующее фото", next_p:"Следующий проект →", soon:"Скоро",
  L:{task:"Задача",sol:"Решение",role:"Наша роль",res:"Результат",about:"О проекте",awards:"Награды",pubs:"Публикации",links:"Ссылки"}
 },
 en:{
@@ -381,7 +388,7 @@ en:{
  c1:"Landscape architecture studio", c2:"Industrial designer", c3:"Project manager",
  s1:"years of experience", s2:"completed projects", s3:"awards for projects",
  cta1:"Discuss a project", cta2:"See projects",
- svc_h:"Turnkey landscaping:", w1:"Places", w2:"Kids", w3:"Sport",
+ svc_h:"Turnkey landscaping", w1:"Places", w2:"Kids", w3:"Sport",
  w1d:"Parks, squares, courtyards, embankments, gardens and wineries", w2d:"Playgrounds and custom play equipment", w3d:"Sports grounds and active recreation areas",
  proj_h:"Projects",
  proc_h:"Workflow",
@@ -399,7 +406,7 @@ en:{
  ct_h:"Let's discuss your project", ct_lead:"Tell us about the site and the task: where it is, how big it is, what should appear there and by when.",
  phone:"Phone", copy:"Copy", copied:"Copied", selected:"Selected", tg:"Message on Telegram",
  foot:"© 2026 Alexander Mizin", foot2:"Yerevan, Armenia",
- close:"Close", prev_img:"Previous photo", next_img:"Next photo", next_p:"Next project →", soon:"Coming soon",
+ close:"Close", totop:"Back to top", prev_img:"Previous photo", next_img:"Next photo", next_p:"Next project →", soon:"Coming soon",
  L:{task:"Task",sol:"Solution",role:"Our role",res:"Result",about:"About",awards:"Awards",pubs:"Press",links:"Links"}
 }};
 
@@ -510,7 +517,7 @@ function render(){
   var g=document.getElementById("grid");
   g.innerHTML=P.map(function(p,i){var x=p[lang];
     if(p.soon)return '<div class="pcard soon"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"><span class="soon-b">'+esc(d.soon)+'</span></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></div>';
-    return '<button class="pcard" type="button" data-i="'+i+'"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"><span class="plus" aria-hidden="true">+</span></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></button>'}).join("");
+    return '<button class="pcard" type="button" data-i="'+i+'"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></button>'}).join("");
   if(dlg.open)openP(cur,curImg);
 }
 
@@ -560,6 +567,9 @@ document.querySelectorAll(".copy").forEach(function(b){
     try{navigator.clipboard.writeText(t).then(function(){done(d.copied)},fallback)}catch(e){fallback()}
   });
 });
+var tt=document.getElementById("totop");
+addEventListener("scroll",function(){tt.classList.toggle("on",scrollY>500)},{passive:true});
+tt.addEventListener("click",function(){scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})});
 render();
 </script>
 
