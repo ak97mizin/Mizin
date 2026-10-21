@@ -172,8 +172,42 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 @media (max-width:560px){.advg{grid-template-columns:1fr;gap:32px}.advg .card-s svg{width:72px}}
 @media (max-width:760px){.advg .card-s{align-items:start}}
 
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);margin-top:clamp(32px,4vw,52px);align-items:start}
+.cform{display:grid;gap:clamp(28px,3vw,40px)}
+.fg{border:0;margin:0;padding:0;display:grid;gap:12px;min-width:0}
+.fg legend,.fg .lab{padding:0;margin-bottom:12px;font:500 clamp(17px,1.5vw,20px)/1.2 var(--display);letter-spacing:-.02em}
+.area{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.area input[type=number]{width:170px;font:500 22px/1 var(--body);color:#fff;background:transparent;border:0;border-bottom:2px solid rgba(255,255,255,.7);padding:8px 2px;outline:none;font-variant-numeric:tabular-nums}
+.area input[type=number]:focus{border-color:#fff}
+.area span{font-size:18px;color:rgba(255,255,255,.8)}
+.area input[type=range]{flex:1 1 220px;accent-color:#fff;min-width:0}
+.checks{display:grid;gap:10px}
+.checks.row{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.ck{display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:17px;line-height:1.35}
+.ck input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin:0;border:2px solid #fff;border-radius:5px;display:grid;place-items:center;cursor:pointer;background:transparent}
+.ck input:checked{background:#fff}
+.ck input:checked::after{content:"";width:10px;height:6px;border-left:2.5px solid var(--navy);border-bottom:2.5px solid var(--navy);transform:translateY(-1px) rotate(-45deg)}
+.ck input:disabled{opacity:.35;cursor:not-allowed}
+.ck input:disabled + span{opacity:.45}
+.ck small{display:block;font-size:13px;color:rgba(255,255,255,.65);margin-top:2px}
+.cur{justify-self:start;display:inline-flex;gap:2px;padding:3px;border-radius:30px;background:rgba(22,20,69,.35)}
+.cur button{border:0;background:transparent;color:rgba(255,255,255,.85);font:500 14px/1 var(--body);padding:9px 14px;border-radius:30px;cursor:pointer}
+.cur button[aria-pressed="true"]{background:#fff;color:var(--navy)}
+.res{position:sticky;top:96px;background:#fff;color:var(--ink);border-radius:12px;padding:clamp(22px,2.6vw,36px);display:grid;gap:18px}
+.res .k{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);font-weight:600}
+.res .big{font:500 clamp(30px,3.2vw,44px)/1.05 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin-top:6px}
+.res .mid{font:500 clamp(22px,2vw,28px)/1.1 var(--display);letter-spacing:-.02em;margin-top:6px}
+.res .note2{font-size:14px;color:var(--muted);margin-top:4px}
+.brk{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--line);display:grid;gap:6px;font-size:15px}
+.brk li{display:flex;justify-content:space-between;gap:12px}
+.brk li span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted)}
+.res .empty{color:var(--muted)}
+.disc{font-size:13px;line-height:1.5;color:var(--muted)}
+@media (max-width:900px){.calc{grid-template-columns:1fr}.res{position:static}}
+
 /* contact */
-.contact h2{font-size:clamp(36px,6vw,84px);max-width:14ch;text-transform:none}
+.contact h2{max-width:20ch}
 .contact .lead{margin-top:22px;font-size:clamp(18px,1.8vw,21px);color:rgba(255,255,255,.85);max-width:46ch}
 .ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(40px,5vw,64px)}
 .ways > div{background:rgba(255,255,255,.1);border-radius:8px;padding:20px 22px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);min-width:0}
@@ -197,6 +231,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
       <a href="#projects" data-t="nav_projects"></a>
       <a href="#process" data-t="nav_process"></a>
       <a href="#advantages" data-t="nav_adv"></a>
+      <a href="#calc" data-t="nav_calc"></a>
       <a href="#contact" data-t="nav_contact"></a>
     </nav>
     <div class="lang" role="group" aria-label="Language">
@@ -323,6 +358,65 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
     </div>
   </section>
 
+  <section id="calc">
+    <div class="wrap">
+      <h2 data-t="calc_h"></h2>
+      <div class="calc">
+        <form class="cform" id="cform" novalidate>
+          <div class="fg">
+            <label class="lab" for="c-area" data-t="c_area"></label>
+            <div class="area">
+              <input type="number" id="c-area" min="100" max="200000" step="100" value="7200" inputmode="numeric">
+              <span data-t="sqm">м²</span>
+              <input type="range" id="c-range" min="500" max="50000" step="100" value="7200" data-ta="c_area">
+            </div>
+          </div>
+          <fieldset class="fg">
+            <legend data-t="c_stages"></legend>
+            <div class="checks" id="c-stages">
+              <label class="ck"><input type="checkbox" id="st-a" checked><span><b data-t="cs_a" style="font-weight:500"></b><small data-t="cs_a_n"></small></span></label>
+              <label class="ck"><input type="checkbox" id="st-c" checked><span data-t="cs_c"></span></label>
+              <label class="ck"><input type="checkbox" id="st-d" checked><span data-t="cs_d"></span></label>
+              <label class="ck"><input type="checkbox" id="st-r" checked><span><b data-t="cs_r" style="font-weight:500"></b><small data-t="cs_r_n"></small></span></label>
+              <label class="ck"><input type="checkbox" id="st-s" checked><span data-t="cs_s"></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="fg">
+            <legend data-t="c_func"></legend>
+            <div class="checks row" id="c-func">
+              <label class="ck"><input type="checkbox" value="rec" checked><span data-t="cf_rec"></span></label>
+              <label class="ck"><input type="checkbox" value="kids" checked><span data-t="cf_kids"></span></label>
+              <label class="ck"><input type="checkbox" value="sport" checked><span data-t="cf_sport"></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="fg">
+            <legend data-t="c_site"></legend>
+            <div class="checks row" id="c-site">
+              <label class="ck"><input type="checkbox" value="flat" checked><span data-t="ct_flat"></span></label>
+              <label class="ck"><input type="checkbox" value="relief"><span data-t="ct_relief"></span></label>
+              <label class="ck"><input type="checkbox" value="emb"><span data-t="ct_emb"></span></label>
+              <label class="ck"><input type="checkbox" value="forest"><span data-t="ct_forest"></span></label>
+            </div>
+          </fieldset>
+          <div class="fg">
+            <span class="lab" data-t="c_cur"></span>
+            <div class="cur" role="group" id="c-cur">
+              <button type="button" data-c="AMD" aria-pressed="true">AMD</button>
+              <button type="button" data-c="USD" aria-pressed="false">USD</button>
+              <button type="button" data-c="RUB" aria-pressed="false">RUB</button>
+            </div>
+          </div>
+        </form>
+        <div class="res" aria-live="polite">
+          <div><div class="k" data-t="r_cost"></div><div class="big" id="r-cost"></div></div>
+          <div><div class="k" data-t="r_time"></div><div class="mid" id="r-time"></div><div class="note2" id="r-tnote"></div></div>
+          <ul class="brk" id="r-brk"></ul>
+          <p class="disc" data-t="c_disc"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="contact">
     <div class="wrap">
       <h2 data-t="ct_h"></h2>
@@ -357,6 +451,13 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 var T={
 ru:{
  name1:"Александр Мизин", name_h1:"Александр<br>Мизин",
+ sqm:"м²", nav_calc:"Калькулятор", calc_h:"Калькулятор проекта",
+ c_area:"Площадь территории", c_stages:"Этапы", c_func:"Функция", c_site:"Тип участка", c_cur:"Валюта",
+ cs_a:"Анализ участка", cs_a_n:"Можно не выбирать, если исходные данные уже есть", cs_c:"Концепция", cs_d:"Рабочая документация", cs_r:"Реализация", cs_r_n:"Строительство с материалами и оборудованием. Только вместе с авторским надзором", cs_s:"Авторский надзор",
+ cf_rec:"Рекреационная зона", cf_kids:"Детская площадка", cf_sport:"Спортивная площадка",
+ ct_flat:"Плоский", ct_relief:"Рельеф", ct_emb:"Набережная", ct_forest:"Лес",
+ r_cost:"Стоимость", r_time:"Срок", r_mon:"мес", r_empty:"Выберите хотя бы один этап", r_sup:"+ авторский надзор на период строительства",
+ c_disc:"Стоимость и сроки ориентировочные и уточняются после знакомства с участком и задачей. Стоимость реализации включает строительные работы, материалы, оборудование и озеленение и сильно зависит от выбранных решений. Не входят проектирование и строительство зданий и наружных инженерных сетей. Курсы валют приблизительные.",
  nav_projects:"Проекты", nav_process:"Ход работы", nav_adv:"Что вы получаете", nav_contact:"Контакты",
  c1:"Бюро ландшафтной архитектуры", c2:"Промышленный дизайнер", c3:"Руководитель проектов",
  s1:"лет опыта работы", s2:"реализованных проектов", s3:"награды у проектов",
@@ -384,6 +485,13 @@ ru:{
 },
 en:{
  name1:"Alexander Mizin", name_h1:"Alexander<br>Mizin",
+ sqm:"m²", nav_calc:"Calculator", calc_h:"Project calculator",
+ c_area:"Site area", c_stages:"Stages", c_func:"Function", c_site:"Site type", c_cur:"Currency",
+ cs_a:"Site analysis", cs_a_n:"Optional if you already have the survey data", cs_c:"Concept", cs_d:"Working documentation", cs_r:"Construction", cs_r_n:"Construction with materials and equipment. Only together with designer's supervision", cs_s:"Designer's supervision",
+ cf_rec:"Recreation area", cf_kids:"Playground", cf_sport:"Sports ground",
+ ct_flat:"Flat", ct_relief:"Sloped", ct_emb:"Waterfront", ct_forest:"Woodland",
+ r_cost:"Cost", r_time:"Timeline", r_mon:"mo", r_empty:"Choose at least one stage", r_sup:"+ designer's supervision during construction",
+ c_disc:"Cost and timeline are approximate and are refined once we know the site and the brief. The construction estimate covers works, materials, equipment and planting and depends heavily on the chosen solutions. Design and construction of buildings and external utility networks are not included. Exchange rates are approximate.",
  nav_projects:"Projects", nav_process:"Workflow", nav_adv:"What you get", nav_contact:"Contact",
  c1:"Landscape architecture studio", c2:"Industrial designer", c3:"Project manager",
  s1:"years of experience", s2:"completed projects", s3:"awards for projects",
@@ -519,6 +627,7 @@ function render(){
     if(p.soon)return '<div class="pcard soon"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"><span class="soon-b">'+esc(d.soon)+'</span></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></div>';
     return '<button class="pcard" type="button" data-i="'+i+'"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></button>'}).join("");
   if(dlg.open)openP(cur,curImg);
+  if(typeof calc==="function"&&$&&document.getElementById("r-cost"))calc();
 }
 
 var dlg=document.getElementById("pm"),cur=0,curImg=0;
@@ -567,6 +676,75 @@ document.querySelectorAll(".copy").forEach(function(b){
     try{navigator.clipboard.writeText(t).then(function(){done(d.copied)},fallback)}catch(e){fallback()}
   });
 });
+
+/* ===== Калькулятор: коэффициенты (можно править) ===== */
+var CALC={
+  baseArea:7200,                       // м², эталонный проект
+  stages:{a:3500000,c:8300000,d:7700000},  // AMD для эталона: анализ + концепция + рабочая = 19 500 000
+  months:{a:1,c:3,d:2,r:4},            // мес для эталона
+  realization:10,                      // реализация (строительство с материалами и оборудованием) = 10 × стоимость проектирования
+  supervision:0.12,                    // авторский надзор: доля от полной стоимости проектирования
+  areaExp:0.75,                        // как стоимость растёт с площадью
+  timeExp:0.35,                        // как срок растёт с площадью
+  minFee:1500000,                      // минимальная стоимость, AMD
+  siteExtra:0.10,                      // +10%, если участок не плоский (рельеф, набережная или лес)
+  rates:{AMD:1,USD:390,RUB:4.8}        // AMD за единицу валюты, приблизительно
+};
+var ccy="AMD";
+function $(id){return document.getElementById(id)}
+var ST={a:$("st-a"),c:$("st-c"),d:$("st-d"),r:$("st-r"),s:$("st-s")};
+function rules(changed){
+  if(changed===ST.r&&ST.r.checked)ST.s.checked=true;
+  if(changed===ST.s&&!ST.s.checked)ST.r.checked=false;
+  if(!ST.c.checked){ST.d.checked=false}
+  if(!ST.d.checked){ST.r.checked=false;ST.s.checked=false}
+  ST.d.disabled=!ST.c.checked;
+  ST.r.disabled=!ST.d.checked;
+  ST.s.disabled=!ST.d.checked;
+}
+function keepOne(box,changed){
+  var on=box.querySelectorAll("input:checked");
+  if(on.length===0&&changed)changed.checked=true;
+}
+function fmt(v){
+  var r=CALC.rates[ccy],x=v/r,step=ccy==="AMD"?100000:ccy==="USD"?100:10000;
+  x=Math.max(step,Math.round(x/step)*step);
+  var sym={AMD:"֏",USD:"$",RUB:"₽"}[ccy];
+  var n=x.toLocaleString(lang==="ru"?"ru-RU":"en-US").replace(/,/g,lang==="ru"?"\u00a0":",");
+  return ccy==="USD"?"$"+n:n+"\u00a0"+sym;
+}
+function months(m){var r=Math.max(.5,Math.round(m*2)/2);return (r%1?String(r).replace(".",lang==="ru"?",":"."):r)}
+function calc(){
+  var d=T[lang],A=Math.max(100,Math.min(200000,+$("c-area").value||0));
+  var S=Math.pow(A/CALC.baseArea,CALC.areaExp),Tm=Math.pow(A/CALC.baseArea,CALC.timeExp);
+  var fn=[].slice.call(document.querySelectorAll("#c-func input:checked")).map(function(i){return i.value});
+  var sv=[].slice.call(document.querySelectorAll("#c-site input:checked")).map(function(i){return i.value});
+  var ks=sv.some(function(v){return v!=="flat"})?1+CALC.siteExtra:1;
+  var K=S*ks,full=(CALC.stages.a+CALC.stages.c+CALC.stages.d)*K;
+  var items=[],total=0,tm=0;
+  [["a","cs_a"],["c","cs_c"],["d","cs_d"]].forEach(function(x){if(ST[x[0]].checked){var v=CALC.stages[x[0]]*K;items.push([d[x[1]],v]);total+=v;tm+=Math.max(.5,CALC.months[x[0]]*Tm)}});
+  if(total>0&&total<CALC.minFee){var f=CALC.minFee/total;items.forEach(function(i){i[1]*=f});total=CALC.minFee}
+  if(ST.r.checked){var v=full*CALC.realization;items.push([d.cs_r,v]);total+=v;tm+=Math.max(1,CALC.months.r*Tm)}
+  if(ST.s.checked){var v2=full*CALC.supervision;items.push([d.cs_s,v2]);total+=v2}
+  if(!items.length){$("r-cost").textContent="—";$("r-time").textContent="—";$("r-tnote").textContent="";$("r-brk").innerHTML='<li class="empty">'+esc(d.r_empty)+'</li>';return}
+  $("r-cost").textContent="≈\u00a0"+fmt(total);
+  $("r-time").textContent=tm>0?"≈\u00a0"+months(tm)+"\u00a0"+d.r_mon:"—";
+  $("r-tnote").textContent=(ST.s.checked&&!ST.r.checked)?d.r_sup:"";
+  $("r-brk").innerHTML=items.map(function(i){return '<li><span>'+esc(i[0])+'</span><span>'+fmt(i[1])+'</span></li>'}).join("");
+}
+$("cform").addEventListener("change",function(e){
+  var t=e.target;
+  if(t.closest("#c-stages"))rules(t);
+  if(t.closest("#c-func"))keepOne($("c-func"),t);
+  if(t.closest("#c-site"))keepOne($("c-site"),t);
+  calc();
+});
+$("c-area").addEventListener("input",function(){var v=+this.value;if(v>=500&&v<=50000)$("c-range").value=v;calc()});
+$("c-area").addEventListener("blur",function(){var v=Math.max(100,Math.min(200000,Math.round(+this.value||0)));this.value=v;calc()});
+$("c-range").addEventListener("input",function(){$("c-area").value=this.value;calc()});
+$("cform").addEventListener("submit",function(e){e.preventDefault()});
+$("c-cur").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;ccy=b.dataset.c;this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});calc()});
+rules();
 var tt=document.getElementById("totop");
 addEventListener("scroll",function(){tt.classList.toggle("on",scrollY>500)},{passive:true});
 tt.addEventListener("click",function(){scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})});
