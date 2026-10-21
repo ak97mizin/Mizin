@@ -7,14 +7,14 @@
 <meta name="description" content="Ландшафтный архитектор и промышленный дизайнер. Благоустройство под ключ: парки, детские и спортивные пространства.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Golos+Text:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Golos+Text:wght@400;500;600&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap">
 <style>
 :root{
   color-scheme:light;
   --navy:#161445; --ink:#16153A; --muted:#5F5E78; --line:#E6E4EE; --paper:#FFFFFF; --soft:#F5F3F7;
   --red:#D6254B; --red2:#F42849; --wine:#8C2150;
-  --display:"Unbounded","Arial Black",system-ui,sans-serif;
-  --body:"Golos Text","Segoe UI",system-ui,-apple-system,sans-serif;
+  --display:"Unbounded","Noto Sans Armenian","Arial Black",system-ui,sans-serif;
+  --body:"Golos Text","Noto Sans Armenian","Segoe UI",system-ui,-apple-system,sans-serif;
   --wrap:100%; --gut:clamp(16px,2.2vw,32px);
   --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --grad:radial-gradient(55% 75% at 100% 0%,rgba(255,240,244,.32),rgba(255,240,244,0) 70%),linear-gradient(168deg,#161445 0%,#2c1a52 22%,#6a1e4b 42%,#b3234d 62%,#e0284a 80%,#f42849 90%,#b01b2e 100%);
@@ -28,6 +28,7 @@ img{display:block;max-width:100%;height:auto}
 p{margin:0}
 h1,h2,h3{margin:0;font-weight:500;line-height:1.1;text-wrap:balance}
 h2{font:500 clamp(30px,4.4vw,56px)/1.05 var(--display);letter-spacing:-.03em}
+html[lang="hy"] h1,html[lang="hy"] h2,html[lang="hy"] .word,html[lang="hy"] .pcard .t,html[lang="hy"] .info h3,html[lang="hy"] .steps h3{font-weight:700;letter-spacing:-.01em}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
 section{padding-block:clamp(52px,6.5vw,96px)}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px}
@@ -56,16 +57,18 @@ section[id]{scroll-margin-top:72px}
 /* hero */
 .hero{padding-block:calc(76px + clamp(32px,6vw,80px)) clamp(40px,5vw,72px)}
 .hero-grid{display:block}
-.hero h1{font:500 clamp(46px,9vw,150px)/.92 var(--display);letter-spacing:-.045em}
+.hero h1{font:500 clamp(46px,9vw,150px)/1.04 var(--display);letter-spacing:-.045em}
+html[lang="hy"] .hero h1{line-height:1.12}
 .photo{margin-top:calc(clamp(44px,6vw,88px)*.1)}
 .comp{display:flex;flex-wrap:wrap;gap:4px 0;margin-top:clamp(22px,2.6vw,36px)}
-.comp span{font-size:clamp(17px,1.7vw,22px);white-space:nowrap;color:rgba(255,255,255,.92)}
+.comp span{font-size:clamp(17px,1.7vw,22px);color:rgba(255,255,255,.92)}
 .comp{column-gap:.45em}
 @media (max-width:560px){.comp{flex-direction:column}}
 .photo{position:relative}
 .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:8px;filter:grayscale(1) contrast(1.05)}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4.5vw,64px);max-width:900px}
-.stat{padding:0}
+.stat{padding:0;min-width:0}
+.stat span{overflow-wrap:break-word;hyphens:auto}
 .stat b{display:block;font:500 clamp(38px,5vw,64px)/1 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .stat span{display:block;margin-top:10px;font-size:15px;line-height:1.35;color:rgba(255,255,255,.85)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,3vw,40px)}
@@ -146,8 +149,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 
 /* process */
 .flow{position:relative;margin-top:clamp(36px,4vw,56px)}
-.flow::before{content:"";position:absolute;left:0;right:14px;top:50px;height:2px;background:rgba(255,255,255,.85)}
-.flow::after{content:"";position:absolute;right:2px;top:44px;border-left:14px solid rgba(255,255,255,.85);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.flow::before{content:"";position:absolute;left:0;right:14px;top:calc(50px + var(--snap,0px));height:2px;background:rgba(255,255,255,.85)}
+.flow::after{content:"";position:absolute;right:2px;top:calc(44px + var(--snap,0px));border-left:14px solid rgba(255,255,255,.85);border-top:7px solid transparent;border-bottom:7px solid transparent}
 .steps{list-style:none;margin-block:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto;gap:0 clamp(24px,3vw,40px);counter-reset:st}
 .steps > li{display:grid;grid-row:span 3;grid-template-rows:subgrid;align-content:start;counter-increment:st}
 .steps > li::before{content:counter(st,decimal-leading-zero);font:500 26px/1 var(--display);letter-spacing:-.02em;color:#fff;height:28px;margin-bottom:46px}
@@ -204,6 +207,24 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .brk li span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted)}
 .res .empty{color:var(--muted)}
 .disc{font-size:13px;line-height:1.5;color:var(--muted)}
+.sendbtn{justify-self:start;border:0;cursor:pointer;font:500 16px/1 var(--body);padding:15px 22px;border-radius:40px;background:var(--navy);color:#fff}
+.sendbtn:hover{background:var(--red)}
+.sendbtn[aria-expanded="true"]{background:var(--soft);color:var(--navy)}
+.sendp{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.sendp.open{grid-template-rows:1fr}
+.sendp > form{overflow:hidden;display:grid;gap:14px;min-height:0}
+.sendp.open > form{padding-top:4px}
+.fld{display:grid;gap:6px}
+.fld label{font-size:14px;color:var(--muted)}
+.fld i{color:var(--red);font-style:normal}
+.fld input,.fld textarea{font:400 16px/1.4 var(--body);color:var(--ink);background:var(--soft);border:1.5px solid transparent;border-radius:8px;padding:12px 14px;width:100%;resize:vertical}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--navy);background:#fff}
+.fld input[aria-invalid="true"]{border-color:var(--red)}
+.err{font-size:13px;color:var(--red)}
+.sendbtn.solid{background:var(--red)}
+.sendbtn.solid:hover{background:var(--navy)}
+.sendmsg{font-size:14px;color:var(--muted)}
+.sendmsg:empty{display:none}
 @media (max-width:900px){.calc{grid-template-columns:1fr}.res{position:static}}
 
 /* contact */
@@ -237,6 +258,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="ru" aria-pressed="true">RU</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="hy" aria-pressed="false">HY</button>
     </div>
   </div>
 </header>
@@ -350,7 +372,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
           <p data-t="a5d"></p>
         </div>
         <div class="card-s" tabindex="0">
-          <svg viewBox="0 0 120 100" aria-hidden="true"><circle pathLength="1" style="--d:0" cx="50" cy="44" r="24"/><path pathLength="1" style="--d:1" d="M68 62l26 26"/><path pathLength="1" style="--d:2" d="M40 36c3-5 8-8 14-8"/><path pathLength="1" style="--d:3" d="M44 50l5 5 9-12"/></svg>
+          <svg viewBox="0 0 120 100" aria-hidden="true"><circle pathLength="1" style="--d:0" cx="50" cy="44" r="24"/><path pathLength="1" style="--d:1" d="M68 62l26 26"/><path pathLength="1" style="--d:2" d="M40 36c3-5 8-8 14-8"/></svg>
           <h3 class="word" data-w="a6"></h3>
           <p data-t="a6d"></p>
         </div>
@@ -412,6 +434,16 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
           <div><div class="k" data-t="r_time"></div><div class="mid" id="r-time"></div><div class="note2" id="r-tnote"></div></div>
           <ul class="brk" id="r-brk"></ul>
           <p class="disc" data-t="c_disc"></p>
+          <button class="sendbtn" type="button" id="send-open" aria-expanded="false" aria-controls="send-panel" data-t="snd_open"></button>
+          <div class="sendp" id="send-panel" hidden>
+            <form id="send-form" novalidate>
+              <div class="fld"><label for="f-name"><span data-t="f_name"></span> <i>*</i></label><input id="f-name" name="name" type="text" autocomplete="name" required><p class="err" id="e-name" data-t="e_name" hidden></p></div>
+              <div class="fld"><label for="f-mail"><span data-t="f_mail"></span> <i>*</i></label><input id="f-mail" name="email" type="email" autocomplete="email" required><p class="err" id="e-mail" data-t="e_mail" hidden></p></div>
+              <div class="fld"><label for="f-msg" data-t="f_msg"></label><textarea id="f-msg" name="comment" rows="3"></textarea></div>
+              <button class="sendbtn solid" type="submit" data-t="snd_go"></button>
+              <p class="sendmsg" id="send-msg" role="status"></p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -451,7 +483,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 var T={
 ru:{
  name1:"Александр Мизин", name_h1:"Александр<br>Мизин",
- sqm:"м²", nav_calc:"Калькулятор", calc_h:"Калькулятор проекта",
+ sqm:"м²", snd_open:"Отправить расчёт", snd_close:"Свернуть", f_name:"ФИО", f_mail:"Электронная почта", f_msg:"Комментарий (необязательно)", snd_go:"Отправить", e_name:"Укажите ФИО", e_mail:"Укажите корректный адрес почты", snd_wait:"Отправляем…", snd_ok:"Спасибо! Расчёт отправлен, мы свяжемся с вами.", snd_fail:"Не удалось отправить. Напишите нам в Telegram или на почту ниже.", snd_off:"Отправка формы пока не подключена. Пожалуйста, свяжитесь с нами по контактам ниже.",
+ nav_calc:"Калькулятор", calc_h:"Калькулятор проекта",
  c_area:"Площадь территории", c_stages:"Этапы", c_func:"Функция", c_site:"Тип участка", c_cur:"Валюта",
  cs_a:"Анализ участка", cs_a_n:"Можно не выбирать, если исходные данные уже есть", cs_c:"Концепция", cs_d:"Рабочая документация", cs_r:"Реализация", cs_r_n:"Строительство с материалами и оборудованием. Только вместе с авторским надзором", cs_s:"Авторский надзор",
  cf_rec:"Рекреационная зона", cf_kids:"Детская площадка", cf_sport:"Спортивная площадка",
@@ -485,7 +518,8 @@ ru:{
 },
 en:{
  name1:"Alexander Mizin", name_h1:"Alexander<br>Mizin",
- sqm:"m²", nav_calc:"Calculator", calc_h:"Project calculator",
+ sqm:"m²", snd_open:"Send the estimate", snd_close:"Collapse", f_name:"Full name", f_mail:"Email", f_msg:"Comment (optional)", snd_go:"Send", e_name:"Please enter your full name", e_mail:"Please enter a valid email address", snd_wait:"Sending…", snd_ok:"Thank you! The estimate has been sent, we will get back to you.", snd_fail:"Could not send. Please message us on Telegram or by email below.", snd_off:"Sending is not connected yet. Please contact us using the details below.",
+ nav_calc:"Calculator", calc_h:"Project calculator",
  c_area:"Site area", c_stages:"Stages", c_func:"Function", c_site:"Site type", c_cur:"Currency",
  cs_a:"Site analysis", cs_a_n:"Optional if you already have the survey data", cs_c:"Concept", cs_d:"Working documentation", cs_r:"Construction", cs_r_n:"Construction with materials and equipment. Only together with designer's supervision", cs_s:"Designer's supervision",
  cf_rec:"Recreation area", cf_kids:"Playground", cf_sport:"Sports ground",
@@ -516,6 +550,41 @@ en:{
  foot:"© 2026 Alexander Mizin", foot2:"Yerevan, Armenia",
  close:"Close", totop:"Back to top", prev_img:"Previous photo", next_img:"Next photo", next_p:"Next project →", soon:"Coming soon",
  L:{task:"Task",sol:"Solution",role:"Our role",res:"Result",about:"About",awards:"Awards",pubs:"Press",links:"Links"}
+},
+hy:{
+ name1:"Ալեքսանդր Միզին", name_h1:"Ալեքսանդր<br>Միզին",
+ sqm:"մ²", snd_open:"Ուղարկել հաշվարկը", snd_close:"Փակել", f_name:"Անուն, ազգանուն", f_mail:"Էլ. փոստ", f_msg:"Մեկնաբանություն (ոչ պարտադիր)", snd_go:"Ուղարկել", e_name:"Նշեք ձեր անունը և ազգանունը", e_mail:"Նշեք էլ. փոստի ճիշտ հասցե", snd_wait:"Ուղարկվում է…", snd_ok:"Շնորհակալություն։ Հաշվարկն ուղարկված է, մենք կկապվենք ձեզ հետ։", snd_fail:"Չհաջողվեց ուղարկել։ Գրեք մեզ Telegram-ով կամ էլ. փոստով՝ ստորև նշված կոնտակտներով։", snd_off:"Ձևի ուղարկումը դեռ միացված չէ։ Խնդրում ենք կապվել մեզ հետ ստորև նշված կոնտակտներով։",
+ nav_calc:"Հաշվիչ", calc_h:"Նախագծի հաշվիչ",
+ c_area:"Տարածքի մակերես", c_stages:"Փուլեր", c_func:"Գործառույթ", c_site:"Տարածքի տեսակ", c_cur:"Արժույթ",
+ cs_a:"Տարածքի վերլուծություն", cs_a_n:"Կարելի է չընտրել, եթե ելակետային տվյալներն արդեն կան", cs_c:"Կոնցեպցիա", cs_d:"Աշխատանքային փաստաթղթեր", cs_r:"Իրականացում", cs_r_n:"Շինարարություն՝ նյութերով և սարքավորումներով։ Միայն հեղինակային հսկողության հետ միասին", cs_s:"Հեղինակային հսկողություն",
+ cf_rec:"Ռեկրեացիոն գոտի", cf_kids:"Մանկական խաղահրապարակ", cf_sport:"Սպորտային հրապարակ",
+ ct_flat:"Հարթ", ct_relief:"Ռելիեֆ", ct_emb:"Ափամերձ գոտի", ct_forest:"Անտառ",
+ r_cost:"Արժեք", r_time:"Ժամկետ", r_mon:"ամիս", r_empty:"Ընտրեք առնվազն մեկ փուլ", r_sup:"+ հեղինակային հսկողություն շինարարության ընթացքում",
+ c_disc:"Արժեքը և ժամկետները մոտավոր են և ճշգրտվում են տարածքին ու առաջադրանքին ծանոթանալուց հետո։ Իրականացման արժեքը ներառում է շինարարական աշխատանքները, նյութերը, սարքավորումները և կանաչապատումը և մեծապես կախված է ընտրված լուծումներից։ Չեն ներառվում շենքերի և արտաքին ինժեներական ցանցերի նախագծումն ու շինարարությունը։ Արժույթների փոխարժեքները մոտավոր են։",
+ nav_projects:"Նախագծեր", nav_process:"Աշխատանքի ընթացքը", nav_adv:"Ինչ եք ստանում", nav_contact:"Կոնտակտներ",
+ c1:"Լանդշաֆտային ճարտարապետության բյուրո", c2:"", c3:"",
+ s1:"տարվա աշխատանքային փորձ", s2:"իրականացված նախագիծ", s3:"մրցանակ նախագծերի համար",
+ cta1:"Քննարկել նախագիծը", cta2:"",
+ svc_h:"Բարեկարգում «բանալին ձեռքին»", w1:"Միջավայր", w2:"Երեխաներին", w3:"Սպորտ",
+ w1d:"Այգիներ, պուրակներ, բակեր, ափամերձ գոտիներ, պարտեզներ և գինեգործարաններ", w2d:"Մանկական խաղահրապարակներ և խաղային սարքավորումներ", w3d:"Սպորտային հրապարակներ և ակտիվ հանգստի գոտիներ",
+ proj_h:"Նախագծեր",
+ proc_h:"Աշխատանքի ընթացքը",
+ st1:"Տարածքի վերլուծություն", st1d:["Տարածքի ներուժի գնահատում","Տեղագրական հանույթ","Սահմանափակումներ և թույլտվություններ","Լուսանկարահանում"],
+ st2:"Կոնցեպցիա", st2d:["Կոնցեպտուալ ալբոմ","Տարածքի հատակագծային կազմակերպման սխեմա","Ճարտարապետական և լանդշաֆտային կերպար","Էսքիզային հատակագծեր"],
+ st3:"Աշխատանքային փաստաթղթեր", st3d:["Աշխատանքային նախագիծ","Գծագրեր և բնութագրեր","Սարքավորումների և նյութերի ընտրություն"],
+ st4:"Իրականացում և հսկողություն", st4d:["Կապալառուներ և արտադրողներ","Արտադրության վերահսկում","Հեղինակային հսկողություն օբյեկտում"],
+ adv_h:"Ինչ եք ստանում",
+ a1:"Մեկ պատասխանատու", a1d:"Բոլոր փուլերում ունեք մեկ կոնտակտային անձ՝ առաջին հանդիպումից մինչև օբյեկտի հանձնումը։",
+ a2:"Պահպանում ենք ժամկետները", a2d:"Իրատեսական ժամանակացույց և վերահսկում յուրաքանչյուր փուլում։",
+ a3:"Կանխատեսելի բյուջե", a3d:"Բոլոր ծախսերը համաձայնեցվում են նախապես, առանց թաքնված վճարների։ Օգնում ենք գնահատել նյութերի և սարքավորումների արժեքը դեռ կոնցեպցիայի փուլում։",
+ a4:"Փաստաթղթեր շինարարության համար", a4d:"Ինքներս ենք պատրաստում առաջադրանքներն ու գծագրերը արտադրողների համար և այցելում ենք օբյեկտ, որպեսզի նախագիծը կառուցվի այնպես, ինչպես մտահղացված է։",
+ a5:"Համատեքստի հաշվառում", a5d:"Կլիմա, ռելիեֆ, տեղական նյութեր և նորմեր, վայրի պատմություն։ Դրանցից է ծնվում նախագծի գաղափարը։",
+ a6:"Ուշադրություն մանրուքներին", a6d:"Մշակում ենք ամենափոքր մանրուքները՝ մինչև համակի պարանների ամրացումը, որպեսզի խողովակները հարմար տեղավորվեն ծնկների տակ։",
+ ct_h:"Պատրաստ ենք քննարկել ձեր նախագիծը", ct_lead:"Պատմեք տարածքի և առաջադրանքի մասին՝ որտեղ է այն, որքան է մակերեսը, ինչ պետք է այնտեղ հայտնվի և ինչ ժամկետներում։",
+ phone:"Հեռախոս", copy:"Պատճենել", copied:"Պատճենված է", selected:"Ընտրված է", tg:"Գրել Telegram-ով",
+ foot:"© 2026 Ալեքսանդր Միզին", foot2:"Երևան, Հայաստան",
+ close:"Փակել", totop:"Դեպի վեր", prev_img:"Նախորդ լուսանկարը", next_img:"Հաջորդ լուսանկարը", next_p:"Հաջորդ նախագիծը →", soon:"Շուտով",
+ L:{task:"Խնդիր",sol:"Լուծում",role:"Մեր դերը",res:"Արդյունք",about:"Նախագծի մասին",awards:"Մրցանակներ",pubs:"Հրապարակումներ",links:"Հղումներ"}
 }};
 
 var P=[
@@ -595,8 +664,41 @@ var P=[
  links:[["Officenext","https://www.officenext.ru/projects/project-63546-ofis-yandeksa/"]]}
 ];
 
+
+var HY_P=[
+ {t:"Պուրակ Խաչքարերի այգու մոտ",s:"Բարեկարգում · Երևան",facts:["Երևան","350 մ²","UrUrban բյուրո"],
+  about:"Տակտիկական ուրբանիզմ՝ «Վիշապագորգ» մանկական խաղահրապարակի շարունակություն։"},
+ {t:"Հայ գյուտարարներ",s:"Մանկական խաղահրապարակ · Երևան · 2026",facts:["Միսաք Մանուշյանի անվան այգի, Երևան","675 մ²","2026","UrUrban բյուրո"],
+  task:"Խաղային տարածք ծառերով փոքր հողամասում՝ քաղաքի կենտրոնի մարդաշատ այգում։",
+  sol:"Խաղահրապարակը աճում է դեպի վեր՝ խաղային աշտարակի տեսքով։ Աճի թեման կապված է գիտության հետ. խաղահրապարակը նվիրված է Հայաստանի և սփյուռքի հայ գիտնականներին։",
+  role:"Արդյունաբերական դիզայն և լանդշաֆտային ճարտարապետություն։ Աշտարակի էսքիզներ և արտադրության առաջադրանք, հեղինակային սարքավորումներ՝ լուսավորությամբ ճոճանակներ, «Հեռուստացույց», ստվերային ինտերակտիվ, վանդալակայուն համակ, նստարաններ և տեղեկատվական վահանակներ, նախագծային փաստաթղթեր և հեղինակային հսկողություն։ Երբ աշտարակի տեղադրումից առաջ գրունտի հետ կապված դժվարություններ առաջացան, սեղմ ժամկետներում վերամշակեցինք հիմքը և շրջակա տարածքը։",
+  res:"Իրականացվել է 2026 թվականին։"},
+ {t:"Կարմրախայտ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Օղակաձև այգի, Երևան","1 995 մ²","2025","UrUrban բյուրո"],
+  task:"Բազմազան խաղային տարածք՝ արտահայտիչ կենտրոնական տարրով, հասուն ծառերի միջև։",
+  sol:"Այգու տակով, կոլեկտորում, հոսում է Գետառ գետը։ Կոնցեպցիան այն վերադարձնում է մակերես՝ խճաքարե հատակ, ջրիմուռներ և կարմրախայտ ձուկը՝ խաղային համալիրի տեսքով։",
+  role:"Տարածքի հատակագծում և խաղային սցենարներ, խաղային համալիր՝ էսքիզներից մինչև ներկում, անհատական պատրաստման փոքր ճարտարապետական ձևեր (շառավղային նստարաններ, աղբամաններ, վահանակներ, սահարաններ, բլուրներ, թունել, ծածկ), սարքավորումների ընտրություն, փաստաթղթեր և հեղինակային հսկողություն։",
+  res:"Իրականացվել է 2025 թվականին։"},
+ {t:"Վիշապագորգ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Վերնիսաժի մոտ, Երևան","800 մ²","2025","UrUrban բյուրո"],
+  task:"Մանկական խաղահրապարակ ճանապարհի երկայնքով նեղ հողամասում՝ խաչքարերի հուշապուրակի դիմաց։",
+  sol:"Կողքին Վերնիսաժն է, որտեղ գորգեր են վաճառում, ուստի ծածկույթը դարձավ հայկական գորգ՝ կենաց ծառով, արծիվներով և բույսերով։ Ցածր սարքավորումները շարված են մեկ շարքով և ոճավորված են վիշապների տեսքով։",
+  role:"Ծածկույթի մանրամասնում, նշագծում գեոդեզիստների հետ և փռման վերահսկում. գույներն ընտրվել են՝ հաշվի առնելով գունաթափումն ու փոշին։ Խաղային սարքավորումներ և փոքր ճարտարապետական ձևեր, կանաչապատման գոտիավորում, փաստաթղթեր, հեղինակային հսկողություն։",
+  res:"Իրականացվել է 2025 թվականին։"},
+ {t:"«Սիթի Բեյ» բնակելի համալիր",s:"Մանկական խաղահրապարակներ · Մոսկվա · 2025",facts:["Մոսկվա գետի ափ, Մոսկվա","4 500 մ²","«Չեխարդա» բյուրո"],
+  task:"Խաղահրապարակ բնակիչների համար՝ ստիլոբատի վրա, և հանրամատչելի խաղահրապարակ ներքևում։",
+  role:"Խաղային սարքավորումներ՝ էսքիզից մինչև արտադրական մոդել. «Քամեկոտր» մագլցման համալիր, վալդորֆյան սկզբունքով բացօթյա կոնստրուկտոր, շոշափելի սյուներ, սկանավորված գերաններից համակներ, սահարան փոքրիկների համար։",
+  res:"Մանկական խաղահրապարակը հանձնվել է պատվիրատուին 2025 թվականին։ Բնակելի համալիրը կառուցման փուլում է։"},
+ {t:"«Էլմայ» մանկական այգի",s:"Մանկական այգի · Կազան · 2024",facts:["Կազանկա գետի ափ, Կազան","3,4 հա","2024","«Չեխարդա» բյուրո"],
+  task:"Թաթարստանի ամենամեծ մանկական այգին՝ «Էկոլոգիա», «Գետի կյանքը» և «Գետը պատմում է» թեմատիկ երթուղիներով։",
+  role:"Երթուղիների գիտական խաղային սարքավորումների արդյունաբերական դիզայն՝ «Նավագնացություն»՝ նավերի շարժվող պատկերներով (պատնեշային անիմացիայի սկզբունքով), «Օգտակար աղբ»՝ վերամշակման մասին, «Ի՞նչ է թաքցնում ջուրը»՝ Կազանկա գետում հայտնաբերված գտածոների կրկնօրինակներով։",
+  res:"Իրականացվել է 2024 թվականին։"},
+ {t:"LAN քոուորքինգ և սրճարան",s:"Ինտերիեր · Երևան · 2022",facts:["Երևան","110 մ²","2022"],
+  about:"Բնակարանը վերափոխվել է քոուորքինգի և սրճարանի. միջնապատերի մի մասի ապամոնտաժումը և նոր բացվածքները տարածքը բաժանեցին քոուորքինգի աղմկոտ և հանգիստ գոտիների և բարի։ Շատ համեստ բյուջե, պարզ և մատչելի նյութեր, տարածքը հետագայում ինքնուրույն համալրելու հնարավորություն։"},
+ {t:"Յանդեքսի գրասենյակը «ՕԿՕ» աշտարակում",s:"Ինտերիեր · Մոսկվա · 2021",facts:["Մոսկվա","2021"],
+  about:"Աշխատանք խոշոր գրասենյակային ինտերիերի վրա՝ հիմնական տարածքների գծագրեր։"}
+];
+P.forEach(function(p,i){p.hy=HY_P[i]});
 var lang="ru";
-try{var sv=localStorage.getItem("mz-lang");if(sv==="en"||sv==="ru")lang=sv}catch(e){}
+try{var sv=localStorage.getItem("mz-lang");if(sv==="en"||sv==="ru"||sv==="hy")lang=sv}catch(e){}
 
 function typo(s){
   if(lang!=="ru")return s.replace(/(^|\s)(a|an|the|of|in|to|on|by|at|and|or|for|with)\s/gi,"$1$2 ");
@@ -604,7 +706,7 @@ function typo(s){
   return s.replace(re,"$1$2 ").replace(re,"$1$2 ").replace(/(\d)\s(?=[А-Яа-яa-zм«%])/g,"$1 ").replace(/\s(—|·)/g," $1");
 }
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
-function lbl(x){var p=x.split("|");return lang==="en"?p[0]:(p[1]||p[0])}
+function lbl(x){var p=x.split("|");return lang==="ru"?(p[1]||p[0]):p[0]}
 
 function render(){
   var d=T[lang];
@@ -628,6 +730,8 @@ function render(){
     return '<button class="pcard" type="button" data-i="'+i+'"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></button>'}).join("");
   if(dlg.open)openP(cur,curImg);
   if(typeof calc==="function"&&$&&document.getElementById("r-cost"))calc();
+  if(typeof sendLabel==="function"&&so)sendLabel();
+  if(typeof snapFlow==="function")requestAnimationFrame(snapFlow);
 }
 
 var dlg=document.getElementById("pm"),cur=0,curImg=0;
@@ -710,10 +814,10 @@ function fmt(v){
   var r=CALC.rates[ccy],x=v/r,step=ccy==="AMD"?100000:ccy==="USD"?100:10000;
   x=Math.max(step,Math.round(x/step)*step);
   var sym={AMD:"֏",USD:"$",RUB:"₽"}[ccy];
-  var n=x.toLocaleString(lang==="ru"?"ru-RU":"en-US").replace(/,/g,lang==="ru"?"\u00a0":",");
+  var n=x.toLocaleString(lang==="en"?"en-US":"ru-RU").replace(/,/g,lang==="en"?",":"\u00a0");
   return ccy==="USD"?"$"+n:n+"\u00a0"+sym;
 }
-function months(m){var r=Math.max(.5,Math.round(m*2)/2);return (r%1?String(r).replace(".",lang==="ru"?",":"."):r)}
+function months(m){var r=Math.max(.5,Math.round(m*2)/2);return (r%1?String(r).replace(".",lang==="en"?".":","):r)}
 function calc(){
   var d=T[lang],A=Math.max(100,Math.min(200000,+$("c-area").value||0));
   var S=Math.pow(A/CALC.baseArea,CALC.areaExp),Tm=Math.pow(A/CALC.baseArea,CALC.timeExp);
@@ -745,6 +849,46 @@ $("c-range").addEventListener("input",function(){$("c-area").value=this.value;ca
 $("cform").addEventListener("submit",function(e){e.preventDefault()});
 $("c-cur").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;ccy=b.dataset.c;this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});calc()});
 rules();
+
+/* ===== Отправка расчёта ===== */
+var SEND_URL="";   // сюда вставить адрес обработчика формы (например, Formspree: https://formspree.io/f/XXXXXXX). Пока пусто — письма не отправляются.
+var sp=$("send-panel"),so=$("send-open"),sf=$("send-form"),sm=$("send-msg");
+function sendLabel(){so.textContent=T[lang][so.getAttribute("aria-expanded")==="true"?"snd_close":"snd_open"]}
+so.addEventListener("click",function(){
+  var open=so.getAttribute("aria-expanded")!=="true";
+  so.setAttribute("aria-expanded",String(open));sendLabel();
+  if(open){sp.hidden=false;requestAnimationFrame(function(){sp.classList.add("open")});setTimeout(function(){$("f-name").focus()},250)}
+  else{sp.classList.remove("open");setTimeout(function(){sp.hidden=true},400)}
+});
+function estimateText(){
+  var d=T[lang],pick=function(sel){return [].slice.call(document.querySelectorAll(sel)).map(function(i){return i.closest("label").innerText.split("\n")[0].trim()}).join(", ")||"—"};
+  return [
+    d.c_area+": "+$("c-area").value+" "+d.sqm,
+    d.c_stages+": "+pick("#c-stages input:checked"),
+    d.c_func+": "+pick("#c-func input:checked"),
+    d.c_site+": "+pick("#c-site input:checked"),
+    d.r_cost+": "+$("r-cost").textContent+" ("+ccy+")",
+    d.r_time+": "+$("r-time").textContent+" "+$("r-tnote").textContent,
+    [].slice.call(document.querySelectorAll("#r-brk li")).map(function(li){return "  "+li.innerText.replace(/\s*\n\s*/," — ")}).join("\n")
+  ].join("\n");
+}
+sf.addEventListener("submit",function(e){
+  e.preventDefault();var d=T[lang],ok=true;
+  var n=$("f-name"),m=$("f-mail");
+  var nOk=n.value.trim().length>1,mOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m.value.trim());
+  n.setAttribute("aria-invalid",String(!nOk));$("e-name").hidden=nOk;
+  m.setAttribute("aria-invalid",String(!mOk));$("e-mail").hidden=mOk;
+  if(!nOk){n.focus();ok=false}else if(!mOk){m.focus();ok=false}
+  if(!ok)return;
+  var payload={name:n.value.trim(),email:m.value.trim(),comment:$("f-msg").value.trim(),estimate:estimateText(),language:lang,_subject:"Расчёт проекта с сайта"};
+  if(!SEND_URL){sm.textContent=d.snd_off;return}
+  sm.textContent=d.snd_wait;
+  fetch(SEND_URL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)})
+    .then(function(r){if(!r.ok)throw 0;sm.textContent=d.snd_ok;sf.reset()})
+    .catch(function(){sm.textContent=d.snd_fail});
+});
+function snapFlow(){var f=document.querySelector(".flow");if(!f)return;f.style.setProperty("--snap","0px");var r=window.devicePixelRatio||1,y=(f.getBoundingClientRect().top+scrollY)*r,fr=y-Math.round(y);f.style.setProperty("--snap",(-fr/r).toFixed(3)+"px")}
+addEventListener("resize",snapFlow);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(snapFlow);addEventListener("load",snapFlow);
 var tt=document.getElementById("totop");
 addEventListener("scroll",function(){tt.classList.toggle("on",scrollY>500)},{passive:true});
 tt.addEventListener("click",function(){scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})});
