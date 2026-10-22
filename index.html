@@ -156,8 +156,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 
 /* process */
 .flow{position:relative;margin-top:clamp(36px,4vw,56px)}
-.flow::before{content:"";position:absolute;left:0;right:14px;top:calc(50px + var(--snap,0px));height:2px;background:rgba(255,255,255,.85)}
-.flow::after{content:"";position:absolute;right:2px;top:calc(44px + var(--snap,0px));border-left:14px solid rgba(255,255,255,.85);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.flow::before{content:"";position:absolute;left:0;right:20px;top:calc(50px + var(--snap,0px));height:2px;background:rgba(255,255,255,.85)}
+.flow::after{content:"";position:absolute;right:2px;top:calc(40px + var(--snap,0px));border-left:22px solid rgba(255,255,255,.85);border-top:11px solid transparent;border-bottom:11px solid transparent}
 .steps{list-style:none;margin-block:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto;gap:0 clamp(24px,3vw,40px);counter-reset:st}
 .steps > li{display:grid;grid-row:span 3;grid-template-rows:subgrid;align-content:start;counter-increment:st}
 .steps > li::before{content:counter(st,decimal-leading-zero);font:500 26px/1 var(--display);letter-spacing:-.02em;color:#fff;height:28px;margin-bottom:46px}
@@ -166,8 +166,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .steps ul{list-style:circle}
 .steps ul li::marker{color:#fff}
 @media (max-width:760px){
-  .flow::before{left:calc(var(--gut) + 15px);right:auto;top:40px;bottom:14px;width:2px;height:auto}
-  .flow::after{left:calc(var(--gut) + 9px);right:auto;top:auto;bottom:0;border-top:14px solid rgba(255,255,255,.85);border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:0}
+  .flow::before{left:calc(var(--gut) + 15px);right:auto;top:40px;bottom:20px;width:2px;height:auto}
+  .flow::after{left:calc(var(--gut) + 5px);right:auto;top:auto;bottom:0;border-top:22px solid rgba(255,255,255,.85);border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:0}
   .steps{grid-template-columns:1fr;grid-template-rows:none;gap:32px;padding-bottom:36px}
   .steps > li{grid-row:auto;grid-template-rows:none;position:relative;padding-left:48px}
   .steps > li::before{position:absolute;left:0;top:0;margin:0;font-size:18px;background:var(--red);border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-size:12px}
