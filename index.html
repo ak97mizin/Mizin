@@ -7,7 +7,7 @@
 <meta name="description" content="Ландшафтный архитектор и промышленный дизайнер. Благоустройство под ключ: парки, детские и спортивные пространства.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Golos+Text:wght@400;500;600&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;900&family=Golos+Text:wght@400;500;600&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap">
 <style>
 :root{
   color-scheme:light;
@@ -45,7 +45,7 @@ main{position:relative}
 .totop:hover{background:var(--navy);color:#fff}
 section[id]{scroll-margin-top:72px}
 .top .wrap{display:flex;align-items:center;gap:28px;min-height:76px}
-.brand{font:500 15px/1 var(--display);text-decoration:none;color:#fff;letter-spacing:-.01em;white-space:nowrap}
+.brand{font:900 15px/1 "Unbounded",var(--display);text-transform:uppercase;text-decoration:none;color:#fff;letter-spacing:-.02em;white-space:nowrap}
 .nav{display:flex;gap:28px;margin-left:auto;font-size:15px}
 .nav a{text-decoration:none;color:rgba(255,255,255,.82)}
 .nav a:hover{color:#fff}
@@ -57,8 +57,8 @@ section[id]{scroll-margin-top:72px}
 /* hero */
 .hero{padding-block:calc(76px + clamp(32px,6vw,80px)) clamp(40px,5vw,72px)}
 .hero-grid{display:block}
-.hero h1{font:500 clamp(46px,9vw,150px)/1.04 var(--display);letter-spacing:-.045em}
-html[lang="hy"] .hero h1{line-height:1.12}
+.hero h1{font:900 clamp(30px,8.6vw,150px)/.92 "Unbounded",var(--display);text-transform:uppercase;letter-spacing:-.035em}
+html[lang="hy"] .hero h1{line-height:.92;font-weight:900;letter-spacing:-.035em}
 .photo{margin-top:calc(clamp(44px,6vw,88px)*.1)}
 .comp{display:flex;flex-wrap:wrap;gap:4px 0;margin-top:clamp(22px,2.6vw,36px)}
 .comp span{font-size:clamp(17px,1.7vw,22px);color:rgba(255,255,255,.92)}
@@ -66,7 +66,7 @@ html[lang="hy"] .hero h1{line-height:1.12}
 @media (max-width:560px){.comp{flex-direction:column}}
 .photo{position:relative}
 .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:8px;filter:grayscale(1) contrast(1.05)}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4.5vw,64px);max-width:900px}
+.stats{display:flex;flex-wrap:wrap;gap:24px clamp(48px,7vw,112px);margin-top:clamp(36px,4.5vw,64px)}
 .stat{padding:0;min-width:0}
 .stat span{overflow-wrap:break-word;hyphens:auto}
 .stat b{display:block;font:500 clamp(38px,5vw,64px)/1 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
@@ -77,8 +77,10 @@ html[lang="hy"] .hero h1{line-height:1.12}
 .btn.w:hover{background:var(--navy);color:#fff}
 .btn.o{color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);background:transparent}
 .btn.o:hover{box-shadow:inset 0 0 0 1px #fff}
+.btn.n{background:var(--navy);color:#fff}
+.btn.n:hover{background:#fff;color:var(--navy)}
 @media (max-width:860px){.hero-grid{grid-template-columns:1fr}.photo{max-width:360px}}
-@media (max-width:560px){.stats{grid-template-columns:1fr 1fr 1fr;gap:8px}.stat{padding:14px 12px}.stat span{font-size:13px}}
+@media (max-width:560px){.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.stat span{font-size:13px}}
 
 /* services */
 .svc-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(36px,4vw,56px)}
@@ -97,7 +99,7 @@ html[lang="hy"] .hero h1{line-height:1.12}
 @media (max-width:760px){.svc{grid-template-columns:1fr;gap:32px}.card-s{grid-template-columns:auto 1fr;align-items:center;gap:8px 20px}.card-s svg{width:84px;grid-row:span 2}}
 
 /* projects */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(36px,4vw,56px) clamp(16px,2vw,28px)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(44px,5vw,80px) clamp(20px,3vw,48px)}
 .pcard{display:grid;gap:10px;align-content:start;text-align:left;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
 .pcard .im{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:4/3;background:rgba(255,255,255,.1)}
 .pcard img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
@@ -114,24 +116,29 @@ html[lang="hy"] .hero h1{line-height:1.12}
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
 
 /* modal */
-dialog{border:0;padding:0;margin:auto;width:min(1180px,calc(100vw - 32px));max-height:calc(100dvh - 32px);border-radius:12px;background:var(--paper);color:var(--ink);overflow:hidden}
+dialog{border:0;padding:0;margin:auto;width:min(1360px,calc(100vw - 32px));max-height:calc(100dvh - 32px);border-radius:12px;background:transparent;color:var(--ink);overflow:hidden}
 dialog::backdrop{background:rgba(22,20,69,.72);backdrop-filter:blur(4px)}
 dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}}
-.m{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);height:min(780px,calc(100dvh - 32px))}
-.gal{position:relative;background:#111;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden}
-.gal .main{width:100%;height:100%;object-fit:cover;min-height:0}
+.m{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);height:min(780px,calc(100dvh - 32px))}
+.gal{position:relative;background:rgba(14,12,44,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden}
+.gal .main{width:100%;height:100%;object-fit:contain;min-height:0;background:transparent}
+.gal .main.land{object-fit:cover}
 .thumbs[hidden]{display:none}
-.thumbs{display:flex;gap:6px;padding:8px;background:#111;overflow-x:auto}
+.thumbs{display:flex;gap:6px;padding:8px;background:transparent;overflow-x:auto}
 .thumbs button{flex:0 0 72px;height:54px;padding:0;border:2px solid transparent;border-radius:4px;overflow:hidden;cursor:pointer;background:none;opacity:.6}
 .thumbs button[aria-current="true"]{border-color:#fff;opacity:1}
 .thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs button{position:relative}
+.thumbs .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:16px;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+#pm-vid{background:transparent}
 .gnav{position:absolute;top:calc(50% - 50px);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--navy);font-size:20px;cursor:pointer}
 .gnav.l{left:12px}.gnav.r{right:12px}
-.info{overflow-y:auto;min-height:0;padding:clamp(24px,3vw,44px);display:grid;gap:18px;align-content:start}
+.info{overflow-y:auto;min-height:0;background:var(--paper);padding:clamp(24px,3vw,44px);display:grid;gap:18px;align-content:start}
 .info h3{font:500 clamp(26px,2.8vw,38px)/1.05 var(--display);letter-spacing:-.03em;padding-right:44px}
-.facts{display:flex;flex-wrap:wrap;gap:6px}
-.facts span{font-size:14px;padding:6px 12px;border-radius:30px;background:var(--soft)}
+.facts{display:flex;flex-wrap:wrap;gap:2px 0;font-size:15px;color:var(--muted)}
+.facts span{overflow-wrap:anywhere}
+.facts span:not(:last-child)::after{content:"•";margin:0 .6em;color:var(--red)}
 .rows{display:grid;gap:14px;margin:0}
 .rows dt{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);font-weight:600}
 .rows dd{margin:3px 0 0;font-size:16px;line-height:1.55}
@@ -143,8 +150,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 @media (max-width:860px){
   dialog{width:100vw;max-height:100dvh;height:100dvh;border-radius:0;max-width:none}
   .m{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);height:100dvh;max-height:none}
-  .gal .main{height:min(56vw,320px)}
-  .gnav{top:calc(min(56vw,320px)/2 - 22px);width:44px;height:44px}
+  .gal .main{height:min(67vw,480px)}
+  .gnav{top:calc(min(67vw,480px)/2 - 22px);width:44px;height:44px}
 }
 
 /* process */
@@ -225,7 +232,14 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .sendbtn.solid:hover{background:var(--navy)}
 .sendmsg{font-size:14px;color:var(--muted)}
 .sendmsg:empty{display:none}
-@media (max-width:900px){.calc{grid-template-columns:1fr}.res{position:static}}
+@media (max-width:900px){.calc{grid-template-columns:minmax(0,1fr)}.res{position:static}}
+.cform,.cform .fg,.res,.res > *{min-width:0}
+.area input[type=range]{min-width:0}
+@media (max-width:360px){h2{font-size:25px}}
+.card-s > *{min-width:0}
+.card-s p,.card-s .word{overflow-wrap:break-word}
+@media (max-width:420px){.card-s{grid-template-columns:1fr!important}.card-s svg{grid-row:auto!important}.lang button{padding:7px 8px}.top .wrap{gap:12px}}
+@media (max-width:560px){.res .big{font-size:clamp(22px,7vw,34px)}}
 
 /* contact */
 .contact h2{max-width:20ch}
@@ -247,7 +261,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" data-t="name1"></a>
+    <a class="brand" href="#top">Mizin Architect</a>
     <nav class="nav" aria-label="Menu">
       <a href="#projects" data-t="nav_projects"></a>
       <a href="#process" data-t="nav_process"></a>
@@ -388,9 +402,9 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
           <div class="fg">
             <label class="lab" for="c-area" data-t="c_area"></label>
             <div class="area">
-              <input type="number" id="c-area" min="100" max="200000" step="100" value="7200" inputmode="numeric">
+              <input type="number" id="c-area" min="100" max="200000" step="100" value="8000" inputmode="numeric">
               <span data-t="sqm">м²</span>
-              <input type="range" id="c-range" min="500" max="50000" step="100" value="7200" data-ta="c_area">
+              <input type="range" id="c-range" min="500" max="50000" step="100" value="8000" data-ta="c_area">
             </div>
           </div>
           <fieldset class="fg">
@@ -399,8 +413,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
               <label class="ck"><input type="checkbox" id="st-a" checked><span><b data-t="cs_a" style="font-weight:500"></b><small data-t="cs_a_n"></small></span></label>
               <label class="ck"><input type="checkbox" id="st-c" checked><span data-t="cs_c"></span></label>
               <label class="ck"><input type="checkbox" id="st-d" checked><span data-t="cs_d"></span></label>
-              <label class="ck"><input type="checkbox" id="st-r" checked><span><b data-t="cs_r" style="font-weight:500"></b><small data-t="cs_r_n"></small></span></label>
-              <label class="ck"><input type="checkbox" id="st-s" checked><span data-t="cs_s"></span></label>
+              <label class="ck"><input type="checkbox" id="st-r"><span><b data-t="cs_r" style="font-weight:500"></b><small data-t="cs_r_n"></small></span></label>
+              <label class="ck"><input type="checkbox" id="st-s"><span data-t="cs_s"></span></label>
             </div>
           </fieldset>
           <fieldset class="fg">
@@ -471,6 +485,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
   <div class="m">
     <div class="gal">
       <img class="main" id="pm-img" alt="">
+      <video class="main" id="pm-vid" muted loop playsinline preload="metadata" hidden></video>
       <button class="gnav l" type="button" id="pm-prev" data-ta="prev_img">←</button>
       <button class="gnav r" type="button" id="pm-next" data-ta="next_img">→</button>
       <div class="thumbs" id="pm-thumbs"></div>
@@ -482,7 +497,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 <script>
 var T={
 ru:{
- name1:"Александр Мизин", name_h1:"Александр<br>Мизин",
+ name1:"Александр Мизин", name_h1:"Mizin<br>Architect",
  sqm:"м²", snd_open:"Отправить расчёт", snd_close:"Свернуть", f_name:"ФИО", f_mail:"Электронная почта", f_msg:"Комментарий (необязательно)", snd_go:"Отправить", e_name:"Укажите ФИО", e_mail:"Укажите корректный адрес почты", snd_wait:"Отправляем…", snd_ok:"Спасибо! Расчёт отправлен, мы свяжемся с вами.", snd_fail:"Не удалось отправить. Напишите нам в Telegram или на почту ниже.", snd_off:"Отправка формы пока не подключена. Пожалуйста, свяжитесь с нами по контактам ниже.",
  nav_calc:"Калькулятор", calc_h:"Калькулятор проекта",
  c_area:"Площадь территории", c_stages:"Этапы", c_func:"Функция", c_site:"Тип участка", c_cur:"Валюта",
@@ -493,8 +508,8 @@ ru:{
  c_disc:"Стоимость и сроки ориентировочные и уточняются после знакомства с участком и задачей. Стоимость реализации включает строительные работы, материалы, оборудование и озеленение и сильно зависит от выбранных решений. Не входят проектирование и строительство зданий и наружных инженерных сетей. Курсы валют приблизительные.",
  nav_projects:"Проекты", nav_process:"Ход работы", nav_adv:"Что вы получаете", nav_contact:"Контакты",
  c1:"Бюро ландшафтной архитектуры", c2:"Промышленный дизайнер", c3:"Руководитель проектов",
- s1:"лет опыта работы", s2:"реализованных проектов", s3:"награды у проектов",
- cta1:"Обсудить проект", cta2:"Смотреть проекты",
+ s1:"лет опыта", s2:"реализованных проектов", s3:"награды у проектов",
+ cta1:"Обсудить проект", cta3:"Рассчитать стоимость", cta2:"Смотреть проекты",
  svc_h:"Благоустройство под ключ", w1:"Среда", w2:"Детям", w3:"Спорт",
  w1d:"Парки, скверы, дворы, набережные, сады и винодельни", w2d:"Детские площадки и игровое оборудование", w3d:"Спортивные площадки и зоны активного отдыха",
  proj_h:"Проекты",
@@ -517,7 +532,7 @@ ru:{
  L:{task:"Задача",sol:"Решение",role:"Наша роль",res:"Результат",about:"О проекте",awards:"Награды",pubs:"Публикации",links:"Ссылки"}
 },
 en:{
- name1:"Alexander Mizin", name_h1:"Alexander<br>Mizin",
+ name1:"Alexander Mizin", name_h1:"Mizin<br>Architect",
  sqm:"m²", snd_open:"Send the estimate", snd_close:"Collapse", f_name:"Full name", f_mail:"Email", f_msg:"Comment (optional)", snd_go:"Send", e_name:"Please enter your full name", e_mail:"Please enter a valid email address", snd_wait:"Sending…", snd_ok:"Thank you! The estimate has been sent, we will get back to you.", snd_fail:"Could not send. Please message us on Telegram or by email below.", snd_off:"Sending is not connected yet. Please contact us using the details below.",
  nav_calc:"Calculator", calc_h:"Project calculator",
  c_area:"Site area", c_stages:"Stages", c_func:"Function", c_site:"Site type", c_cur:"Currency",
@@ -529,7 +544,7 @@ en:{
  nav_projects:"Projects", nav_process:"Workflow", nav_adv:"What you get", nav_contact:"Contact",
  c1:"Landscape architecture studio", c2:"Industrial designer", c3:"Project manager",
  s1:"years of experience", s2:"completed projects", s3:"awards for projects",
- cta1:"Discuss a project", cta2:"See projects",
+ cta1:"Discuss a project", cta3:"Estimate the cost", cta2:"See projects",
  svc_h:"Turnkey landscaping", w1:"Places", w2:"Kids", w3:"Sport",
  w1d:"Parks, squares, courtyards, embankments, gardens and wineries", w2d:"Playgrounds and custom play equipment", w3d:"Sports grounds and active recreation areas",
  proj_h:"Projects",
@@ -552,7 +567,7 @@ en:{
  L:{task:"Task",sol:"Solution",role:"Our role",res:"Result",about:"About",awards:"Awards",pubs:"Press",links:"Links"}
 },
 hy:{
- name1:"Ալեքսանդր Միզին", name_h1:"Ալեքսանդր<br>Միզին",
+ name1:"Ալեքսանդր Միզին", name_h1:"Mizin<br>Architect",
  sqm:"մ²", snd_open:"Ուղարկել հաշվարկը", snd_close:"Փակել", f_name:"Անուն, ազգանուն", f_mail:"Էլ. փոստ", f_msg:"Մեկնաբանություն (ոչ պարտադիր)", snd_go:"Ուղարկել", e_name:"Նշեք ձեր անունը և ազգանունը", e_mail:"Նշեք էլ. փոստի ճիշտ հասցե", snd_wait:"Ուղարկվում է…", snd_ok:"Շնորհակալություն։ Հաշվարկն ուղարկված է, մենք կկապվենք ձեզ հետ։", snd_fail:"Չհաջողվեց ուղարկել։ Գրեք մեզ Telegram-ով կամ էլ. փոստով՝ ստորև նշված կոնտակտներով։", snd_off:"Ձևի ուղարկումը դեռ միացված չէ։ Խնդրում ենք կապվել մեզ հետ ստորև նշված կոնտակտներով։",
  nav_calc:"Հաշվիչ", calc_h:"Նախագծի հաշվիչ",
  c_area:"Տարածքի մակերես", c_stages:"Փուլեր", c_func:"Գործառույթ", c_site:"Տարածքի տեսակ", c_cur:"Արժույթ",
@@ -563,8 +578,8 @@ hy:{
  c_disc:"Արժեքը և ժամկետները մոտավոր են և ճշգրտվում են տարածքին ու առաջադրանքին ծանոթանալուց հետո։ Իրականացման արժեքը ներառում է շինարարական աշխատանքները, նյութերը, սարքավորումները և կանաչապատումը և մեծապես կախված է ընտրված լուծումներից։ Չեն ներառվում շենքերի և արտաքին ինժեներական ցանցերի նախագծումն ու շինարարությունը։ Արժույթների փոխարժեքները մոտավոր են։",
  nav_projects:"Նախագծեր", nav_process:"Աշխատանքի ընթացքը", nav_adv:"Ինչ եք ստանում", nav_contact:"Կոնտակտներ",
  c1:"Լանդշաֆտային ճարտարապետության բյուրո", c2:"", c3:"",
- s1:"տարվա աշխատանքային փորձ", s2:"իրականացված նախագիծ", s3:"մրցանակ նախագծերի համար",
- cta1:"Քննարկել նախագիծը", cta2:"",
+ s1:"տարվա փորձ", s2:"իրականացված նախագիծ", s3:"մրցանակ նախագծերի համար",
+ cta1:"Քննարկել նախագիծը", cta3:"Հաշվել արժեքը", cta2:"",
  svc_h:"Բարեկարգում «բանալին ձեռքին»", w1:"Միջավայր", w2:"Երեխաներին", w3:"Սպորտ",
  w1d:"Այգիներ, պուրակներ, բակեր, ափամերձ գոտիներ, պարտեզներ և գինեգործարաններ", w2d:"Մանկական խաղահրապարակներ և խաղային սարքավորումներ", w3d:"Սպորտային հրապարակներ և ակտիվ հանգստի գոտիներ",
  proj_h:"Նախագծեր",
@@ -588,117 +603,107 @@ hy:{
 }};
 
 var P=[
-{soon:true,img:["ashtarak"],
- ru:{t:"База отдыха у Аштарака",s:"Благоустройство · Аштарак",facts:["Аштарак"]},
- en:{t:"Riverside retreat near Ashtarak",s:"Landscaping · Ashtarak",facts:["Ashtarak"]}},
+{soon:true,img:["citybay-render"],
+ ru:{t:"ЖК «Сити Бэй»",s:"Детские площадки · Москва",facts:["У Москвы-реки, Москва","4 500 м²","Спроектировано при бюро «Чехарда»"],
+  task:"Площадка для жителей на стилобате и общедоступная площадка внизу.",
+  role:"Игровое оборудование от эскиза до модели для производства: лазательный «Бурелом», уличный конструктор по вальдорфскому принципу, тактильные столбы, гамаки из отсканированных брёвен, горка для малышей.",
+  res:"Детская площадка сдана заказчику в 2025 году. Жилой комплекс в процессе строительства."},
+ en:{t:"City Bay residential complex",s:"Playgrounds · Moscow",facts:["Moskva river, Moscow","4,500 m²","Designed at Chekharda bureau"],
+  task:"A residents' playground on the podium and a public playground below.",
+  role:"Play equipment from sketch to production model: the “Windfall” climbing frame, an outdoor Waldorf-style construction set, tactile posts, hammocks made from 3D-scanned logs, a toddler slide.",
+  res:"The playground was handed over to the client in 2025. The residential complex is under construction."}},
 {soon:true,img:["khachkar-square"],
- ru:{t:"Сквер у парка Хачкаров",s:"Благоустройство · Ереван",facts:["Ереван","350 м²","Бюро UrUrban"],
+ ru:{t:"Сквер у парка Хачкаров",s:"Благоустройство · Ереван",facts:["Ереван","350 м²","Спроектировано при бюро UrUrban"],
   about:"Тактический урбанизм как продолжение детской площадки «Вишапагорг»."},
- en:{t:"Khachkar Park square",s:"Public space · Yerevan",facts:["Yerevan","350 m²","UrUrban bureau"],
+ en:{t:"Khachkar Park square",s:"Public space · Yerevan",facts:["Yerevan","350 m²","Designed at UrUrban bureau"],
   about:"Tactical urbanism as an extension of the Vishapagorg playground."}},
-{img:["inv-tower","inv-swings","inv-hammock","inv-wide"],
- ru:{t:"Армянские изобретатели",s:"Детская площадка · Ереван · 2026",facts:["Парк им. Мисака Манушяна, Ереван","675 м²","2026","Бюро UrUrban"],
+{img:["man-01","man-02","man-03","man-04","man-05","man-06","man-07","man-08","man-11","man-12","man-09","man-10","man-13"],
+ ru:{t:"Армянские изобретатели",s:"Детская площадка · Ереван · 2026",facts:["Парк им. Мисака Манушяна, Ереван","675 м²","2026","Спроектировано при бюро UrUrban"],
   task:"Игровое пространство на небольшом участке с деревьями в оживлённом парке в центре города.",
-  sol:"Площадка растёт вверх, в виде игровой башни. Тема роста связана с наукой: площадка посвящена армянским учёным Армении и диаспоры.",
-  role:"Промышленный дизайн и ландшафтная архитектура. Эскизы башни и задание на её производство; авторское оборудование: качели с подсветкой, «Телевизор», теневой интерактив, вандалоустойчивый гамак; скамьи и стенды; проектная документация и авторский надзор. Когда перед установкой башни возникли сложности с грунтом, в сжатые сроки доработали фундамент и окружение.",
-  res:"Реализовано в 2026 году."},
- en:{t:"Armenian Inventors",s:"Playground · Yerevan · 2026",facts:["Misak Manouchian Park, Yerevan","675 m²","2026","UrUrban bureau"],
+  sol:"Площадка растёт вверх, в виде игровой башни. Тема роста связана с наукой и развитием: площадка посвящена армянским учёным Армении и диаспоры.",},
+ en:{t:"Armenian Inventors",s:"Playground · Yerevan · 2026",facts:["Misak Manouchian Park, Yerevan","675 m²","2026","Designed at UrUrban bureau"],
   task:"A play space on a small plot with trees in a busy park in the city centre.",
-  sol:"The playground grows upwards as a play tower. Growth is linked to science: the playground is dedicated to Armenian scientists from Armenia and the diaspora.",
-  role:"Industrial design and landscape architecture. Tower sketches and the production brief; custom equipment: lit swings, the “TV”, a shadow play piece, a vandal-proof hammock; benches and info stands; design documentation and designer's supervision. When soil problems came up before the tower was installed, we reworked the foundation and surroundings on a tight schedule.",
-  res:"Completed in 2026."},
+  sol:"The playground grows upwards as a play tower. Growth is linked to science and development: the playground is dedicated to Armenian scientists from Armenia and the diaspora.",},
  pubs:[["Landezine","https://landezine-award.com/science-inside-out/"],["Armenpress: Nikol Pashinyan's visit|Armenpress: визит премьер-министра Никола Пашиняна","https://armenpress.am/en/article/1249407"]]},
-{img:["karm-1","karm-2","karm-bench"],
- ru:{t:"Кармрахайт",s:"Детская площадка · Ереван · 2025",facts:["Кольцевой парк, Ереван","1 995 м²","2025","Бюро UrUrban"],
+{img:["vish-03","vish-01","vish-05","vish-04","vish-02","vish-aerial","vish-06","vish-07","vish-08","vish-09","vish-10","vish-11","vish-12"],
+ ru:{t:"Вишапагорг",s:"Детская площадка · Ереван · 2025",facts:["Парк Хачкаров, Ереван","800 м²","2025","Спроектировано при бюро UrUrban"],
+  task:"Детская площадка на узком участке вдоль дороги, напротив мемориального сквера хачкаров.",
+  sol:"Площадка вдохновлена армянскими коврами, которые продают рядом в Вернисаже: резиновое покрытие с древом жизни, орлами и растениями, а оборудование стилизовано под драконов-вишапов.",
+  role:"Детализация покрытия, разметка вместе с геодезистами и контроль укладки; цвета подобраны с учётом выгорания и пыли. Игровое оборудование и МАФ, зонирование озеленения, документация, авторский надзор.",
+  res:"Реализовано в 2025 году."},
+ en:{t:"Vishapagorg",s:"Playground · Yerevan · 2025",facts:["Khachkar Park, Yerevan","800 m²","2025","Designed at UrUrban bureau"],
+  task:"A playground on a narrow strip along a road, opposite the khachkar memorial square.",
+  sol:"The playground is inspired by the Armenian carpets sold next door at the Vernissage market: rubber surfacing with the tree of life, eagles and plants, and play equipment styled as vishap dragons.",
+  role:"Surfacing details, setting out with surveyors and laying control; colours chosen to allow for fading and dust. Play equipment and street furniture, planting zones, documentation, designer's supervision.",
+  res:"Completed in 2025."},
+ pubs:[["Armenian Weekly","https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/"],["ROQ Capital","https://roqcapital.am/en/media/roq-capital-vishapagorg-playground-khachkar-park"],["Public Radio of Armenia","https://en.armradio.am/2025/12/15/dragon-carpet-for-children-new-playground-opens-in-yerevan/"]]},
+{img:["karm-03","karm-01","karm-04","karm-07","karm-08","karm-09","karm-11","karm-12","karm-13","karm-14","karm-15","karm-17","karm-19","karm-20","karm-22"],
+ ru:{t:"Кармрахайт",s:"Детская площадка · Ереван · 2025",facts:["Кольцевой парк, Ереван","1 995 м²","2025","Спроектировано при бюро UrUrban"],
   task:"Разнообразное игровое пространство с выразительным центральным элементом среди взрослых деревьев.",
   sol:"Под парком в коллекторе течёт река Гетар. Концепция возвращает её на поверхность: галечное дно, водоросли и армянская форель кармрахайт в виде игрового комплекса.",
   role:"Планировка участка и игровые сценарии, игровой комплекс от эскизов до окраски, МАФ индивидуального изготовления (радиусные скамьи, урны, стенды, горки, холмы, тоннель, навес), подбор оборудования, документация и авторский надзор.",
   res:"Реализовано в 2025 году."},
- en:{t:"Karmrakhayt",s:"Playground · Yerevan · 2025",facts:["Ring Park, Yerevan","1,995 m²","2025","UrUrban bureau"],
+ en:{t:"Karmrakhayt",s:"Playground · Yerevan · 2025",facts:["Ring Park, Yerevan","1,995 m²","2025","Designed at UrUrban bureau"],
   task:"A varied play space with a striking centrepiece among mature trees.",
   sol:"The Getar river runs in a culvert under the park. The concept brings it back to the surface: a pebble bed, water plants and the karmrakhayt, an Armenian trout, as a play structure.",
   role:"Site layout and play scenarios, the play structure from sketches to colour scheme, custom street furniture (curved benches, bins, stands, slides, mounds, a tunnel, a canopy), equipment selection, documentation and designer's supervision.",
   res:"Completed in 2025."},
  awards:[["MUSE Design Awards — Gold Winner","https://design.museaward.com/winners-info.php?id=31562"]],
  pubs:[["Landezine","https://landezine-award.com/karmrakhayt-playground-the-enchanted-world-of-the-hidden-river/"],["Armenian Weekly","https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/"]]},
-{img:["vish-carpet","vish-dragons","vish-aerial"],
- ru:{t:"Вишапагорг",s:"Детская площадка · Ереван · 2025",facts:["У Вернисажа, Ереван","800 м²","2025","Бюро UrUrban"],
-  task:"Детская площадка на узком участке вдоль дороги, напротив мемориального сквера хачкаров.",
-  sol:"Рядом Вернисаж, где продают ковры, поэтому покрытие стало армянским ковром с древом жизни, орлами и растениями. Невысокое оборудование стоит в ряд и стилизовано под драконов-вишапов.",
-  role:"Детализация покрытия, разметка вместе с геодезистами и контроль укладки; цвета подобраны с учётом выгорания и пыли. Игровое оборудование и МАФ, зонирование озеленения, документация, авторский надзор.",
-  res:"Реализовано в 2025 году."},
- en:{t:"Vishapagorg",s:"Playground · Yerevan · 2025",facts:["Next to Vernissage, Yerevan","800 m²","2025","UrUrban bureau"],
-  task:"A playground on a narrow strip along a road, opposite the khachkar memorial square.",
-  sol:"The Vernissage market next door is famous for carpets, so the surfacing became an Armenian carpet with the tree of life, eagles and plants. Low equipment stands in a row, styled as vishap dragons.",
-  role:"Surfacing details, setting out with surveyors and laying control; colours chosen to allow for fading and dust. Play equipment and street furniture, planting zones, documentation, designer's supervision.",
-  res:"Completed in 2025."},
- pubs:[["Armenian Weekly","https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/"],["ROQ Capital","https://roqcapital.am/en/media/roq-capital-vishapagorg-playground-khachkar-park"],["Public Radio of Armenia","https://en.armradio.am/2025/12/15/dragon-carpet-for-children-new-playground-opens-in-yerevan/"]]},
-{img:["citybay-trunks","citybay-kit","citybay-sand"],
- ru:{t:"ЖК «Сити Бэй»",s:"Детские площадки · Москва · 2025",facts:["У Москвы-реки, Москва","4 500 м²","Бюро «Чехарда»"],
-  task:"Площадка для жителей на стилобате и общедоступная площадка внизу.",
-  role:"Игровое оборудование от эскиза до модели для производства: лазательный «Бурелом», уличный конструктор по вальдорфскому принципу, тактильные столбы, гамаки из отсканированных брёвен, горка для малышей.",
-  res:"Детская площадка сдана заказчику в 2025 году. Жилой комплекс в процессе строительства."},
- en:{t:"City Bay residential complex",s:"Playgrounds · Moscow · 2025",facts:["Moskva river, Moscow","4,500 m²","Chekharda bureau"],
-  task:"A residents' playground on the podium and a public playground below.",
-  role:"Play equipment from sketch to production model: the “Windfall” climbing frame, an outdoor Waldorf-style construction set, tactile posts, hammocks made from 3D-scanned logs, a toddler slide.",
-  res:"The playground was handed over to the client in 2025. The residential complex is under construction."}},
-{img:["elmay-main","elmay-kids","elmay-river"],
- ru:{t:"Детский парк «Елмай»",s:"Детский парк · Казань · 2024",facts:["Набережная Казанки, Казань","3,4 га","2024","Бюро «Чехарда»"],
+{img:["elm-01","elm-02","elm-03","elm-04","elm-05","elm-06","elm-07","elm-08","elm-09","v:elmay-v1","v:elmay-v2"],
+ ru:{t:"Детский парк «Елмай»",s:"Детский парк · Казань · 2024",facts:["Набережная Казанки, Казань","3,4 га","2024","Спроектировано при бюро «Чехарда»"],
   task:"Самый большой детский парк Татарстана с тематическими маршрутами «Экология», «Жизнь реки» и «Река рассказывает истории».",
   role:"Промышленный дизайн научного игрового оборудования: «Судоходство» с движущимися картинками кораблей по принципу барьерной анимации, «Полезный мусор» о переработке, «Что скрывает вода?» с копиями находок из Казанки.",
   res:"Реализовано в 2024 году."},
- en:{t:"Elmay Children's Park",s:"Children's park · Kazan · 2024",facts:["Kazanka embankment, Kazan","3.4 ha","2024","Chekharda bureau"],
+ en:{t:"Elmay Children's Park",s:"Children's park · Kazan · 2024",facts:["Kazanka embankment, Kazan","3.4 ha","2024","Designed at Chekharda bureau"],
   task:"The largest children's park in Tatarstan, with themed trails: “Ecology”, “Life of the River” and “The River Tells Stories”.",
   role:"Industrial design of the science play equipment: “Shipping” with moving pictures of ships based on barrier-grid animation, “Useful Waste” about recycling, “What Does the Water Hide?” with replicas of finds from the Kazanka river.",
   res:"Completed in 2024."},
  awards:[["Winner of the 2nd All-Russian “Parks of Russia” award, Children's Park category|Победитель II Всероссийской премии «Парки России» в номинации «Детский парк»","https://premia.urbanparks.ru/winners/2025/detskij-park-elmaj-kazan"]],
  pubs:[["Inde.io","https://inde.io/article/90545-rechnye-motivy-samaya-bolshaya-v-kazani-igrovaya-ploschadka-i-pervyy-knizhnyy-dlya-detey-kak-ustroen-novyy-detskiy-park-elmay/"],["TASS|ТАСС","https://tass.ru/obschestvo/21725687"],["Realnoe Vremya|Реальное время","https://realnoevremya.ru/articles/317242-detskiy-park-elmay-sozdan-v-gosudarstvenno-chastnom-partnerstve"],["Institute.tatar: park opening|Institute.tatar: открытие парка","https://institute.tatar/spaces/tpost/lttm7vriv1-v-kazani-v-den-respubliki-otkrilsya-dets"],["Institute.tatar: “Parks of Russia” award|Institute.tatar: премия «Парки России»","https://institute.tatar/spaces/tpost/h2zj89khe1-park-elmai-stal-premeroi-goda-i-luchshim"],["Visit Tatarstan","https://www.visit-tatarstan.com/places/parki-i-mesta-dlya-progulok/detskiy-park-elmay/"]]},
-{img:["lan-1","lan-2"],
- ru:{t:"Коворкинг и кафе LAN",s:"Интерьер · Ереван · 2022",facts:["Ереван","110 м²","2022"],
+{hidden:true,img:["lan-01","lan-02","lan-03","lan-04","lan-05","lan-06"],
+ ru:{t:"Коворкинг и кафе LAN",s:"Интерьер · Ереван · 2022",facts:["Кентрон, Ереван","110 м²","2022"],
   about:"Квартира перепрофилирована под коворкинг и кафе: демонтаж части перегородок и новые проёмы разделили помещение на шумную и тихую зоны коворкинга и бар. Очень скромный бюджет, простые и доступные материалы, возможность дооснащать пространство самостоятельно."},
- en:{t:"LAN coworking & café",s:"Interior · Yerevan · 2022",facts:["Yerevan","110 m²","2022"],
+ en:{t:"LAN coworking & café",s:"Interior · Yerevan · 2022",facts:["Kentron, Yerevan","110 m²","2022"],
   about:"A flat converted into a coworking space and café: removing some partitions and adding new openings split it into noisy and quiet coworking zones and a bar. A very modest budget, simple affordable materials, and room for the owners to add furniture later."},
  pubs:[["Interior + Design","https://www.interior.ru/place/15388-kovorking-letters-and-numbers-v-erevane.html"],["Buro 314","https://buro314.ru/interiors/kovorking-letters-and-numbers-v-erevane/"]]},
-{img:["yandex-1","yandex-2"],
- ru:{t:"Офис Яндекса в башне «ОКО»",s:"Интерьер · Москва · 2021",facts:["Москва","2021"],
-  about:"Работа над крупным офисным интерьером: чертежи основных помещений."},
- en:{t:"Yandex office, OKO tower",s:"Interior · Moscow · 2021",facts:["Moscow","2021"],
-  about:"Work on a large office interior: drawings of the main spaces."},
+{hidden:true,img:["ya-01","ya-02","ya-03","ya-04"],
+ ru:{t:"Офис Яндекса в башне «ОКО»",s:"Интерьер · Москва · 2021",facts:["Москва-Сити, Москва","2021"],
+  about:"Работа над крупным офисным интерьером."},
+ en:{t:"Yandex office, OKO tower",s:"Interior · Moscow · 2021",facts:["Moscow City, Moscow","2021"],
+  about:"Work on a large office interior."},
  links:[["Officenext","https://www.officenext.ru/projects/project-63546-ofis-yandeksa/"]]}
 ];
 
 
 var HY_P=[
- {t:"Հանգստի գոտի Աշտարակի մոտ",s:"Բարեկարգում · Աշտարակ",facts:["Աշտարակ"]},
- {t:"Պուրակ Խաչքարերի այգու մոտ",s:"Բարեկարգում · Երևան",facts:["Երևան","350 մ²","UrUrban բյուրո"],
+ {t:"«Սիթի Բեյ» բնակելի համալիր",s:"Մանկական խաղահրապարակներ · Մոսկվա",facts:["Մոսկվա գետի ափ, Մոսկվա","4 500 մ²","Նախագծվել է «Չեխարդա» բյուրոյում"],
+  task:"Խաղահրապարակ բնակիչների համար՝ ստիլոբատի վրա, և հանրամատչելի խաղահրապարակ ներքևում։",
+  role:"Խաղային սարքավորումներ՝ էսքիզից մինչև արտադրական մոդել. «Քամեկոտր» մագլցման համալիր, վալդորֆյան սկզբունքով բացօթյա կոնստրուկտոր, շոշափելի սյուներ, սկանավորված գերաններից համակներ, սահարան փոքրիկների համար։",
+  res:"Մանկական խաղահրապարակը հանձնվել է պատվիրատուին 2025 թվականին։ Բնակելի համալիրը կառուցման փուլում է։"},
+ {t:"Պուրակ Խաչքարերի այգու մոտ",s:"Բարեկարգում · Երևան",facts:["Երևան","350 մ²","Նախագծվել է UrUrban բյուրոյում"],
   about:"Տակտիկական ուրբանիզմ՝ «Վիշապագորգ» մանկական խաղահրապարակի շարունակություն։"},
- {t:"Հայ գյուտարարներ",s:"Մանկական խաղահրապարակ · Երևան · 2026",facts:["Միսաք Մանուշյանի անվան այգի, Երևան","675 մ²","2026","UrUrban բյուրո"],
+ {t:"Հայ գյուտարարներ",s:"Մանկական խաղահրապարակ · Երևան · 2026",facts:["Միսաք Մանուշյանի անվան այգի, Երևան","675 մ²","2026","Նախագծվել է UrUrban բյուրոյում"],
   task:"Խաղային տարածք ծառերով փոքր հողամասում՝ քաղաքի կենտրոնի մարդաշատ այգում։",
-  sol:"Խաղահրապարակը աճում է դեպի վեր՝ խաղային աշտարակի տեսքով։ Աճի թեման կապված է գիտության հետ. խաղահրապարակը նվիրված է Հայաստանի և սփյուռքի հայ գիտնականներին։",
-  role:"Արդյունաբերական դիզայն և լանդշաֆտային ճարտարապետություն։ Աշտարակի էսքիզներ և արտադրության առաջադրանք, հեղինակային սարքավորումներ՝ լուսավորությամբ ճոճանակներ, «Հեռուստացույց», ստվերային ինտերակտիվ, վանդալակայուն համակ, նստարաններ և տեղեկատվական վահանակներ, նախագծային փաստաթղթեր և հեղինակային հսկողություն։ Երբ աշտարակի տեղադրումից առաջ գրունտի հետ կապված դժվարություններ առաջացան, սեղմ ժամկետներում վերամշակեցինք հիմքը և շրջակա տարածքը։",
-  res:"Իրականացվել է 2026 թվականին։"},
- {t:"Կարմրախայտ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Օղակաձև այգի, Երևան","1 995 մ²","2025","UrUrban բյուրո"],
+  sol:"Խաղահրապարակը աճում է դեպի վեր՝ խաղային աշտարակի տեսքով։ Աճի թեման կապված է գիտության և զարգացման հետ. խաղահրապարակը նվիրված է Հայաստանի և սփյուռքի հայ գիտնականներին։"},
+ {t:"Վիշապագորգ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Խաչքարերի այգի, Երևան","800 մ²","2025","Նախագծվել է UrUrban բյուրոյում"],
+  task:"Մանկական խաղահրապարակ ճանապարհի երկայնքով նեղ հողամասում՝ խաչքարերի հուշապուրակի դիմաց։",
+  sol:"Խաղահրապարակը ոգեշնչված է հայկական գորգերով, որոնք վաճառվում են կողքի Վերնիսաժում. ռետինե ծածկույթ՝ կենաց ծառով, արծիվներով և բույսերով, իսկ սարքավորումները ոճավորված են վիշապների տեսքով։",
+  role:"Ծածկույթի մանրամասնում, նշագծում գեոդեզիստների հետ և փռման վերահսկում. գույներն ընտրվել են՝ հաշվի առնելով գունաթափումն ու փոշին։ Խաղային սարքավորումներ և փոքր ճարտարապետական ձևեր, կանաչապատման գոտիավորում, փաստաթղթեր, հեղինակային հսկողություն։",
+  res:"Իրականացվել է 2025 թվականին։"},
+ {t:"Կարմրախայտ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Օղակաձև այգի, Երևան","1 995 մ²","2025","Նախագծվել է UrUrban բյուրոյում"],
   task:"Բազմազան խաղային տարածք՝ արտահայտիչ կենտրոնական տարրով, հասուն ծառերի միջև։",
   sol:"Այգու տակով, կոլեկտորում, հոսում է Գետառ գետը։ Կոնցեպցիան այն վերադարձնում է մակերես՝ խճաքարե հատակ, ջրիմուռներ և կարմրախայտ ձուկը՝ խաղային համալիրի տեսքով։",
   role:"Տարածքի հատակագծում և խաղային սցենարներ, խաղային համալիր՝ էսքիզներից մինչև ներկում, անհատական պատրաստման փոքր ճարտարապետական ձևեր (շառավղային նստարաններ, աղբամաններ, վահանակներ, սահարաններ, բլուրներ, թունել, ծածկ), սարքավորումների ընտրություն, փաստաթղթեր և հեղինակային հսկողություն։",
   res:"Իրականացվել է 2025 թվականին։"},
- {t:"Վիշապագորգ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Վերնիսաժի մոտ, Երևան","800 մ²","2025","UrUrban բյուրո"],
-  task:"Մանկական խաղահրապարակ ճանապարհի երկայնքով նեղ հողամասում՝ խաչքարերի հուշապուրակի դիմաց։",
-  sol:"Կողքին Վերնիսաժն է, որտեղ գորգեր են վաճառում, ուստի ծածկույթը դարձավ հայկական գորգ՝ կենաց ծառով, արծիվներով և բույսերով։ Ցածր սարքավորումները շարված են մեկ շարքով և ոճավորված են վիշապների տեսքով։",
-  role:"Ծածկույթի մանրամասնում, նշագծում գեոդեզիստների հետ և փռման վերահսկում. գույներն ընտրվել են՝ հաշվի առնելով գունաթափումն ու փոշին։ Խաղային սարքավորումներ և փոքր ճարտարապետական ձևեր, կանաչապատման գոտիավորում, փաստաթղթեր, հեղինակային հսկողություն։",
-  res:"Իրականացվել է 2025 թվականին։"},
- {t:"«Սիթի Բեյ» բնակելի համալիր",s:"Մանկական խաղահրապարակներ · Մոսկվա · 2025",facts:["Մոսկվա գետի ափ, Մոսկվա","4 500 մ²","«Չեխարդա» բյուրո"],
-  task:"Խաղահրապարակ բնակիչների համար՝ ստիլոբատի վրա, և հանրամատչելի խաղահրապարակ ներքևում։",
-  role:"Խաղային սարքավորումներ՝ էսքիզից մինչև արտադրական մոդել. «Քամեկոտր» մագլցման համալիր, վալդորֆյան սկզբունքով բացօթյա կոնստրուկտոր, շոշափելի սյուներ, սկանավորված գերաններից համակներ, սահարան փոքրիկների համար։",
-  res:"Մանկական խաղահրապարակը հանձնվել է պատվիրատուին 2025 թվականին։ Բնակելի համալիրը կառուցման փուլում է։"},
- {t:"«Էլմայ» մանկական այգի",s:"Մանկական այգի · Կազան · 2024",facts:["Կազանկա գետի ափ, Կազան","3,4 հա","2024","«Չեխարդա» բյուրո"],
+ {t:"«Էլմայ» մանկական այգի",s:"Մանկական այգի · Կազան · 2024",facts:["Կազանկա գետի ափ, Կազան","3,4 հա","2024","Նախագծվել է «Չեխարդա» բյուրոյում"],
   task:"Թաթարստանի ամենամեծ մանկական այգին՝ «Էկոլոգիա», «Գետի կյանքը» և «Գետը պատմում է» թեմատիկ երթուղիներով։",
   role:"Երթուղիների գիտական խաղային սարքավորումների արդյունաբերական դիզայն՝ «Նավագնացություն»՝ նավերի շարժվող պատկերներով (պատնեշային անիմացիայի սկզբունքով), «Օգտակար աղբ»՝ վերամշակման մասին, «Ի՞նչ է թաքցնում ջուրը»՝ Կազանկա գետում հայտնաբերված գտածոների կրկնօրինակներով։",
   res:"Իրականացվել է 2024 թվականին։"},
- {t:"LAN քոուորքինգ և սրճարան",s:"Ինտերիեր · Երևան · 2022",facts:["Երևան","110 մ²","2022"],
+ {t:"LAN քոուորքինգ և սրճարան",s:"Ինտերիեր · Երևան · 2022",facts:["Կենտրոն, Երևան","110 մ²","2022"],
   about:"Բնակարանը վերափոխվել է քոուորքինգի և սրճարանի. միջնապատերի մի մասի ապամոնտաժումը և նոր բացվածքները տարածքը բաժանեցին քոուորքինգի աղմկոտ և հանգիստ գոտիների և բարի։ Շատ համեստ բյուջե, պարզ և մատչելի նյութեր, տարածքը հետագայում ինքնուրույն համալրելու հնարավորություն։"},
- {t:"Յանդեքսի գրասենյակը «ՕԿՕ» աշտարակում",s:"Ինտերիեր · Մոսկվա · 2021",facts:["Մոսկվա","2021"],
-  about:"Աշխատանք խոշոր գրասենյակային ինտերիերի վրա՝ հիմնական տարածքների գծագրեր։"}
+ {t:"Յանդեքսի գրասենյակը «ՕԿՕ» աշտարակում",s:"Ինտերիեր · Մոսկվա · 2021",facts:["Մոսկվա-Սիթի, Մոսկվա","2021"],
+  about:"Աշխատանք խոշոր գրասենյակային ինտերիերի վրա։"}
 ];
 P.forEach(function(p,i){p.hy=HY_P[i]});
 var lang="ru";
@@ -729,9 +734,9 @@ function render(){
   });
   document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===lang))});
   var g=document.getElementById("grid");
-  g.innerHTML=P.map(function(p,i){var x=p[lang];
-    if(p.soon)return '<div class="pcard soon"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"><span class="soon-b">'+esc(d.soon)+'</span></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></div>';
-    return '<button class="pcard" type="button" data-i="'+i+'"><span class="im"><img src="img/'+p.img[0]+'.jpg" alt="'+esc(x.t)+'" loading="lazy"></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></button>'}).join("");
+  g.innerHTML=P.map(function(p,i){var x=p[lang];if(p.hidden)return "";
+    if(p.soon)return '<div class="pcard soon"><span class="im"><img src="img/'+p.img[0]+'-m.jpg" alt="'+esc(x.t)+'" loading="lazy"><span class="soon-b">'+esc(d.soon)+'</span></span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></div>';
+    return '<button class="pcard" type="button" data-i="'+i+'"><span class="im"><img src="img/'+p.img[0]+'-m.jpg" alt="'+esc(x.t)+'" loading="lazy">'+'</span><span><span class="t">'+esc(typo(x.t))+'</span><span class="s">'+esc(typo(x.s))+'</span></span></button>'}).join("");
   if(dlg.open)openP(cur,curImg);
   if(typeof calc==="function"&&$&&document.getElementById("r-cost"))calc();
   if(typeof sendLabel==="function"&&so)sendLabel();
@@ -742,17 +747,23 @@ var dlg=document.getElementById("pm"),cur=0,curImg=0;
 function linkList(arr){return '<ul class="links">'+arr.map(function(l){return '<li><a href="'+l[1]+'" target="_blank" rel="noopener">'+esc(typo(lbl(l[0])))+'</a></li>'}).join("")+'</ul>'}
 function showImg(k){
   var p=P[cur];curImg=(k+p.img.length)%p.img.length;
-  var im=document.getElementById("pm-img");im.src="img/"+p.img[curImg]+".jpg";im.alt=p[lang].t+" — "+(curImg+1)+"/"+p.img.length;
-  document.querySelectorAll("#pm-thumbs button").forEach(function(b,i){b.setAttribute("aria-current",String(i===curImg))});
+  var nm=p.img[curImg],vd=document.getElementById("pm-vid");
+  var im=document.getElementById("pm-img");
+  if(nm.indexOf("v:")===0){var b=nm.slice(2);im.dataset.want="";im.hidden=true;vd.hidden=false;vd.poster="img/"+b+".jpg";if(vd.dataset.src!==b){vd.dataset.src=b;vd.src="img/"+b+".mp4"}vd.muted=true;var pp=vd.play();if(pp&&pp.catch)pp.catch(function(){});}
+  else{vd.pause();vd.hidden=true;im.hidden=false;}
+  var url="img/"+nm.replace(/^v:/,"")+".jpg",want=url;if(nm.indexOf("v:")!==0)im.dataset.want=want;
+  var pre=new Image();pre.onload=function(){if(nm.indexOf("v:")===0||im.dataset.want!==want)return;im.classList.toggle("land",pre.naturalWidth>pre.naturalHeight);im.src=url};pre.src=url;
+  [1,-1].forEach(function(dx){var n=p.img[(curImg+dx+p.img.length)%p.img.length];(new Image()).src="img/"+n.replace(/^v:/,"")+".jpg"});im.alt=p[lang].t+" — "+(curImg+1)+"/"+p.img.length;
+  document.querySelectorAll("#pm-thumbs button").forEach(function(b,i){b.setAttribute("aria-current",String(i===curImg));if(i===curImg){var th=b.parentNode;th.scrollTo({left:b.offsetLeft-th.clientWidth/2+b.offsetWidth/2,behavior:"smooth"})}});
 }
 function openP(i,k){
   cur=i;var p=P[i],x=p[lang],L=T[lang].L,d=T[lang];
   var multi=p.img.length>1;
   document.getElementById("pm-prev").hidden=!multi;document.getElementById("pm-next").hidden=!multi;
   var th=document.getElementById("pm-thumbs");th.hidden=!multi;
-  th.innerHTML=multi?p.img.map(function(f,j){return '<button type="button" data-k="'+j+'" aria-label="'+(j+1)+'"><img src="img/'+f+'.jpg" alt=""></button>'}).join(""):"";
+  th.innerHTML=multi?p.img.map(function(f,j){return '<button type="button" data-k="'+j+'" aria-label="'+(j+1)+'"><img src="img/'+f.replace(/^v:/,"")+'-t.jpg" alt="" loading="lazy">'+(f.indexOf("v:")===0?'<span class="play" aria-hidden="true">▶</span>':'')+'</button>'}).join(""):"";
   var h='<h3 id="pm-title">'+esc(typo(x.t))+'</h3><div class="facts">'+x.facts.map(function(f){return '<span>'+esc(f)+'</span>'}).join("")+'</div><dl class="rows">';
-  [["task",x.task],["sol",x.sol],["role",x.role],["res",x.res],["about",x.about]].forEach(function(r){if(r[1])h+='<div><dt>'+L[r[0]]+'</dt><dd>'+esc(typo(r[1]))+'</dd></div>'});
+  [["task",x.task],["sol",x.sol],["about",x.about]].forEach(function(r){if(r[1])h+='<div><dt>'+L[r[0]]+'</dt><dd>'+esc(typo(r[1]))+'</dd></div>'});
   if(p.awards)h+='<div><dt>'+L.awards+'</dt><dd>'+linkList(p.awards)+'</dd></div>';
   if(p.pubs)h+='<div><dt>'+L.pubs+'</dt><dd>'+linkList(p.pubs)+'</dd></div>';
   if(p.links)h+='<div><dt>'+L.links+'</dt><dd>'+linkList(p.links)+'</dd></div>';
@@ -763,10 +774,11 @@ function openP(i,k){
 }
 document.getElementById("grid").addEventListener("click",function(e){var c=e.target.closest(".pcard");if(c)openP(+c.dataset.i,0)});
 document.getElementById("pm-x").addEventListener("click",function(){dlg.close()});
+dlg.addEventListener("close",function(){var v=document.getElementById("pm-vid");v.pause()});
 document.getElementById("pm-prev").addEventListener("click",function(){showImg(curImg-1)});
 document.getElementById("pm-next").addEventListener("click",function(){showImg(curImg+1)});
 document.getElementById("pm-thumbs").addEventListener("click",function(e){var b=e.target.closest("button");if(b)showImg(+b.dataset.k)});
-document.getElementById("pm-info").addEventListener("click",function(e){if(e.target.id==="pm-np"){var n=(cur+1)%P.length;while(P[n].soon)n=(n+1)%P.length;openP(n,0)}});
+document.getElementById("pm-info").addEventListener("click",function(e){if(e.target.id==="pm-np"){var n=(cur+1)%P.length;while(P[n].soon||P[n].hidden)n=(n+1)%P.length;openP(n,0)}});
 dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close()});
 dlg.addEventListener("keydown",function(e){if(e.key==="ArrowRight")showImg(curImg+1);if(e.key==="ArrowLeft")showImg(curImg-1)});
 
