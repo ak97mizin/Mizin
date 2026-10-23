@@ -38,7 +38,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-body{background:#161445;color:#fff;font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+body{margin:0;background:#161445;color:#fff;font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{display:block;max-width:100%;height:auto}
 p{margin:0}
@@ -90,12 +90,31 @@ section[id]{scroll-margin-top:72px}
 
 /* hero */
 .hero{padding-block:calc(76px + clamp(32px,6vw,80px)) clamp(40px,5vw,72px)}
+.hero>.wrap{width:100%}
+.top.onhero .brand,.top.onhero .nav a{background:linear-gradient(120deg,#161445 0%,#3a1a5c 30%,#a3234d 62%,#f42849 85%) fixed;-webkit-background-clip:text;background-clip:text;color:transparent}
+.top.onhero .lang{background:rgba(255,255,255,.55)}
+.top.onhero .lang button{color:var(--navy)}
+.top.onhero .lang button[aria-pressed="true"]{background:linear-gradient(120deg,#161445 0%,#3a1a5c 30%,#a3234d 62%,#f42849 85%) fixed;color:#fff}
+
+.hero{position:relative;isolation:isolate;min-height:min(100svh,1080px);display:flex;flex-direction:column;justify-content:flex-start}
+.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;background:#e9e6ee}
+.hero-bg::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.58)}
+.hb-track{display:flex;height:100%;width:max-content;animation:hbm 96s linear infinite}
+.hb-track img{width:100vw;height:100%;object-fit:cover;object-position:50% 45%;flex:none;max-width:none}
+@keyframes hbm{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.hb-track{animation:none}}
+.hg{--tg:linear-gradient(120deg,#161445 0%,#3a1a5c 30%,#a3234d 62%,#f42849 85%);background:var(--tg);background-attachment:fixed;-webkit-background-clip:text;background-clip:text;color:transparent}
+.hg *{color:transparent!important}
+.hg .btn.w{background:var(--tg);background-attachment:fixed;color:#fff!important}
+.hg .btn.w:hover{background:var(--navy);color:#fff!important}
+@media (max-width:760px){.hero h1{white-space:normal;font-size:clamp(34px,11.5vw,64px)}}
+
 .hero-grid{display:block}
-.hero h1{font:900 clamp(30px,8.6vw,150px)/.92 "Unbounded",var(--display);text-transform:uppercase;letter-spacing:-.035em}
+.hero h1{white-space:nowrap;font:900 clamp(28px,6.1vw,104px)/.92 "Unbounded",var(--display);text-transform:uppercase;letter-spacing:-.035em}
 html[lang="hy"] .hero h1{line-height:.92;font-weight:900;letter-spacing:-.035em}
 .photo{margin-top:calc(clamp(44px,6vw,88px)*.1)}
 .comp{display:flex;flex-wrap:wrap;gap:4px 0;margin-top:clamp(22px,2.6vw,36px)}
-.comp span{font-size:clamp(17px,1.7vw,22px);color:rgba(255,255,255,.92)}
+.comp span{font-size:clamp(20px,2.3vw,32px);font-weight:500;color:rgba(255,255,255,.92)}
 .comp{column-gap:.45em}
 @media (max-width:560px){.comp{flex-direction:column}}
 .photo{position:relative}
@@ -290,6 +309,46 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .copy{display:block;margin-top:10px;background:none;border:0;padding:0;color:rgba(255,255,255,.72);font:400 14px/1.4 var(--body);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .copy:hover{color:#fff}
 .contact .btn{margin-top:36px}
+/* lead form */
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0;padding:0;border:0}
+.qf{display:grid;max-width:760px;margin-top:clamp(32px,4vw,52px)}
+.qfl{border-bottom:1px solid rgba(255,255,255,.32);transition:border-color .2s}
+.qfl:focus-within{border-color:#fff}
+.qfl input,.qfl textarea{display:block;width:100%;background:transparent;border:0;outline:none;color:#fff;font:400 clamp(18px,1.6vw,22px)/1.4 var(--body);padding:26px 0 14px;resize:none;overflow:hidden}
+.qfl input::placeholder,.qfl textarea::placeholder{color:rgba(255,255,255,.62)}
+.qfl [aria-invalid="true"]{color:#fff}
+.qfl:has([aria-invalid="true"]){border-color:#ffd2da}
+.qerr{font-size:14px;color:#ffd2da;margin:8px 0 0}
+.qfiles{margin-top:28px}
+.attach{display:inline-flex;align-items:center;gap:10px;cursor:pointer;padding:12px 20px;border-radius:40px;border:1.5px dashed rgba(255,255,255,.7);color:#fff;font:500 16px/1 var(--body);transition:background .2s,border-color .2s}
+.attach small{font-size:13px;color:rgba(255,255,255,.7);font-weight:400}
+.attach:hover,#q-files:focus-visible+.attach{background:rgba(255,255,255,.12);border-style:solid}
+.flist{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
+.flist:empty{display:none}
+.flist li{display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(255,255,255,.9);min-width:0}
+.flist li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flist li small{color:rgba(255,255,255,.6);flex:none}
+.flist button{flex:none;border:0;background:rgba(255,255,255,.16);color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font:400 16px/1 var(--body)}
+.consent{display:flex;gap:12px;align-items:flex-start;margin-top:28px;font-size:16px;line-height:1.45;cursor:pointer}
+.consent input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:#fff;cursor:pointer}
+.lnk{border:0;background:none;padding:0;font:inherit;color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.5);text-underline-offset:3px;cursor:pointer}
+.lnk:hover{text-decoration-color:#fff}
+.qsend{justify-self:start;margin-top:30px!important;font-size:18px;padding:18px 30px}
+.qnote{margin:16px 0 0;font-size:13px;line-height:1.5;color:rgba(255,255,255,.66);max-width:760px}
+.qmsg{margin:12px 0 0;font-size:16px}
+.qmsg:empty{display:none}
+.qor{margin-top:clamp(32px,4vw,44px);font-size:clamp(17px,1.6vw,20px);color:rgba(255,255,255,.85)}
+.qor a{color:#fff;font-weight:500;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.5)}
+.foot .lnk{font-size:14px;color:rgba(255,255,255,.75)}
+.legal{margin:14px 0 0;font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.55);max-width:110ch}
+#pp{width:min(820px,calc(100vw - 32px));background:#fff;overflow:auto}
+#pp .x{position:sticky;top:12px;float:right;margin:12px 12px 0 0;z-index:2}
+.ppb{padding:clamp(28px,4vw,48px);color:var(--ink);font-size:16px;line-height:1.6}
+.ppb h3{font:500 clamp(24px,2.6vw,32px)/1.15 var(--display);margin:0 0 6px;padding-right:40px}
+.ppb h4{font:500 18px/1.3 var(--body);margin:24px 0 6px}
+.ppb p{margin:0 0 8px}
+.ppb .d{color:var(--muted);font-size:14px;margin-bottom:12px}
+.ppb a{color:var(--navy)}
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:clamp(64px,8vw,112px);padding-top:20px;border-top:1px solid rgba(255,255,255,.25);font-size:14px;color:rgba(255,255,255,.75)}
 @media (max-width:760px){.ways{grid-template-columns:1fr}}
 </style>
@@ -304,7 +363,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
       <a href="#projects" data-t="nav_projects"></a>
       <a href="#process" data-t="nav_process"></a>
       <a href="#advantages" data-t="nav_adv"></a>
-      <a href="#calc" data-t="nav_calc"></a>
+      <a href="#calc" data-t="nav_calc" hidden></a>
       <a href="#contact" data-t="nav_contact"></a>
     </nav>
     <div class="lang" role="group" aria-label="Language">
@@ -317,9 +376,10 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 
 <main id="top">
   <section class="hero">
+    <div class="hero-bg" aria-hidden="true"><div class="hb-track"><img src="img/karm-03.jpg" alt=""><img src="img/man-03.jpg" alt=""><img src="img/vish-01.jpg" alt=""><img src="img/elm-04.jpg" alt=""><img src="img/karm-03.jpg" alt=""><img src="img/man-03.jpg" alt=""><img src="img/vish-01.jpg" alt=""><img src="img/elm-04.jpg" alt=""></div></div>
     <div class="wrap">
       <div class="hero-grid">
-        <div>
+        <div class="hg">
           <h1 data-t="name_h1"></h1>
           <div class="comp"><span data-t="c1"></span></div>
           <div class="stats">
@@ -432,7 +492,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
     </div>
   </section>
 
-  <section id="calc">
+  <section id="calc" hidden>
     <div class="wrap">
       <h2 data-t="calc_h"></h2>
       <div class="calc">
@@ -505,19 +565,37 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
     <div class="wrap">
       <h2 data-t="ct_h"></h2>
       <p class="lead" data-t="ct_lead"></p>
-      <div class="ways">
-        <div><small>Telegram</small><a class="v" href="https://t.me/SashoQue" target="_blank" rel="noopener">@SashoQue</a><button class="copy" type="button" data-copy="@SashoQue" data-t="copy"></button></div>
-        <div><small data-t="phone"></small><span class="v">+374 98 007-541</span><button class="copy" type="button" data-copy="+37498007541" data-t="copy"></button></div>
-        <div><small>Email</small><span class="v">ak97mizin@gmail.com</span><button class="copy" type="button" data-copy="ak97mizin@gmail.com" data-t="copy"></button></div>
-      </div>
-      <a class="btn w" href="https://t.me/SashoQue" target="_blank" rel="noopener" data-t="tg"></a>
-      <div class="foot"><span data-t="foot"></span><span data-t="foot2"></span></div>
+      <form class="qf" id="qf" novalidate>
+        <div class="qfl"><label class="sr" for="q-msg" data-t="q_msg"></label><textarea id="q-msg" name="message" rows="1" data-ph="q_msg_ph" required></textarea><p class="qerr" id="qe-msg" data-t="e_q_msg" hidden></p></div>
+        <div class="qfl"><label class="sr" for="q-mail" data-t="q_mail"></label><input id="q-mail" name="email" type="email" autocomplete="email" data-ph="q_mail_ph" required><p class="qerr" id="qe-mail" data-t="e_q_mail" hidden></p></div>
+        <div class="qfl"><label class="sr" for="q-phone" data-t="q_phone"></label><input id="q-phone" name="contact" type="text" autocomplete="tel" data-ph="q_phone"></div>
+        <div class="qfl"><label class="sr" for="q-name" data-t="q_name"></label><input id="q-name" name="name" type="text" autocomplete="name" data-ph="q_name"></div>
+        <div class="qfiles">
+          <label class="attach" for="q-files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 01-7.8-7.8l8.6-8.6a3.7 3.7 0 015.2 5.2l-8.6 8.6a1.8 1.8 0 01-2.6-2.6l7.9-7.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="q_files"></span> <small data-t="q_files_n"></small></label>
+          <input id="q-files" type="file" multiple class="sr">
+          <ul class="flist" id="q-flist"></ul>
+          <p class="qerr" id="qe-size" data-t="e_size" hidden></p>
+        </div>
+        <label class="consent"><input type="checkbox" id="q-ok"><span><span data-t="q_consent_a"></span><button type="button" class="lnk" data-pp data-t="q_consent_b"></button></span></label>
+        <p class="qerr" id="qe-ok" data-t="e_consent" hidden></p>
+        <button class="btn w qsend" type="submit" data-t="q_send"></button>
+        <p class="qnote" data-t="q_note"></p>
+        <p class="qmsg" id="q-status" role="status"></p>
+      </form>
+      <p class="qor"><span data-t="q_or"></span> <a href="mailto:ak97mizin@gmail.com">ak97mizin@gmail.com</a></p>
+      <div class="foot"><span data-t="foot"></span><span data-t="foot2"></span><button type="button" class="lnk" data-pp data-t="pp_link"></button></div>
+      <p class="legal"><span data-t="foot_rights"></span> <span data-t="foot_offer"></span></p>
     </div>
   </section>
 </main>
 
 <button class="resmini" type="button" id="resmini" aria-hidden="true" tabindex="-1"><span><small data-t="r_cost"></small><b id="rm-cost"></b></span><span><small data-t="r_time"></small><b id="rm-time"></b></span></button>
 <button class="totop" type="button" id="totop" data-ta="totop">↑</button>
+
+<dialog id="pp" aria-labelledby="pp-title">
+  <button class="x" type="button" id="pp-x" data-ta="close">×</button>
+  <div class="ppb" id="pp-body"></div>
+</dialog>
 
 <dialog id="pm" aria-labelledby="pm-title">
   <button class="x" type="button" id="pm-x" data-ta="close">×</button>
@@ -536,7 +614,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 <script>
 var T={
 ru:{
- name1:"Александр Мизин", name_h1:"Mizin<br>Architect",
+ name1:"Александр Мизин", name_h1:"Mizin Architect",
  sqm:"м²", snd_open:"Отправить расчёт", snd_close:"Свернуть", f_name:"ФИО", f_mail:"Электронная почта", f_msg:"Комментарий (необязательно)", snd_go:"Отправить", e_name:"Укажите ФИО", e_mail:"Укажите корректный адрес почты", snd_wait:"Отправляем…", snd_ok:"Спасибо! Расчёт отправлен, мы свяжемся с вами.", snd_fail:"Не удалось отправить. Напишите нам в Telegram или на почту ниже.", snd_off:"Отправка формы пока не подключена. Пожалуйста, свяжитесь с нами по контактам ниже.",
  nav_calc:"Калькулятор", calc_h:"Калькулятор проекта",
  c_area:"Площадь территории", c_stages:"Этапы", c_func:"Функция", c_site:"Тип участка", c_cur:"Валюта",
@@ -567,11 +645,12 @@ ru:{
  ct_h:"Готовы обсудить ваш проект", ct_lead:"Расскажите об участке и задаче: где он, какая площадь, что должно на нём появиться и в какие сроки.",
  phone:"Телефон", copy:"Скопировать", copied:"Скопировано", selected:"Выделено", tg:"Написать в Telegram",
  foot:"© 2026 Александр Мизин", foot2:"Ереван, Армения",
+ q_msg:"Несколько слов о проекте", q_msg_ph:"Несколько слов о проекте *", q_mail:"Электронная почта", q_mail_ph:"Электронная почта *", q_phone:"Телефон или любой удобный мессенджер", q_name:"Имя", q_files:"Приложить файлы", q_files_n:"(до 10 МБ)", q_consent_a:"Даю согласие на обработку моих ", q_consent_b:"персональных данных", q_send:"Отправить заявку", q_or:"Или напишите нам на почту", e_q_msg:"Расскажите хотя бы в паре слов о проекте", e_q_mail:"Укажите корректный адрес электронной почты", e_consent:"Чтобы отправить заявку, нужно согласие на обработку персональных данных", e_size:"Общий размер файлов больше 10 МБ. Уберите часть файлов или пришлите их на почту.", q_note:"Нажимая «Отправить заявку», вы подтверждаете, что ознакомились с Политикой конфиденциальности. Данные используются только для ответа на ваш запрос и не передаются третьим лицам в рекламных целях.", q_wait:"Отправляем…", q_ok:"Спасибо! Заявка отправлена. Мы ответим в течение 1–2 рабочих дней.", q_fail:"Не получилось отправить заявку. Пожалуйста, напишите нам на ak97mizin@gmail.com", q_mailto:"Сейчас откроется ваша почтовая программа с готовым письмом. Если вы выбрали файлы, приложите их к письму вручную.", f_rm:"Убрать файл", pp_link:"Политика конфиденциальности", foot_rights:"Все права защищены. Тексты, фотографии и другие материалы сайта охраняются авторским правом; их использование без письменного разрешения правообладателя запрещено.", foot_offer:"Информация на сайте носит ознакомительный характер и не является публичной офертой. Проекты, выполненные в составе других бюро, показаны как примеры работы автора; права на эти проекты принадлежат соответствующим правообладателям. Фотографии проектов «Кармрахайт» и «Армянские изобретатели» сделаны автором сайта; права на остальные фотографии принадлежат их авторам и правообладателям.", mail_subj:"Заявка с сайта mizinarchitect", pp_html:"<h3 id=\"pp-title\">Политика конфиденциальности</h3><p class=\"d\">Редакция от 23 октября 2026 г.</p><h4>1. Кто обрабатывает данные</h4><p>Оператор персональных данных — Александр Мизин (Mizin Architect), Ереван, Армения. Связаться по вопросам обработки данных: <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a>.</p><h4>2. Какие данные мы получаем</h4><p>Только то, что вы сами указали в форме на сайте или в письме: имя, адрес электронной почты, телефон или контакт в мессенджере, описание проекта и приложенные файлы. Пожалуйста, не отправляйте через форму данные, которые не нужны для обсуждения проекта.</p><h4>3. Зачем</h4><p>Чтобы ответить на ваш запрос, обсудить проект и подготовить предложение. Мы не используем ваши данные для рассылок и рекламы без отдельного согласия.</p><h4>4. Основание</h4><p>Ваше согласие, которое вы даёте, отмечая соответствующий пункт в форме. Согласие можно отозвать в любой момент, написав на <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a>.</p><h4>5. Передача третьим лицам</h4><p>Мы не продаём и не передаём ваши данные третьим лицам, кроме сервисов, без которых невозможно доставить заявку (сервис обработки форм и почтовый сервис). Эти сервисы могут располагаться за пределами Армении и обрабатывают данные по своим политикам конфиденциальности.</p><h4>6. Срок хранения</h4><p>Данные хранятся столько, сколько нужно для переписки и работы над проектом, но не дольше 3 лет после последнего контакта, если иное не требуется по закону. После этого они удаляются.</p><h4>7. Ваши права</h4><p>Вы можете узнать, какие ваши данные у нас есть, исправить их, потребовать удаления или ограничения обработки и отозвать согласие. Для этого напишите на <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a> — мы ответим в разумный срок.</p><h4>8. Cookies и сторонние сервисы</h4><p>Сайт не использует рекламные и аналитические cookies. Сайт размещён на GitHub Pages, шрифты загружаются с Google Fonts — эти сервисы могут получать технические данные (например, IP-адрес и сведения о браузере) в соответствии со своими политиками.</p><h4>9. Безопасность и право</h4><p>Мы принимаем разумные меры для защиты данных от несанкционированного доступа. Обработка осуществляется в соответствии с Законом Республики Армения «О защите персональных данных». Мы можем обновлять эту политику; актуальная редакция всегда доступна на сайте.</p>",
  close:"Закрыть", totop:"Наверх", prev_img:"Предыдущее фото", next_img:"Следующее фото", next_p:"Следующий проект →", soon:"Скоро",
  L:{task:"Задача",sol:"Решение",role:"Наша роль",res:"Результат",about:"О проекте",awards:"Награды",pubs:"Публикации",links:"Ссылки"}
 },
 en:{
- name1:"Alexander Mizin", name_h1:"Mizin<br>Architect",
+ name1:"Alexander Mizin", name_h1:"Mizin Architect",
  sqm:"m²", snd_open:"Send the estimate", snd_close:"Collapse", f_name:"Full name", f_mail:"Email", f_msg:"Comment (optional)", snd_go:"Send", e_name:"Please enter your full name", e_mail:"Please enter a valid email address", snd_wait:"Sending…", snd_ok:"Thank you! The estimate has been sent, we will get back to you.", snd_fail:"Could not send. Please message us on Telegram or by email below.", snd_off:"Sending is not connected yet. Please contact us using the details below.",
  nav_calc:"Calculator", calc_h:"Project calculator",
  c_area:"Site area", c_stages:"Stages", c_func:"Function", c_site:"Site type", c_cur:"Currency",
@@ -602,11 +681,12 @@ en:{
  ct_h:"Let's discuss your project", ct_lead:"Tell us about the site and the task: where it is, how big it is, what should appear there and by when.",
  phone:"Phone", copy:"Copy", copied:"Copied", selected:"Selected", tg:"Message on Telegram",
  foot:"© 2026 Alexander Mizin", foot2:"Yerevan, Armenia",
+ q_msg:"A few words about the project", q_msg_ph:"A few words about the project *", q_mail:"Email", q_mail_ph:"Email *", q_phone:"Phone or any messenger you prefer", q_name:"Name", q_files:"Attach files", q_files_n:"(up to 10 MB)", q_consent_a:"I consent to the processing of my ", q_consent_b:"personal data", q_send:"Send request", q_or:"Or reach out to us by email", e_q_msg:"Please tell us at least a few words about the project", e_q_mail:"Please enter a valid email address", e_consent:"Please consent to the processing of personal data to send the request", e_size:"The total file size exceeds 10 MB. Remove some files or send them by email.", q_note:"By clicking “Send request” you confirm that you have read the Privacy Policy. Your data is used only to respond to your request and is not shared with third parties for marketing.", q_wait:"Sending…", q_ok:"Thank you! Your request has been sent. We will reply within 1–2 business days.", q_fail:"Something went wrong. Please email us at ak97mizin@gmail.com", q_mailto:"Your email app will open with a prepared message. If you selected files, please attach them to the email manually.", f_rm:"Remove file", pp_link:"Privacy Policy", foot_rights:"All rights reserved. Texts, photographs and other materials on this website are protected by copyright and may not be used without the written permission of the copyright holder.", foot_offer:"The information on this website is for general information only and does not constitute a public offer. Projects carried out as part of other studios are shown as examples of the author's work; the rights to these projects belong to their respective owners. Photographs of the Karmrakhayt and Armenian Inventors projects were taken by the author of this website; the rights to all other photographs belong to their authors and copyright holders.", mail_subj:"Request from the mizinarchitect website", pp_html:"<h3 id=\"pp-title\">Privacy Policy</h3><p class=\"d\">Last updated: 23 October 2026</p><h4>1. Who processes your data</h4><p>The data controller is Alexander Mizin (Mizin Architect), Yerevan, Armenia. For any questions about your data, contact <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a>.</p><h4>2. What data we receive</h4><p>Only what you provide yourself in the website form or by email: name, email address, phone number or messenger contact, project description and attached files. Please do not send information that is not needed to discuss the project.</p><h4>3. Why</h4><p>To respond to your request, discuss the project and prepare a proposal. We do not use your data for newsletters or advertising without your separate consent.</p><h4>4. Legal basis</h4><p>Your consent, which you give by ticking the box in the form. You can withdraw it at any time by writing to <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a>.</p><h4>5. Sharing</h4><p>We do not sell or share your data with third parties, except for services required to deliver your request (a form-processing service and an email provider). These services may be located outside Armenia and process data under their own privacy policies.</p><h4>6. Retention</h4><p>We keep data as long as needed for correspondence and work on the project, but no longer than 3 years after the last contact unless the law requires otherwise. After that, it is deleted.</p><h4>7. Your rights</h4><p>You may ask what data we hold about you, correct it, request its deletion or restriction of processing, and withdraw your consent. Just write to <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a> and we will reply within a reasonable time.</p><h4>8. Cookies and third-party services</h4><p>This website does not use advertising or analytics cookies. It is hosted on GitHub Pages and loads fonts from Google Fonts; these services may receive technical data (such as your IP address and browser details) under their own policies.</p><h4>9. Security and applicable law</h4><p>We take reasonable measures to protect data from unauthorised access. Processing is carried out in accordance with the Law of the Republic of Armenia “On Protection of Personal Data”. We may update this policy; the current version is always available on this website.</p>",
  close:"Close", totop:"Back to top", prev_img:"Previous photo", next_img:"Next photo", next_p:"Next project →", soon:"Coming soon",
  L:{task:"Task",sol:"Solution",role:"Our role",res:"Result",about:"About",awards:"Awards",pubs:"Press",links:"Links"}
 },
 hy:{
- name1:"Ալեքսանդր Միզին", name_h1:"Mizin<br>Architect",
+ name1:"Ալեքսանդր Միզին", name_h1:"Mizin Architect",
  sqm:"մ²", snd_open:"Ուղարկել հաշվարկը", snd_close:"Փակել", f_name:"Անուն, ազգանուն", f_mail:"Էլ. փոստ", f_msg:"Մեկնաբանություն (ոչ պարտադիր)", snd_go:"Ուղարկել", e_name:"Նշեք ձեր անունը և ազգանունը", e_mail:"Նշեք էլ. փոստի ճիշտ հասցե", snd_wait:"Ուղարկվում է…", snd_ok:"Շնորհակալություն։ Հաշվարկն ուղարկված է, մենք կկապվենք ձեզ հետ։", snd_fail:"Չհաջողվեց ուղարկել։ Գրեք մեզ Telegram-ով կամ էլ. փոստով՝ ստորև նշված կոնտակտներով։", snd_off:"Ձևի ուղարկումը դեռ միացված չէ։ Խնդրում ենք կապվել մեզ հետ ստորև նշված կոնտակտներով։",
  nav_calc:"Հաշվիչ", calc_h:"Նախագծի հաշվիչ",
  c_area:"Տարածքի մակերես", c_stages:"Փուլեր", c_func:"Գործառույթ", c_site:"Տարածքի տեսակ", c_cur:"Արժույթ",
@@ -637,6 +717,7 @@ hy:{
  ct_h:"Պատրաստ ենք քննարկել ձեր նախագիծը", ct_lead:"Պատմեք տարածքի և առաջադրանքի մասին՝ որտեղ է այն, որքան է մակերեսը, ինչ պետք է այնտեղ հայտնվի և ինչ ժամկետներում։",
  phone:"Հեռախոս", copy:"Պատճենել", copied:"Պատճենված է", selected:"Ընտրված է", tg:"Գրել Telegram-ով",
  foot:"© 2026 Ալեքսանդր Միզին", foot2:"Երևան, Հայաստան",
+ q_msg:"Մի քանի խոսք նախագծի մասին", q_msg_ph:"Մի քանի խոսք նախագծի մասին *", q_mail:"Էլեկտրոնային փոստ", q_mail_ph:"Էլեկտրոնային փոստ *", q_phone:"Հեռախոս կամ ցանկացած հարմար մեսենջեր", q_name:"Անուն", q_files:"Կցել ֆայլեր", q_files_n:"(մինչև 10 ՄԲ)", q_consent_a:"Համաձայն եմ իմ ", q_consent_b:"անձնական տվյալների մշակմանը", q_send:"Ուղարկել հայտը", q_or:"Կամ գրեք մեզ էլ. փոստով", e_q_msg:"Խնդրում ենք գոնե մի քանի խոսքով պատմել նախագծի մասին", e_q_mail:"Նշեք ճիշտ էլ. փոստի հասցե", e_consent:"Հայտն ուղարկելու համար անհրաժեշտ է համաձայնություն անձնական տվյալների մշակմանը", e_size:"Ֆայլերի ընդհանուր չափը գերազանցում է 10 ՄԲ-ը։ Հեռացրեք որոշ ֆայլեր կամ ուղարկեք դրանք էլ. փոստով։", q_note:"Սեղմելով «Ուղարկել հայտը»՝ դուք հաստատում եք, որ ծանոթացել եք Գաղտնիության քաղաքականությանը։ Տվյալներն օգտագործվում են միայն ձեր հարցմանը պատասխանելու համար և գովազդային նպատակներով երրորդ անձանց չեն փոխանցվում։", q_wait:"Ուղարկվում է…", q_ok:"Շնորհակալություն։ Հայտն ուղարկված է։ Կպատասխանենք 1–2 աշխատանքային օրվա ընթացքում։", q_fail:"Չհաջողվեց ուղարկել։ Խնդրում ենք գրել ak97mizin@gmail.com հասցեին", q_mailto:"Կբացվի ձեր փոստային ծրագիրը՝ պատրաստի նամակով։ Եթե ընտրել եք ֆայլեր, կցեք դրանք նամակին ձեռքով։", f_rm:"Հեռացնել ֆայլը", pp_link:"Գաղտնիության քաղաքականություն", foot_rights:"Բոլոր իրավունքները պաշտպանված են։ Կայքի տեքստերը, լուսանկարները և այլ նյութերը պաշտպանված են հեղինակային իրավունքով և չեն կարող օգտագործվել առանց իրավատիրոջ գրավոր թույլտվության։", foot_offer:"Կայքում ներկայացված տեղեկատվությունը կրում է տեղեկատվական բնույթ և հանրային օֆերտա չէ։ Այլ բյուրոների կազմում իրականացված նախագծերը ներկայացված են որպես հեղինակի աշխատանքի օրինակներ․ այդ նախագծերի իրավունքները պատկանում են համապատասխան իրավատերերին։ «Կարմրախայտ» և «Հայ գյուտարարներ» նախագծերի լուսանկարներն արված են կայքի հեղինակի կողմից․ մնացած լուսանկարների իրավունքները պատկանում են դրանց հեղինակներին և իրավատերերին։", mail_subj:"Հայտ mizinarchitect կայքից", pp_html:"<h3 id=\"pp-title\">Գաղտնիության քաղաքականություն</h3><p class=\"d\">Խմբագրված է՝ 2026 թ. հոկտեմբերի 23</p><h4>1. Ով է մշակում տվյալները</h4><p>Անձնական տվյալներ մշակողը Ալեքսանդր Միզինն է (Mizin Architect), Երևան, Հայաստան։ Տվյալների մշակման հարցերով կապ՝ <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a>։</p><h4>2. Ինչ տվյալներ ենք ստանում</h4><p>Միայն այն, ինչ դուք ինքներդ նշել եք կայքի ձևում կամ նամակում՝ անուն, էլ. փոստի հասցե, հեռախոս կամ մեսենջերի կոնտակտ, նախագծի նկարագրություն և կցված ֆայլեր։ Խնդրում ենք չուղարկել տվյալներ, որոնք անհրաժեշտ չեն նախագծի քննարկման համար։</p><h4>3. Ինչ նպատակով</h4><p>Ձեր հարցմանը պատասխանելու, նախագիծը քննարկելու և առաջարկ պատրաստելու համար։ Առանց առանձին համաձայնության ձեր տվյալները չենք օգտագործում տեղեկագրերի և գովազդի համար։</p><h4>4. Հիմքը</h4><p>Ձեր համաձայնությունը, որը տալիս եք ձևում համապատասխան կետը նշելով։ Համաձայնությունը կարող եք ցանկացած պահի հետ վերցնել՝ գրելով <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a> հասցեին։</p><h4>5. Փոխանցում երրորդ անձանց</h4><p>Մենք չենք վաճառում և չենք փոխանցում ձեր տվյալները երրորդ անձանց, բացառությամբ այն ծառայությունների, առանց որոնց հնարավոր չէ հայտն առաքել (ձևերի մշակման ծառայություն և էլ. փոստի ծառայություն)։ Այդ ծառայությունները կարող են գտնվել Հայաստանից դուրս և տվյալները մշակում են իրենց քաղաքականությունների համաձայն։</p><h4>6. Պահպանման ժամկետը</h4><p>Տվյալները պահվում են այնքան, որքան անհրաժեշտ է նամակագրության և նախագծի վրա աշխատանքի համար, բայց ոչ ավելի, քան վերջին կապից 3 տարի, եթե օրենքով այլ բան նախատեսված չէ։ Դրանից հետո դրանք ջնջվում են։</p><h4>7. Ձեր իրավունքները</h4><p>Դուք կարող եք իմանալ, թե ինչ տվյալներ ունենք ձեր մասին, ուղղել դրանք, պահանջել ջնջել կամ սահմանափակել մշակումը և հետ վերցնել համաձայնությունը։ Դրա համար գրեք <a href=\"mailto:ak97mizin@gmail.com\">ak97mizin@gmail.com</a> հասցեին, և մենք կպատասխանենք ողջամիտ ժամկետում։</p><h4>8. Cookie-ներ և երրորդ կողմի ծառայություններ</h4><p>Կայքը չի օգտագործում գովազդային և վերլուծական cookie-ներ։ Կայքը տեղադրված է GitHub Pages-ում, իսկ տառատեսակները բեռնվում են Google Fonts-ից․ այդ ծառայությունները կարող են ստանալ տեխնիկական տվյալներ (օրինակ՝ IP հասցե և դիտարկչի տվյալներ) իրենց քաղաքականությունների համաձայն։</p><h4>9. Անվտանգություն և կիրառելի իրավունք</h4><p>Մենք ձեռնարկում ենք ողջամիտ միջոցներ՝ տվյալները չարտոնված մուտքից պաշտպանելու համար։ Մշակումն իրականացվում է «Անձնական տվյալների պաշտպանության մասին» ՀՀ օրենքին համապատասխան։ Մենք կարող ենք թարմացնել այս քաղաքականությունը․ գործող խմբագրությունը միշտ հասանելի է կայքում։</p>",
  close:"Փակել", totop:"Դեպի վեր", prev_img:"Նախորդ լուսանկարը", next_img:"Հաջորդ լուսանկարը", next_p:"Հաջորդ նախագիծը →", soon:"Շուտով",
  L:{task:"Խնդիր",sol:"Լուծում",role:"Մեր դերը",res:"Արդյունք",about:"Նախագծի մասին",awards:"Մրցանակներ",pubs:"Հրապարակումներ",links:"Հղումներ"}
 }};
@@ -765,6 +846,7 @@ function render(){
     if(v.indexOf("<br>")>-1)el.innerHTML=v; else el.textContent=typo(v);
   });
   document.querySelectorAll("[data-ul]").forEach(function(el){el.innerHTML=d[el.getAttribute("data-ul")].map(function(x){return "<li>"+esc(typo(x))+"</li>"}).join("")});
+  document.querySelectorAll("[data-ph]").forEach(function(el){el.placeholder=d[el.getAttribute("data-ph")]});
   document.querySelectorAll("[data-ta]").forEach(function(el){var v=d[el.getAttribute("data-ta")];if(el.tagName==="IMG")el.alt=v;else el.setAttribute("aria-label",v)});
   document.querySelectorAll("[data-w]").forEach(function(el){
     var w=d[el.getAttribute("data-w")];el.setAttribute("aria-label",w);
@@ -943,6 +1025,45 @@ sf.addEventListener("submit",function(e){
     .then(function(r){if(!r.ok)throw 0;sm.textContent=d.snd_ok;sf.reset()})
     .catch(function(){sm.textContent=d.snd_fail});
 });
+
+/* ===== Заявка ===== */
+(function(){
+  var QURL=SEND_URL,MAX=10*1024*1024,files=[],f=$("qf"),st=$("q-status"),fi=$("q-files"),fl=$("q-flist");
+  function D(){return T[lang]}
+  function fmt(b){return b<1048576?Math.max(1,Math.round(b/1024))+" KB":(b/1048576).toFixed(1)+" MB"}
+  function total(){return files.reduce(function(a,x){return a+x.size},0)}
+  function draw(){
+    fl.innerHTML="";files.forEach(function(x,i){var li=document.createElement("li");li.innerHTML='<span></span><small></small><button type="button">×</button>';li.children[0].textContent=x.name;li.children[1].textContent=fmt(x.size);var b=li.children[2];b.setAttribute("aria-label",D().f_rm);b.onclick=function(){files.splice(i,1);draw()};fl.appendChild(li)});
+    $("qe-size").hidden=total()<=MAX;
+  }
+  fi.addEventListener("change",function(){files=files.concat([].slice.call(fi.files));fi.value="";draw()});
+  var ta=$("q-msg");function grow(){ta.style.height="auto";ta.style.height=ta.scrollHeight+"px"}ta.addEventListener("input",grow);
+  $("q-ok").addEventListener("change",function(){if(this.checked)$("qe-ok").hidden=true});
+  var pd=$("pp");
+  document.querySelectorAll("[data-pp]").forEach(function(b){b.addEventListener("click",function(e){e.preventDefault();$("pp-body").innerHTML=D().pp_html;pd.showModal();pd.scrollTop=0})});
+  $("pp-x").addEventListener("click",function(){pd.close()});
+  pd.addEventListener("click",function(e){if(e.target===pd)pd.close()});
+  f.addEventListener("submit",function(e){
+    e.preventDefault();var d=D(),m=$("q-mail"),msg=ta,ok=true,first=null;
+    var mOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m.value.trim()),tOk=msg.value.trim().length>1,cOk=$("q-ok").checked,sOk=total()<=MAX;
+    msg.setAttribute("aria-invalid",String(!tOk));$("qe-msg").hidden=tOk;if(!tOk)first=first||msg;
+    m.setAttribute("aria-invalid",String(!mOk));$("qe-mail").hidden=mOk;if(!mOk)first=first||m;
+    $("qe-ok").hidden=cOk;if(!cOk)first=first||$("q-ok");
+    $("qe-size").hidden=sOk;if(!sOk)first=first||fi;
+    if(first){first.focus();return}
+    var v={message:msg.value.trim(),email:m.value.trim(),contact:$("q-phone").value.trim(),name:$("q-name").value.trim()};
+    if(!QURL){
+      var body=[d.q_msg+": "+v.message,d.q_mail+": "+v.email,d.q_phone+": "+(v.contact||"—"),d.q_name+": "+(v.name||"—")].join("\n");
+      st.textContent=d.q_mailto;
+      location.href="mailto:ak97mizin@gmail.com?subject="+encodeURIComponent(d.mail_subj)+"&body="+encodeURIComponent(body);return;
+    }
+    var fd=new FormData();Object.keys(v).forEach(function(k){fd.append(k,v[k])});fd.append("consent","yes");fd.append("language",lang);fd.append("_subject",d.mail_subj);files.forEach(function(x){fd.append("attachment",x,x.name)});
+    st.textContent=d.q_wait;
+    fetch(QURL,{method:"POST",headers:{"Accept":"application/json"},body:fd})
+      .then(function(r){if(!r.ok)throw 0;st.textContent=d.q_ok;f.reset();files=[];draw();grow()})
+      .catch(function(){st.textContent=d.q_fail});
+  });
+})();
 function snapFlow(){var f=document.querySelector(".flow");if(!f)return;f.style.setProperty("--snap","0px");var r=window.devicePixelRatio||1,y=(f.getBoundingClientRect().top+scrollY)*r,fr=y-Math.round(y);f.style.setProperty("--snap",(-fr/r).toFixed(3)+"px")}
 addEventListener("resize",snapFlow);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(snapFlow);addEventListener("load",snapFlow);
 var rm=$("resmini");
@@ -958,7 +1079,7 @@ function miniSet(st){
   if(!slide)requestAnimationFrame(function(){rm.classList.remove("instant")});
 }
 function miniUpd(){
-  if(!matchMedia("(max-width:900px)").matches){miniSet("off");return}
+  if(document.getElementById("calc").hidden||!matchMedia("(max-width:900px)").matches){miniSet("off");return}
   var c=document.getElementById("calc").getBoundingClientRect(),card=document.querySelector("#calc .res").getBoundingClientRect(),H=innerHeight;
   if(c.top>H*0.55||c.bottom<H*0.3){miniSet("off");return}
   rm.style.left=card.left+"px";rm.style.right=(document.documentElement.clientWidth-card.right)+"px";
@@ -968,6 +1089,7 @@ function miniUpd(){
 addEventListener("scroll",function(){requestAnimationFrame(miniUpd)},{passive:true});addEventListener("resize",miniUpd);
 rm.addEventListener("click",function(){document.querySelector("#calc .res").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})});
 rangeFill();
+(function(){var tp=document.querySelector(".top"),h=document.querySelector(".hero");function f(){tp.classList.toggle("onhero",h.getBoundingClientRect().bottom>60)}addEventListener("scroll",f,{passive:true});addEventListener("resize",f);f();})();
 var tt=document.getElementById("totop");
 addEventListener("scroll",function(){tt.classList.toggle("on",scrollY>500)},{passive:true});
 tt.addEventListener("click",function(){scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})});
