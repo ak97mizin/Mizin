@@ -58,6 +58,24 @@ main{position:relative}
 .top::before{content:"";position:absolute;left:0;right:0;top:0;bottom:-44px;z-index:-1;pointer-events:none;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 50%,rgba(0,0,0,.6) 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 50%,rgba(0,0,0,.6) 72%,transparent 100%)}
 .totop{position:fixed;right:max(16px,var(--gut));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:21;width:52px;height:52px;border-radius:50%;border:0;background:#fff;color:var(--navy);font:400 22px/1 var(--body);cursor:pointer;box-shadow:0 8px 24px rgba(22,20,69,.3);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
 .totop.on{opacity:1;transform:none;pointer-events:auto}
+.resmini{display:none}
+@media (max-width:900px){
+  .resmini{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;position:fixed;left:var(--gut);right:var(--gut);bottom:0;z-index:22;border:0;border-radius:12px 12px 0 0;background:#fff;color:var(--ink);padding:clamp(22px,2.6vw,36px) clamp(22px,2.6vw,36px) calc(18px + env(safe-area-inset-bottom,0px));text-align:left;font:inherit;cursor:pointer;box-shadow:0 -8px 28px rgba(22,20,69,.28);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .resmini.on{transform:none}
+  .resmini.instant{transition:none}
+  .resmini span{display:grid;gap:6px;min-width:0}
+  .resmini span:last-child{text-align:right}
+  .resmini small{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);font-weight:600;line-height:1.2}
+  .resmini b{font:500 clamp(24px,7vw,34px)/1.05 var(--display);letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .resmini span:last-child b{font-size:clamp(18px,5vw,24px);line-height:1.4}
+  body.mini-on .totop{opacity:0;pointer-events:none}
+  .res{grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
+  .res > *{grid-column:1/-1}
+  .res > div:first-child{grid-column:1}
+  .res > div:nth-child(2){grid-column:2;text-align:right}
+  .res > div:nth-child(2) .mid{font-size:clamp(18px,5vw,24px);line-height:1.4}
+  .res > div:first-child .big,.res > div:nth-child(2) .mid{margin-top:6px}
+}
 .totop:hover{background:var(--navy);color:#fff}
 section[id]{scroll-margin-top:72px}
 .top .wrap{display:flex;align-items:center;gap:28px;min-height:76px}
@@ -182,11 +200,11 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .steps ul{list-style:circle}
 .steps ul li::marker{color:#fff}
 @media (max-width:760px){
-  .flow::before{left:calc(var(--gut) + 15px);right:auto;top:40px;bottom:20px;width:2px;height:auto}
-  .flow::after{left:calc(var(--gut) + 5px);right:auto;top:auto;bottom:0;border-top:22px solid rgba(255,255,255,.85);border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:0}
-  .steps{grid-template-columns:1fr;grid-template-rows:none;gap:32px;padding-bottom:36px}
-  .steps > li{grid-row:auto;grid-template-rows:none;position:relative;padding-left:48px}
-  .steps > li::before{position:absolute;left:0;top:0;margin:0;font-size:18px;background:var(--red);border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-size:12px}
+  .flow::before{left:calc(var(--gut) + 54px);right:auto;top:4px;bottom:20px;width:2px;height:auto}
+  .flow::after{left:calc(var(--gut) + 44px);right:auto;top:auto;bottom:0;border-top:22px solid rgba(255,255,255,.85);border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:0}
+  .steps{grid-template-columns:1fr;grid-template-rows:none;gap:36px;padding-bottom:40px}
+  .steps > li{grid-row:auto;grid-template-rows:none;position:relative;padding-left:76px}
+  .steps > li::before{position:absolute;left:0;top:0;margin:0;height:auto;font-size:24px;line-height:1;background:none;color:#fff}
 }
 
 /* advantages */
@@ -207,7 +225,11 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .area input[type=number]{width:170px;font:500 22px/1 var(--body);color:#fff;background:transparent;border:0;border-bottom:2px solid rgba(255,255,255,.7);padding:8px 2px;outline:none;font-variant-numeric:tabular-nums}
 .area input[type=number]:focus{border-color:#fff}
 .area span{font-size:18px;color:rgba(255,255,255,.8)}
-.area input[type=range]{flex:1 1 220px;accent-color:#fff;min-width:0}
+.area input[type=range]{flex:1 1 220px;min-width:0;-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;background:linear-gradient(to right,#fff var(--p,50%),rgba(22,20,69,.55) var(--p,50%));outline:none;margin:14px 0}
+.area input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:0;box-shadow:0 2px 8px rgba(22,20,69,.35);cursor:pointer}
+.area input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:0;box-shadow:0 2px 8px rgba(22,20,69,.35);cursor:pointer}
+.area input[type=range]::-moz-range-track{background:transparent}
+.area input[type=range]:focus-visible{outline:2px solid #fff;outline-offset:6px}
 .checks{display:grid;gap:10px}
 .checks.row{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
 .ck{display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:17px;line-height:1.35}
@@ -255,7 +277,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .card-s > *{min-width:0}
 .card-s p,.card-s .word{overflow-wrap:break-word}
 @media (max-width:420px){.card-s{grid-template-columns:1fr!important}.card-s svg{grid-row:auto!important}.lang button{padding:7px 8px}.top .wrap{gap:12px}}
-@media (max-width:560px){.res .big{font-size:clamp(22px,7vw,34px)}}
+@media (max-width:560px){.res .big{font-size:clamp(24px,7vw,34px)}}
 
 /* contact */
 .contact h2{max-width:20ch}
@@ -453,8 +475,8 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
           <div class="fg">
             <span class="lab" data-t="c_cur"></span>
             <div class="cur" role="group" id="c-cur">
-              <button type="button" data-c="AMD" aria-pressed="true">AMD</button>
-              <button type="button" data-c="USD" aria-pressed="false">USD</button>
+              <button type="button" data-c="USD" aria-pressed="true">USD</button>
+              <button type="button" data-c="AMD" aria-pressed="false">AMD</button>
               <button type="button" data-c="RUB" aria-pressed="false">RUB</button>
             </div>
           </div>
@@ -494,6 +516,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
   </section>
 </main>
 
+<button class="resmini" type="button" id="resmini" aria-hidden="true" tabindex="-1"><span><small data-t="r_cost"></small><b id="rm-cost"></b></span><span><small data-t="r_time"></small><b id="rm-time"></b></span></button>
 <button class="totop" type="button" id="totop" data-ta="totop">↑</button>
 
 <dialog id="pm" aria-labelledby="pm-title">
@@ -667,11 +690,11 @@ var P=[
  awards:[["MUSE Design Awards — Gold Winner","https://design.museaward.com/winners-info.php?id=31562"]],
  pubs:[["Landezine","https://landezine-award.com/karmrakhayt-playground-the-enchanted-world-of-the-hidden-river/"],["Armenian Weekly","https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/"]]},
 {img:["elm-01","elm-02","elm-03","elm-04","elm-05","elm-06","elm-07","elm-08","elm-09","v:elmay-v1","v:elmay-v2"],
- ru:{t:"Детский парк «Елмай»",s:"Детский парк · Казань · 2024",facts:["Набережная Казанки, Казань","3,4 га","2024","Спроектировано при бюро «Чехарда»"],
+ ru:{t:"Елмай",s:"Детский парк · Казань · 2024",facts:["Набережная Казанки, Казань","3,4 га","2024","Спроектировано при бюро «Чехарда»"],
   task:"Самый большой детский парк Татарстана с тематическими маршрутами «Экология», «Жизнь реки» и «Река рассказывает истории».",
   role:"Промышленный дизайн научного игрового оборудования: «Судоходство» с движущимися картинками кораблей по принципу барьерной анимации, «Полезный мусор» о переработке, «Что скрывает вода?» с копиями находок из Казанки.",
   res:"Реализовано в 2024 году."},
- en:{t:"Elmay Children's Park",s:"Children's park · Kazan · 2024",facts:["Kazanka embankment, Kazan","3.4 ha","2024","Designed at Chekharda bureau"],
+ en:{t:"Elmay",s:"Children's park · Kazan · 2024",facts:["Kazanka embankment, Kazan","3.4 ha","2024","Designed at Chekharda bureau"],
   task:"The largest children's park in Tatarstan, with themed trails: “Ecology”, “Life of the River” and “The River Tells Stories”.",
   role:"Industrial design of the science play equipment: “Shipping” with moving pictures of ships based on barrier-grid animation, “Useful Waste” about recycling, “What Does the Water Hide?” with replicas of finds from the Kazanka river.",
   res:"Completed in 2024."},
@@ -712,7 +735,7 @@ var HY_P=[
   sol:"Այգու տակով, կոլեկտորում, հոսում է Գետառ գետը։ Կոնցեպցիան այն վերադարձնում է մակերես՝ խճաքարե հատակ, ջրիմուռներ և կարմրախայտ ձուկը՝ խաղային համալիրի տեսքով։",
   role:"Տարածքի հատակագծում և խաղային սցենարներ, խաղային համալիր՝ էսքիզներից մինչև ներկում, անհատական պատրաստման փոքր ճարտարապետական ձևեր (շառավղային նստարաններ, աղբամաններ, վահանակներ, սահարաններ, բլուրներ, թունել, ծածկ), սարքավորումների ընտրություն, փաստաթղթեր և հեղինակային հսկողություն։",
   res:"Իրականացվել է 2025 թվականին։"},
- {t:"«Էլմայ» մանկական այգի",s:"Մանկական այգի · Կազան · 2024",facts:["Կազանկա գետի ափ, Կազան","3,4 հա","2024","Նախագծվել է «Չեխարդա» բյուրոյում"],
+ {t:"Էլմայ",s:"Մանկական այգի · Կազան · 2024",facts:["Կազանկա գետի ափ, Կազան","3,4 հա","2024","Նախագծվել է «Չեխարդա» բյուրոյում"],
   task:"Թաթարստանի ամենամեծ մանկական այգին՝ «Էկոլոգիա», «Գետի կյանքը» և «Գետը պատմում է» թեմատիկ երթուղիներով։",
   role:"Երթուղիների գիտական խաղային սարքավորումների արդյունաբերական դիզայն՝ «Նավագնացություն»՝ նավերի շարժվող պատկերներով (պատնեշային անիմացիայի սկզբունքով), «Օգտակար աղբ»՝ վերամշակման մասին, «Ի՞նչ է թաքցնում ջուրը»՝ Կազանկա գետում հայտնաբերված գտածոների կրկնօրինակներով։",
   res:"Իրականացվել է 2024 թվականին։"},
@@ -825,7 +848,7 @@ var CALC={
   siteExtra:0.10,                      // +10%, если участок не плоский (рельеф, набережная или лес)
   rates:{AMD:1,USD:390,RUB:4.8}        // AMD за единицу валюты, приблизительно
 };
-var ccy="AMD";
+var ccy="USD";
 function $(id){return document.getElementById(id)}
 var ST={a:$("st-a"),c:$("st-c"),d:$("st-d"),r:$("st-r"),s:$("st-s")};
 function rules(changed){
@@ -861,9 +884,10 @@ function calc(){
   if(total>0&&total<CALC.minFee){var f=CALC.minFee/total;items.forEach(function(i){i[1]*=f});total=CALC.minFee}
   if(ST.r.checked){var v=full*CALC.realization;items.push([d.cs_r,v]);total+=v;tm+=Math.max(1,CALC.months.r*Tm)}
   if(ST.s.checked){var v2=full*CALC.supervision;items.push([d.cs_s,v2]);total+=v2}
-  if(!items.length){$("r-cost").textContent="—";$("r-time").textContent="—";$("r-tnote").textContent="";$("r-brk").innerHTML='<li class="empty">'+esc(d.r_empty)+'</li>';return}
+  if(!items.length){$("r-cost").textContent="—";$("r-time").textContent="—";$("rm-cost").textContent="—";$("rm-time").textContent="—";$("r-tnote").textContent="";$("r-brk").innerHTML='<li class="empty">'+esc(d.r_empty)+'</li>';return}
   $("r-cost").textContent="≈\u00a0"+fmt(total);
   $("r-time").textContent=tm>0?"≈\u00a0"+months(tm)+"\u00a0"+d.r_mon:"—";
+  $("rm-cost").textContent=$("r-cost").textContent;$("rm-time").textContent=$("r-time").textContent;
   $("r-tnote").textContent=(ST.s.checked&&!ST.r.checked)?d.r_sup:"";
   $("r-brk").innerHTML=items.map(function(i){return '<li><span>'+esc(i[0])+'</span><span>'+fmt(i[1])+'</span></li>'}).join("");
 }
@@ -874,9 +898,10 @@ $("cform").addEventListener("change",function(e){
   if(t.closest("#c-site"))keepOne($("c-site"),t);
   calc();
 });
-$("c-area").addEventListener("input",function(){var v=+this.value;if(v>=500&&v<=50000)$("c-range").value=v;calc()});
+$("c-area").addEventListener("input",function(){var v=+this.value;if(v>=500&&v<=50000){$("c-range").value=v;rangeFill()}calc()});
 $("c-area").addEventListener("blur",function(){var v=Math.max(100,Math.min(200000,Math.round(+this.value||0)));this.value=v;calc()});
-$("c-range").addEventListener("input",function(){$("c-area").value=this.value;calc()});
+function rangeFill(){var r=$("c-range");r.style.setProperty("--p",((r.value-r.min)/(r.max-r.min)*100)+"%")}
+$("c-range").addEventListener("input",function(){$("c-area").value=this.value;rangeFill();calc()});
 $("cform").addEventListener("submit",function(e){e.preventDefault()});
 $("c-cur").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;ccy=b.dataset.c;this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});calc()});
 rules();
@@ -920,6 +945,29 @@ sf.addEventListener("submit",function(e){
 });
 function snapFlow(){var f=document.querySelector(".flow");if(!f)return;f.style.setProperty("--snap","0px");var r=window.devicePixelRatio||1,y=(f.getBoundingClientRect().top+scrollY)*r,fr=y-Math.round(y);f.style.setProperty("--snap",(-fr/r).toFixed(3)+"px")}
 addEventListener("resize",snapFlow);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(snapFlow);addEventListener("load",snapFlow);
+var rm=$("resmini");
+var miniState="off";
+function miniSet(st){
+  if(st===miniState)return;
+  var slide=(miniState==="off"||st==="off");
+  rm.classList.toggle("instant",!slide);
+  rm.classList.toggle("on",st==="on");
+  if(!slide){void rm.offsetWidth;}
+  miniState=st;
+  var vis=st==="on";document.body.classList.toggle("mini-on",st!=="off");rm.setAttribute("aria-hidden",String(!vis));rm.tabIndex=vis?0:-1;
+  if(!slide)requestAnimationFrame(function(){rm.classList.remove("instant")});
+}
+function miniUpd(){
+  if(!matchMedia("(max-width:900px)").matches){miniSet("off");return}
+  var c=document.getElementById("calc").getBoundingClientRect(),card=document.querySelector("#calc .res").getBoundingClientRect(),H=innerHeight;
+  if(c.top>H*0.55||c.bottom<H*0.3){miniSet("off");return}
+  rm.style.left=card.left+"px";rm.style.right=(document.documentElement.clientWidth-card.right)+"px";
+  var mtop=H-rm.offsetHeight;
+  miniSet(card.top>mtop?"on":"docked");
+}
+addEventListener("scroll",function(){requestAnimationFrame(miniUpd)},{passive:true});addEventListener("resize",miniUpd);
+rm.addEventListener("click",function(){document.querySelector("#calc .res").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})});
+rangeFill();
 var tt=document.getElementById("totop");
 addEventListener("scroll",function(){tt.classList.toggle("on",scrollY>500)},{passive:true});
 tt.addEventListener("click",function(){scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})});
