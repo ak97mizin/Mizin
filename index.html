@@ -142,6 +142,9 @@ html[lang="hy"] .hero h1{line-height:.92;font-weight:900;letter-spacing:-.035em}
 .card-s svg{width:clamp(84px,8vw,112px);height:auto;color:#fff;transition:color .35s}
 .card-s svg *{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
 .card-s .word{font:500 clamp(30px,3.4vw,46px)/1.05 var(--display);letter-spacing:-.03em}
+.svc .card-s .word{font-size:clamp(24px,2.6vw,36px)}
+.svc-l{margin:0;padding-left:18px;list-style:circle;color:rgba(255,255,255,.8);font-size:16px;line-height:1.5;display:grid;gap:4px;align-content:start}
+.svc-l li::marker{color:#fff}
 .wd{display:inline-block;white-space:nowrap}
 .ch{display:inline-block;white-space:pre}
 .card-s p{font-size:15px;color:rgba(255,255,255,.75);transition:color .35s;max-width:30ch}
@@ -171,6 +174,10 @@ html[lang="hy"] .hero h1{line-height:.92;font-weight:900;letter-spacing:-.035em}
 /* modal */
 dialog{border:0;padding:0;margin:auto;width:min(1360px,calc(100vw - 32px));max-height:calc(100dvh - 32px);border-radius:12px;background:transparent;color:var(--ink);overflow:hidden}
 dialog::backdrop{background:rgba(22,20,69,.72);backdrop-filter:blur(4px)}
+/* пока открыта карточка или политика — страница под ней не прокручивается */
+html{scrollbar-gutter:stable}
+html:has(dialog[open]),html.modal-open{overflow:hidden}
+dialog,.info,#pp{overscroll-behavior:contain}
 dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}}
 .m{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);height:min(780px,calc(100dvh - 32px))}
@@ -195,6 +202,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .rows{display:grid;gap:14px;margin:0}
 .rows dt{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);font-weight:600}
 .rows dd{margin:3px 0 0;font-size:16px;line-height:1.55}
+.rows dd p{margin:0}.rows dd p+p{margin-top:.75em}
 .links{list-style:none;margin:0;padding:0;display:grid;gap:3px}
 .links a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
 .links a:hover{color:var(--red)}
@@ -202,7 +210,10 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 .nextp{justify-self:start;margin-top:6px;background:none;border:0;padding:0;font:500 15px/1.4 var(--body);color:var(--red);cursor:pointer}
 @media (max-width:860px){
   dialog{width:100vw;max-height:100dvh;height:100dvh;border-radius:0;max-width:none}
-  .m{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);height:100dvh;max-height:none}
+  /* на телефоне и планшете прокручивается вся карточка целиком — и фото, и текст */
+  .m{grid-template-columns:1fr;grid-template-rows:max-content 1fr;height:100dvh;max-height:none;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .m .info{overflow:visible;min-height:auto}
+  .m .gal{flex:none;min-height:max-content}
   .gal .main{height:min(67vw,480px)}
   .gnav{top:calc(min(67vw,480px)/2 - 22px);width:44px;height:44px}
 }
@@ -424,7 +435,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
             <path pathLength="1" style="--d:1" d="M10 87c30-2 70-3 102-1"/>
           </svg>
           <div class="word" data-w="w1"></div>
-          <p data-t="w1d"></p>
+          <ul class="svc-l" data-ul="w1d"></ul>
         </div>
         <div class="card-s" tabindex="0">
           <svg viewBox="0 0 120 100" aria-hidden="true">
@@ -435,7 +446,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
             <path pathLength="1" style="--d:1" d="M10 88c30-2 70-3 102-1"/>
           </svg>
           <div class="word" data-w="w2"></div>
-          <p data-t="w2d"></p>
+          <ul class="svc-l" data-ul="w2d"></ul>
         </div>
         <div class="card-s" tabindex="0">
           <svg viewBox="0 0 120 100" aria-hidden="true">
@@ -446,7 +457,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
             <path pathLength="1" style="--d:1" d="M10 88c30-2 70-3 102-1"/>
           </svg>
           <div class="word" data-w="w3"></div>
-          <p data-t="w3d"></p>
+          <ul class="svc-l" data-ul="w3d"></ul>
         </div>
       </div>
     </div>
@@ -642,7 +653,7 @@ ru:{
  s1:"лет опыта", s2:"реализованных проектов", s3:"награды у проектов",
  cta1:"Обсудить проект", cta3:"Рассчитать стоимость", cta2:"Смотреть проекты",
  svc_h:"Благоустройство под ключ", w1:"Среда", w2:"Детям", w3:"Спорт",
- w1d:"Парки, скверы, дворы, набережные, сады и винодельни", w2d:"Детские площадки и игровое оборудование", w3d:"Спортивные площадки и зоны активного отдыха",
+ w1d:["Парки и скверы", "Дворы", "Набережные", "Агротуристические объекты"], w2d:["Детские площадки", "Игровое оборудование"], w3d:["Спортивные площадки и корты", "Воркаут-зоны", "Зоны активного отдыха", "Памп-треки и скейт-парки", "Горнолыжные курорты"],
  proj_h:"Проекты",
  proc_h:"Ход работы",
  st1:"Анализ участка", st1d:["Оценка потенциала территории","Топосъёмка","Ограничения и разрешения","Фотофиксация"],
@@ -655,7 +666,7 @@ ru:{
  a3:"Предсказуемый бюджет", a3d:"Все расходы согласуются заранее, без скрытых платежей. Помогаем оценить стоимость материалов и оборудования уже на стадии концепции.",
  a4:"Документация для стройки", a4d:"Сами готовим задания и чертежи для производителей и выезжаем на объект, поэтому проект можно построить так, как он задуман.",
  a5:"Учёт контекста", a5d:"Климат, рельеф, местные материалы и нормы, история места. Из них вырастает идея проекта.",
- a6:"Внимание к деталям", a6d:"Прорабатываем мелочи вплоть до крепления канатов гамака, чтобы трубы удобно ложились под колени.",
+ a6:"Внимание к деталям", a6d:"Прорабатываем мелочи: от оттенков покрытия, которые не выгорят на солнце и не потеряются под пылью, до узлов крепления оборудования.",
  ct_h:"Готовы обсудить ваш проект", ct_lead:"Расскажите об участке и задаче: где он, какая площадь, что должно на нём появиться и в какие сроки.",
  phone:"Телефон", copy:"Скопировать", copied:"Скопировано", selected:"Выделено", tg:"Написать в Telegram",
  foot:"© 2026 Александр Мизин", foot2:"Ереван, Армения",
@@ -678,7 +689,7 @@ en:{
  s1:"years of experience", s2:"completed projects", s3:"awards for projects",
  cta1:"Discuss a project", cta3:"Estimate the cost", cta2:"See projects",
  svc_h:"Turnkey landscaping", w1:"Places", w2:"Kids", w3:"Sport",
- w1d:"Parks, squares, courtyards, embankments, gardens and wineries", w2d:"Playgrounds and custom play equipment", w3d:"Sports grounds and active recreation areas",
+ w1d:["Parks and squares", "Courtyards", "Embankments", "Agritourism sites"], w2d:["Playgrounds", "Custom play equipment"], w3d:["Sports grounds and courts", "Workout areas", "Active recreation areas", "Pump tracks and skate parks", "Ski resorts"],
  proj_h:"Projects",
  proc_h:"Workflow",
  st1:"Site analysis", st1d:["Assessment of the site's potential","Topographic survey","Constraints and permits","Photo survey"],
@@ -691,7 +702,7 @@ en:{
  a3:"Predictable budget", a3d:"All costs are agreed in advance, with no hidden fees. We help estimate materials and equipment costs as early as the concept stage.",
  a4:"Documentation ready to build", a4d:"We prepare briefs and drawings for manufacturers ourselves and visit the site, so the project gets built as designed.",
  a5:"Context first", a5d:"Climate, terrain, local materials and codes, the history of the place. The idea of the project grows out of them.",
- a6:"Attention to detail", a6d:"We work out the smallest things, down to how hammock ropes are fixed so the tubes rest comfortably under the knees.",
+ a6:"Attention to detail", a6d:"We work out the smallest things, from surfacing colours that won't fade in the sun or disappear under dust to the way the equipment is fixed.",
  ct_h:"Let's discuss your project", ct_lead:"Tell us about the site and the task: where it is, how big it is, what should appear there and by when.",
  phone:"Phone", copy:"Copy", copied:"Copied", selected:"Selected", tg:"Message on Telegram",
  foot:"© 2026 Alexander Mizin", foot2:"Yerevan, Armenia",
@@ -714,7 +725,7 @@ hy:{
  s1:"տարվա փորձ", s2:"իրականացված նախագիծ", s3:"մրցանակ նախագծերի համար",
  cta1:"Քննարկել նախագիծը", cta3:"Հաշվել արժեքը", cta2:"",
  svc_h:"Բարեկարգում «բանալին ձեռքին»", w1:"Միջավայր", w2:"Երեխաներին", w3:"Սպորտ",
- w1d:"Այգիներ, պուրակներ, բակեր, ափամերձ գոտիներ, պարտեզներ և գինեգործարաններ", w2d:"Մանկական խաղահրապարակներ և խաղային սարքավորումներ", w3d:"Սպորտային հրապարակներ և ակտիվ հանգստի գոտիներ",
+ w1d:["Այգիներ և պուրակներ", "Բակեր", "Ափամերձ գոտիներ", "Ագրոզբոսաշրջային օբյեկտներ"], w2d:["Մանկական խաղահրապարակներ", "Խաղային սարքավորումներ"], w3d:["Սպորտային հրապարակներ և կորտեր", "Վորքաութի գոտիներ", "Ակտիվ հանգստի գոտիներ", "Փամփ-թրեքներ և սքեյթ-պարկեր", "Լեռնադահուկային հանգստավայրեր"],
  proj_h:"Նախագծեր",
  proc_h:"Աշխատանքի ընթացքը",
  st1:"Տարածքի վերլուծություն", st1d:["Տարածքի ներուժի գնահատում","Տեղագրական հանույթ","Սահմանափակումներ և թույլտվություններ","Լուսանկարահանում"],
@@ -727,7 +738,7 @@ hy:{
  a3:"Կանխատեսելի բյուջե", a3d:"Բոլոր ծախսերը համաձայնեցվում են նախապես, առանց թաքնված վճարների։ Օգնում ենք գնահատել նյութերի և սարքավորումների արժեքը դեռ կոնցեպցիայի փուլում։",
  a4:"Փաստաթղթեր շինարարության համար", a4d:"Ինքներս ենք պատրաստում առաջադրանքներն ու գծագրերը արտադրողների համար և այցելում ենք օբյեկտ, որպեսզի նախագիծը կառուցվի այնպես, ինչպես մտահղացված է։",
  a5:"Համատեքստի հաշվառում", a5d:"Կլիմա, ռելիեֆ, տեղական նյութեր և նորմեր, վայրի պատմություն։ Դրանցից է ծնվում նախագծի գաղափարը։",
- a6:"Ուշադրություն մանրուքներին", a6d:"Մշակում ենք ամենափոքր մանրուքները՝ մինչև համակի պարանների ամրացումը, որպեսզի խողովակները հարմար տեղավորվեն ծնկների տակ։",
+ a6:"Ուշադրություն մանրուքներին", a6d:"Մշակում ենք ամենափոքր մանրուքները՝ ծածկույթի երանգներից, որոնք չեն գունաթափվի արևի տակ և չեն կորչի փոշու տակ, մինչև սարքավորումների ամրացման հանգույցները։",
  ct_h:"Պատրաստ ենք քննարկել ձեր նախագիծը", ct_lead:"Պատմեք տարածքի և առաջադրանքի մասին՝ որտեղ է այն, որքան է մակերեսը, ինչ պետք է այնտեղ հայտնվի և ինչ ժամկետներում։",
  phone:"Հեռախոս", copy:"Պատճենել", copied:"Պատճենված է", selected:"Ընտրված է", tg:"Գրել Telegram-ով",
  foot:"© 2026 Ալեքսանդր Միզին", foot2:"Երևան, Հայաստան",
@@ -753,44 +764,38 @@ var P=[
   about:"Tactical urbanism as an extension of the Vishapagorg playground."}},
 {img:["man-01","man-02","man-03","man-04","man-05","man-06","man-07","man-08","man-11","man-12","man-09","man-10","man-13"],
  ru:{t:"Армянские изобретатели",s:"Детская площадка · Ереван · 2026",facts:["Парк им. Мисака Манушяна, Ереван","675 м²","2026","Спроектировано при бюро UrUrban"],
-  task:"Игровое пространство на небольшом участке с деревьями в оживлённом парке в центре города.",
-  sol:"Площадка растёт вверх, в виде игровой башни. Тема роста связана с наукой и развитием: площадка посвящена армянским учёным Армении и диаспоры.",},
+  about:"Детская площадка расположена в оживлённом регулярном парке им. писателя Мисака Манушяна, в очень урбанизированной среде, посередине между двумя параллельными улицами — ключевыми в генплане 1924 г. архитектора Таманяна.\n\nНебольшой участок с деревьями и осевое расположение повлияли на решение проектировать площадку вверх, в виде башни.\n\nКонцепция развивает эту идею: вверх — это рост, развитие. А одним из двигателей развития является наука. Идея площадки объединяет всех армянских учёных — как из Армении, так и из диаспоры в других странах, к которой относился Мисак Манушян."},
  en:{t:"Armenian Inventors",s:"Playground · Yerevan · 2026",facts:["Misak Manouchian Park, Yerevan","675 m²","2026","Designed at UrUrban bureau"],
-  task:"A play space on a small plot with trees in a busy park in the city centre.",
-  sol:"The playground grows upwards as a play tower. Growth is linked to science and development: the playground is dedicated to Armenian scientists from Armenia and the diaspora.",},
+  about:"The playground sits in the busy formal park named after the writer Misak Manouchian, in a highly urbanised setting, midway between two parallel streets that are key to architect Tamanyan's 1924 master plan.\n\nThe small plot with trees and its position on the park's axis led to the decision to build the playground upwards, as a tower.\n\nThe concept develops this idea: upwards means growth and development, and one of the drivers of development is science. The playground brings together all Armenian scientists, both from Armenia and from the diaspora around the world, to which Misak Manouchian himself belonged."},
  pubs:[["Landezine","https://landezine-award.com/science-inside-out/"],["Armenpress: Nikol Pashinyan's visit|Armenpress: визит премьер-министра Никола Пашиняна","https://armenpress.am/en/article/1249407"]]},
 {img:["vish-03","vish-01","vish-05","vish-04","vish-02","vish-aerial","vish-06","vish-07","vish-08","vish-09","vish-10","vish-11","vish-12"],
  ru:{t:"Вишапагорг",s:"Детская площадка · Ереван · 2025",facts:["Парк Хачкаров, Ереван","800 м²","2025","Спроектировано при бюро UrUrban"],
-  task:"Детская площадка на узком участке вдоль дороги, напротив мемориального сквера хачкаров.",
-  sol:"Площадка вдохновлена армянскими коврами, которые продают рядом в Вернисаже: резиновое покрытие с древом жизни, орлами и растениями, а оборудование стилизовано под драконов-вишапов.",
+  about:"Детская площадка расположена вблизи Вернисажа — местной торговой и туристической точки притяжения, где одними из популярных товаров являются ковры и карпеты.\n\nКонцепция, вдохновлённая армянским ремеслом, заключается в нанесении узора ковра, его основных орнаментов и в оборудовании в виде драконов — одних из нескольких героев.\n\nТерритория узкая, расположена вдоль дороги и напротив мемориального сквера хачкаров, что повлияло на расположение и небольшую высоту оборудования.",
   role:"Детализация покрытия, разметка вместе с геодезистами и контроль укладки; цвета подобраны с учётом выгорания и пыли. Игровое оборудование и МАФ, зонирование озеленения, документация, авторский надзор.",
   res:"Реализовано в 2025 году."},
  en:{t:"Vishapagorg",s:"Playground · Yerevan · 2025",facts:["Khachkar Park, Yerevan","800 m²","2025","Designed at UrUrban bureau"],
-  task:"A playground on a narrow strip along a road, opposite the khachkar memorial square.",
-  sol:"The playground is inspired by the Armenian carpets sold next door at the Vernissage market: rubber surfacing with the tree of life, eagles and plants, and play equipment styled as vishap dragons.",
+  about:"The playground is close to the Vernissage, a local market and tourist attraction where carpets and rugs are among the most popular goods.\n\nInspired by Armenian craft, the concept transfers a carpet pattern and its main ornaments onto the ground and shapes the play equipment as dragons, one of the carpet's several characters.\n\nThe site is narrow, runs along a road and faces the khachkar memorial square, which shaped the layout and the low height of the equipment.",
   role:"Surfacing details, setting out with surveyors and laying control; colours chosen to allow for fading and dust. Play equipment and street furniture, planting zones, documentation, designer's supervision.",
   res:"Completed in 2025."},
  pubs:[["Armenian Weekly","https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/"],["ROQ Capital","https://roqcapital.am/en/media/roq-capital-vishapagorg-playground-khachkar-park"],["Public Radio of Armenia","https://en.armradio.am/2025/12/15/dragon-carpet-for-children-new-playground-opens-in-yerevan/"]]},
 {img:["karm-03","karm-01","karm-04","karm-07","karm-08","karm-09","karm-11","karm-12","karm-13","karm-14","karm-15","karm-17","karm-19","karm-20","karm-22"],
  ru:{t:"Кармрахайт",s:"Детская площадка · Ереван · 2025",facts:["Кольцевой парк, Ереван","1 995 м²","2025","Спроектировано при бюро UrUrban"],
-  task:"Разнообразное игровое пространство с выразительным центральным элементом среди взрослых деревьев.",
-  sol:"Под парком в коллекторе течёт река Гетар. Концепция возвращает её на поверхность: галечное дно, водоросли и армянская форель кармрахайт в виде игрового комплекса.",
+  about:"Территория проектирования располагается в Кольцевом парке Еревана над убранной в коллектор рекой Гетар. Концепция площадки предполагает «восстановление» реки на поверхности: галечное дно, водоросли, водная гладь в виде крон деревьев и местная лососевая рыба — кармрахайт.\n\nОсновной задачей было создать разнообразное игровое пространство с выразительным центральным элементом, вписав его в окружение взрослых деревьев.",
   role:"Планировка участка и игровые сценарии, игровой комплекс от эскизов до окраски, МАФ индивидуального изготовления (радиусные скамьи, урны, стенды, горки, холмы, тоннель, навес), подбор оборудования, документация и авторский надзор.",
   res:"Реализовано в 2025 году."},
  en:{t:"Karmrakhayt",s:"Playground · Yerevan · 2025",facts:["Ring Park, Yerevan","1,995 m²","2025","Designed at UrUrban bureau"],
-  task:"A varied play space with a striking centrepiece among mature trees.",
-  sol:"The Getar river runs in a culvert under the park. The concept brings it back to the surface: a pebble bed, water plants and the karmrakhayt, an Armenian trout, as a play structure.",
+  about:"The site lies in Yerevan's Ring Park, above the Getar river, which has been channelled into an underground culvert. The concept “restores” the river to the surface: a pebble bed, water plants, a water surface formed by the tree canopy, and the karmrakhayt, a local trout.\n\nThe main task was to create a varied play space with a striking centrepiece and fit it in among the mature trees.",
   role:"Site layout and play scenarios, the play structure from sketches to colour scheme, custom street furniture (curved benches, bins, stands, slides, mounds, a tunnel, a canopy), equipment selection, documentation and designer's supervision.",
   res:"Completed in 2025."},
  awards:[["MUSE Design Awards — Gold Winner","https://design.museaward.com/winners-info.php?id=31562"]],
  pubs:[["Landezine","https://landezine-award.com/karmrakhayt-playground-the-enchanted-world-of-the-hidden-river/"],["Armenian Weekly","https://armenianweekly.com/2026/04/21/the-new-urban-reality-of-yerevans-newest-parks/"]]},
 {img:["elm-01","elm-02","elm-03","elm-04","elm-05","elm-06","elm-07","elm-08","elm-09","v:elmay-v1","v:elmay-v2"],
  ru:{t:"Елмай",s:"Детский парк · Казань · 2024",facts:["Набережная Казанки, Казань","3,4 га","2024","Спроектировано при бюро «Чехарда»"],
-  task:"Самый большой детский парк Татарстана с тематическими маршрутами «Экология», «Жизнь реки» и «Река рассказывает истории».",
+  about:"Парк «Елмай» является самым большим детским парком в Татарстане и состоит из главной детской площадки и игрового и научного оборудования, расположенного по территории парка.\n\nКонцепцией парка предусмотрены тематические маршруты, связанные с расположенной рядом рекой Казанкой: «Экология», «Жизнь реки» и «Река рассказывает истории».",
   role:"Промышленный дизайн научного игрового оборудования: «Судоходство» с движущимися картинками кораблей по принципу барьерной анимации, «Полезный мусор» о переработке, «Что скрывает вода?» с копиями находок из Казанки.",
   res:"Реализовано в 2024 году."},
  en:{t:"Elmay",s:"Children's park · Kazan · 2024",facts:["Kazanka embankment, Kazan","3.4 ha","2024","Designed at Chekharda bureau"],
-  task:"The largest children's park in Tatarstan, with themed trails: “Ecology”, “Life of the River” and “The River Tells Stories”.",
+  about:"Elmay is the largest children's park in Tatarstan. It consists of a main playground and play and science equipment spread across the park.\n\nThe park's concept includes themed trails linked to the nearby Kazanka river: “Ecology”, “Life of the River” and “The River Tells Stories”.",
   role:"Industrial design of the science play equipment: “Shipping” with moving pictures of ships based on barrier-grid animation, “Useful Waste” about recycling, “What Does the Water Hide?” with replicas of finds from the Kazanka river.",
   res:"Completed in 2024."},
  awards:[["Winner of the 2nd All-Russian “Parks of Russia” award, Children's Park category|Победитель II Всероссийской премии «Парки России» в номинации «Детский парк»","https://premia.urbanparks.ru/winners/2025/detskij-park-elmaj-kazan"]],
@@ -818,20 +823,17 @@ var HY_P=[
  {t:"Պուրակ Խաչքարերի այգու մոտ",s:"Բարեկարգում · Երևան",facts:["Երևան","350 մ²","Նախագծվել է UrUrban բյուրոյում"],
   about:"Տակտիկական ուրբանիզմ՝ «Վիշապագորգ» մանկական խաղահրապարակի շարունակություն։"},
  {t:"Հայ գյուտարարներ",s:"Մանկական խաղահրապարակ · Երևան · 2026",facts:["Միսաք Մանուշյանի անվան այգի, Երևան","675 մ²","2026","Նախագծվել է UrUrban բյուրոյում"],
-  task:"Խաղային տարածք ծառերով փոքր հողամասում՝ քաղաքի կենտրոնի մարդաշատ այգում։",
-  sol:"Խաղահրապարակը աճում է դեպի վեր՝ խաղային աշտարակի տեսքով։ Աճի թեման կապված է գիտության և զարգացման հետ. խաղահրապարակը նվիրված է Հայաստանի և սփյուռքի հայ գիտնականներին։"},
+  about:"Մանկական խաղահրապարակը գտնվում է գրող Միսաք Մանուշյանի անվան մարդաշատ կանոնավոր այգում՝ խիստ ուրբանիզացված միջավայրում, երկու զուգահեռ փողոցների միջև, որոնք առանցքային են ճարտարապետ Թամանյանի 1924 թվականի գլխավոր հատակագծում։\n\nԾառերով փոքր հողամասը և առանցքային դիրքը պայմանավորեցին խաղահրապարակը դեպի վեր՝ աշտարակի տեսքով նախագծելու որոշումը։\n\nԿոնցեպցիան զարգացնում է այս գաղափարը. դեպի վեր նշանակում է աճ, զարգացում։ Իսկ զարգացման շարժիչ ուժերից մեկը գիտությունն է։ Խաղահրապարակի գաղափարը միավորում է բոլոր հայ գիտնականներին՝ ինչպես Հայաստանից, այնպես էլ այլ երկրների սփյուռքից, որին պատկանում էր նաև Միսաք Մանուշյանը։"},
  {t:"Վիշապագորգ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Խաչքարերի այգի, Երևան","800 մ²","2025","Նախագծվել է UrUrban բյուրոյում"],
-  task:"Մանկական խաղահրապարակ ճանապարհի երկայնքով նեղ հողամասում՝ խաչքարերի հուշապուրակի դիմաց։",
-  sol:"Խաղահրապարակը ոգեշնչված է հայկական գորգերով, որոնք վաճառվում են կողքի Վերնիսաժում. ռետինե ծածկույթ՝ կենաց ծառով, արծիվներով և բույսերով, իսկ սարքավորումները ոճավորված են վիշապների տեսքով։",
+  about:"Մանկական խաղահրապարակը գտնվում է Վերնիսաժի մոտ՝ առևտրի և զբոսաշրջության գրավիչ վայրի, որտեղ ամենապահանջված ապրանքներից են գորգերն ու կարպետները։\n\nՀայկական արհեստով ոգեշնչված կոնցեպցիան գորգի նախշը և դրա հիմնական զարդանախշերը տեղափոխում է ծածկույթի վրա, իսկ սարքավորումները ներկայացնում է վիշապների տեսքով՝ գորգի մի քանի հերոսներից մեկի։\n\nՏարածքը նեղ է, ձգվում է ճանապարհի երկայնքով և գտնվում է խաչքարերի հուշապուրակի դիմաց, ինչը պայմանավորեց սարքավորումների դասավորությունը և ոչ մեծ բարձրությունը։",
   role:"Ծածկույթի մանրամասնում, նշագծում գեոդեզիստների հետ և փռման վերահսկում. գույներն ընտրվել են՝ հաշվի առնելով գունաթափումն ու փոշին։ Խաղային սարքավորումներ և փոքր ճարտարապետական ձևեր, կանաչապատման գոտիավորում, փաստաթղթեր, հեղինակային հսկողություն։",
   res:"Իրականացվել է 2025 թվականին։"},
  {t:"Կարմրախայտ",s:"Մանկական խաղահրապարակ · Երևան · 2025",facts:["Օղակաձև այգի, Երևան","1 995 մ²","2025","Նախագծվել է UrUrban բյուրոյում"],
-  task:"Բազմազան խաղային տարածք՝ արտահայտիչ կենտրոնական տարրով, հասուն ծառերի միջև։",
-  sol:"Այգու տակով, կոլեկտորում, հոսում է Գետառ գետը։ Կոնցեպցիան այն վերադարձնում է մակերես՝ խճաքարե հատակ, ջրիմուռներ և կարմրախայտ ձուկը՝ խաղային համալիրի տեսքով։",
+  about:"Նախագծման տարածքը գտնվում է Երևանի Օղակաձև այգում՝ կոլեկտորի մեջ առնված Գետառ գետի վրա։ Խաղահրապարակի կոնցեպցիան ենթադրում է գետի «վերականգնում» մակերեսին՝ խճաքարե հատակ, ջրիմուռներ, ջրի հայելի՝ ծառերի սաղարթների տեսքով, և տեղական սաղմոնազգի ձուկը՝ կարմրախայտը։\n\nՀիմնական խնդիրն էր ստեղծել բազմազան խաղային տարածք՝ արտահայտիչ կենտրոնական տարրով՝ այն ներդաշնակեցնելով հասուն ծառերի միջավայրին։",
   role:"Տարածքի հատակագծում և խաղային սցենարներ, խաղային համալիր՝ էսքիզներից մինչև ներկում, անհատական պատրաստման փոքր ճարտարապետական ձևեր (շառավղային նստարաններ, աղբամաններ, վահանակներ, սահարաններ, բլուրներ, թունել, ծածկ), սարքավորումների ընտրություն, փաստաթղթեր և հեղինակային հսկողություն։",
   res:"Իրականացվել է 2025 թվականին։"},
  {t:"Էլմայ",s:"Մանկական այգի · Կազան · 2024",facts:["Կազանկա գետի ափ, Կազան","3,4 հա","2024","Նախագծվել է «Չեխարդա» բյուրոյում"],
-  task:"Թաթարստանի ամենամեծ մանկական այգին՝ «Էկոլոգիա», «Գետի կյանքը» և «Գետը պատմում է» թեմատիկ երթուղիներով։",
+  about:"«Էլմայ» այգին Թաթարստանի ամենամեծ մանկական այգին է։ Այն բաղկացած է գլխավոր մանկական խաղահրապարակից և այգու ողջ տարածքում տեղադրված խաղային ու գիտական սարքավորումներից։\n\nԱյգու կոնցեպցիան նախատեսում է թեմատիկ երթուղիներ՝ կապված մոտակա Կազանկա գետի հետ՝ «Էկոլոգիա», «Գետի կյանքը» և «Գետը պատմում է»։",
   role:"Երթուղիների գիտական խաղային սարքավորումների արդյունաբերական դիզայն՝ «Նավագնացություն»՝ նավերի շարժվող պատկերներով (պատնեշային անիմացիայի սկզբունքով), «Օգտակար աղբ»՝ վերամշակման մասին, «Ի՞նչ է թաքցնում ջուրը»՝ Կազանկա գետում հայտնաբերված գտածոների կրկնօրինակներով։",
   res:"Իրականացվել է 2024 թվականին։"},
  {t:"LAN քոուորքինգ և սրճարան",s:"Ինտերիեր · Երևան · 2022",facts:["Կենտրոն, Երևան","110 մ²","2022"],
@@ -878,6 +880,9 @@ function render(){
 }
 
 var dlg=document.getElementById("pm"),cur=0,curImg=0;
+/* блокировка прокрутки страницы под открытым окном (запасной вариант для браузеров без :has) */
+(function(){var ds=document.querySelectorAll("dialog");function upd(){document.documentElement.classList.toggle("modal-open",[].some.call(ds,function(x){return x.open}))}
+  var mo=new MutationObserver(upd);ds.forEach(function(x){mo.observe(x,{attributes:true,attributeFilter:["open"]});x.addEventListener("close",upd)})})();
 function linkList(arr){return '<ul class="links">'+arr.map(function(l){return '<li><a href="'+l[1]+'" target="_blank" rel="noopener">'+esc(typo(lbl(l[0])))+'</a></li>'}).join("")+'</ul>'}
 function showImg(k){
   var p=P[cur];curImg=(k+p.img.length)%p.img.length;
@@ -897,12 +902,12 @@ function openP(i,k){
   var th=document.getElementById("pm-thumbs");th.hidden=!multi;
   th.innerHTML=multi?p.img.map(function(f,j){return '<button type="button" data-k="'+j+'" aria-label="'+(j+1)+'"><img src="img/'+f.replace(/^v:/,"")+'-t.jpg" alt="" loading="lazy">'+(f.indexOf("v:")===0?'<span class="play" aria-hidden="true">▶</span>':'')+'</button>'}).join(""):"";
   var h='<h3 id="pm-title">'+esc(typo(x.t))+'</h3><div class="facts">'+x.facts.map(function(f){return '<span>'+esc(f)+'</span>'}).join("")+'</div><dl class="rows">';
-  [["task",x.task],["sol",x.sol],["about",x.about]].forEach(function(r){if(r[1])h+='<div><dt>'+L[r[0]]+'</dt><dd>'+esc(typo(r[1]))+'</dd></div>'});
+  [["task",x.task],["sol",x.sol],["about",x.about]].forEach(function(r){if(r[1])h+='<div><dt>'+L[r[0]]+'</dt><dd>'+r[1].split(/\n\s*\n/).map(function(t){return '<p>'+esc(typo(t.trim()))+'</p>'}).join("")+'</dd></div>'});
   if(p.awards)h+='<div><dt>'+L.awards+'</dt><dd>'+linkList(p.awards)+'</dd></div>';
   if(p.pubs)h+='<div><dt>'+L.pubs+'</dt><dd>'+linkList(p.pubs)+'</dd></div>';
   if(p.links)h+='<div><dt>'+L.links+'</dt><dd>'+linkList(p.links)+'</dd></div>';
   h+='</dl><button class="nextp" type="button" id="pm-np">'+esc(d.next_p)+'</button>';
-  var inf=document.getElementById("pm-info");inf.innerHTML=h;inf.scrollTop=0;
+  var inf=document.getElementById("pm-info");inf.innerHTML=h;inf.scrollTop=0;dlg.querySelector(".m").scrollTop=0;
   showImg(k||0);
   if(!dlg.open)dlg.showModal();
 }
@@ -914,6 +919,8 @@ document.getElementById("pm-next").addEventListener("click",function(){showImg(c
 document.getElementById("pm-thumbs").addEventListener("click",function(e){var b=e.target.closest("button");if(b)showImg(+b.dataset.k)});
 document.getElementById("pm-info").addEventListener("click",function(e){if(e.target.id==="pm-np"){var n=(cur+1)%P.length;while(P[n].soon||P[n].hidden)n=(n+1)%P.length;openP(n,0)}});
 dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close()});
+/* на компьютере: колесо мыши над фото прокручивает текст карточки */
+dlg.querySelector(".gal").addEventListener("wheel",function(e){var inf=document.getElementById("pm-info");if(e.ctrlKey||Math.abs(e.deltaY)<=Math.abs(e.deltaX)||inf.scrollHeight<=inf.clientHeight)return;e.preventDefault();inf.scrollTop+=e.deltaMode===1?e.deltaY*40:e.deltaY},{passive:false});
 dlg.addEventListener("keydown",function(e){if(e.key==="ArrowRight")showImg(curImg+1);if(e.key==="ArrowLeft")showImg(curImg-1)});
 
 document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){lang=b.dataset.lang;try{localStorage.setItem("mz-lang",lang)}catch(e){}render()})});
@@ -1003,7 +1010,12 @@ $("c-cur").addEventListener("click",function(e){var b=e.target.closest("button")
 rules();
 
 /* ===== Отправка расчёта ===== */
-var SEND_URL="";   // сюда вставить адрес обработчика формы (например, Formspree: https://formspree.io/f/XXXXXXX). Пока пусто — письма не отправляются.
+/* Письма с сайта отправляет сервис FormSubmit (formsubmit.co) — бесплатно, без регистрации, с вложениями до 10 МБ.
+   MAIL_TO — куда приходят заявки. После первой заявки на этот адрес придёт письмо от FormSubmit с кнопкой «Activate Form» — её нужно нажать один раз.
+   После активации FormSubmit пришлёт секретный код вида a1b2c3d4… — его можно вписать вместо адреса, чтобы почта не была видна в коде сайта. */
+var MAIL_TO="info@mizinarchitect.com";
+var SEND_URL="https://formsubmit.co/ajax/"+MAIL_TO;   // для коротких писем без файлов (форма расчёта)
+var POST_URL="https://formsubmit.co/"+MAIL_TO;        // для заявки с файлами
 var sp=$("send-panel"),so=$("send-open"),sf=$("send-form"),sm=$("send-msg");
 function sendLabel(){so.textContent=T[lang][so.getAttribute("aria-expanded")==="true"?"snd_close":"snd_open"]}
 so.addEventListener("click",function(){
@@ -1032,7 +1044,7 @@ sf.addEventListener("submit",function(e){
   m.setAttribute("aria-invalid",String(!mOk));$("e-mail").hidden=mOk;
   if(!nOk){n.focus();ok=false}else if(!mOk){m.focus();ok=false}
   if(!ok)return;
-  var payload={name:n.value.trim(),email:m.value.trim(),comment:$("f-msg").value.trim(),estimate:estimateText(),language:lang,_subject:"Расчёт проекта с сайта"};
+  var payload={name:n.value.trim(),email:m.value.trim(),comment:$("f-msg").value.trim(),estimate:estimateText(),language:lang,_subject:"Расчёт проекта с сайта",_template:"table",_captcha:"false"};
   if(!SEND_URL){sm.textContent=d.snd_off;return}
   sm.textContent=d.snd_wait;
   fetch(SEND_URL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)})
@@ -1054,7 +1066,9 @@ function gaEvent(n,p){if(window.gtag)gtag("event",n,p||{})}
 })();
 /* ===== Заявка ===== */
 (function(){
-  var QURL=SEND_URL,MAX=10*1024*1024,files=[],f=$("qf"),st=$("q-status"),fi=$("q-files"),fl=$("q-flist");
+  var MAX=10*1024*1024,files=[],busy=false,f=$("qf"),st=$("q-status"),fi=$("q-files"),fl=$("q-flist");
+  /* скрытое поле-ловушка для спам-ботов: люди его не видят и не заполняют */
+  var hp=document.createElement("input");hp.type="text";hp.name="_honey";hp.tabIndex=-1;hp.autocomplete="off";hp.className="sr";hp.setAttribute("aria-hidden","true");f.appendChild(hp);
   function D(){return T[lang]}
   function fmt(b){return b<1048576?Math.max(1,Math.round(b/1024))+" KB":(b/1048576).toFixed(1)+" MB"}
   function total(){return files.reduce(function(a,x){return a+x.size},0)}
@@ -1078,16 +1092,24 @@ function gaEvent(n,p){if(window.gtag)gtag("event",n,p||{})}
     $("qe-size").hidden=sOk;if(!sOk)first=first||fi;
     if(first){first.focus();return}
     var v={message:msg.value.trim(),email:m.value.trim(),contact:$("q-phone").value.trim(),name:$("q-name").value.trim()};
-    if(!QURL){
-      var body=[d.q_msg+": "+v.message,d.q_mail+": "+v.email,d.q_phone+": "+(v.contact||"—"),d.q_name+": "+(v.name||"—")].join("\n");
-      st.textContent=d.q_mailto;gaEvent("generate_lead",{method:"mailto"});
-      location.href="mailto:info@mizinarchitect.com?subject="+encodeURIComponent(d.mail_subj)+"&body="+encodeURIComponent(body);return;
-    }
-    var fd=new FormData();Object.keys(v).forEach(function(k){fd.append(k,v[k])});fd.append("consent","yes");fd.append("language",lang);fd.append("_subject",d.mail_subj);files.forEach(function(x){fd.append("attachment",x,x.name)});
-    st.textContent=d.q_wait;
-    fetch(QURL,{method:"POST",headers:{"Accept":"application/json"},body:fd})
-      .then(function(r){if(!r.ok)throw 0;st.textContent=d.q_ok;gaEvent("generate_lead",{method:"form"});f.reset();files=[];draw();grow()})
-      .catch(function(){st.textContent=d.q_fail});
+    if(busy)return;
+    /* Отправляем обычной multipart-формой в скрытый iframe — так FormSubmit принимает вложения */
+    var fields={"Сообщение":v.message,"email":v.email,"Телефон / мессенджер":v.contact||"—","Имя":v.name||"—","Язык сайта":lang,"Согласие на обработку данных":"да",
+      _subject:d.mail_subj+(v.name?" — "+v.name:""),_replyto:v.email,_template:"table",_captcha:"false",_honey:hp.value};
+    var fr=document.createElement("iframe");fr.name="qf-sink-"+Date.now();fr.hidden=true;fr.setAttribute("aria-hidden","true");fr.tabIndex=-1;
+    var pf=document.createElement("form");pf.method="POST";pf.action=POST_URL;pf.enctype="multipart/form-data";pf.target=fr.name;pf.hidden=true;pf.acceptCharset="UTF-8";
+    Object.keys(fields).forEach(function(k){var i=document.createElement("input");i.type="hidden";i.name=k;i.value=fields[k];pf.appendChild(i)});
+    try{files.forEach(function(x,i){var dt=new DataTransfer();dt.items.add(x);var inp=document.createElement("input");inp.type="file";inp.name="attachment"+(i+1);inp.files=dt.files;pf.appendChild(inp)})}
+    catch(err){if(files.length){st.textContent=d.q_fail;return}}
+    var done=false,timer;
+    function finish(ok){if(done)return;done=true;busy=false;clearTimeout(timer);f.classList.remove("sending");
+      if(ok){st.textContent=d.q_ok;gaEvent("generate_lead",{method:"form"});f.reset();files=[];draw();grow()}else st.textContent=d.q_fail;
+      setTimeout(function(){fr.remove();pf.remove()},1000)}
+    document.body.appendChild(fr);document.body.appendChild(pf);
+    busy=true;f.classList.add("sending");st.textContent=d.q_wait;
+    timer=setTimeout(function(){finish(false)},90000);
+    /* ждём, пока пустой iframe загрузится, и только потом отправляем — чтобы не принять его первую загрузку за ответ сервиса */
+    setTimeout(function(){fr.addEventListener("load",function(){finish(true)});pf.submit()},60);
   });
 })();
 function snapFlow(){var f=document.querySelector(".flow");if(!f)return;f.style.setProperty("--snap","0px");var r=window.devicePixelRatio||1,y=(f.getBoundingClientRect().top+scrollY)*r,fr=y-Math.round(y);f.style.setProperty("--snap",(-fr/r).toFixed(3)+"px")}
